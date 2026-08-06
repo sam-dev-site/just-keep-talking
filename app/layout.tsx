@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Just Keep Talking | English that moves with you",
+  title: "Just Keep Talking | 1:1 English Conversation Classes",
   description:
-    "Private, personalized online English classes built around your goals and your voice.",
+    "Personalized 1:1 online English conversation classes built around your goals, pace, and voice.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
