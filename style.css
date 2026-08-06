@@ -129,7 +129,7 @@ details p { max-width: 640px; margin: -.25rem 3.5rem 1.35rem 0; line-height: 1.6
 .button.light { background: var(--lime); color: var(--ink); min-width: 280px; }
 .button.light:hover { background: white; }
 footer { background: var(--ink); color: white; padding: 3rem 4vw; display: flex; align-items: center; gap: 3rem; }
-footer img { width: 160px; }
+footer img { width: 160px; height: auto; }
 footer p { margin: 0; color: #b8cfda; }
 footer a { margin-left: auto; font-weight: 800; }
 
