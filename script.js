@@ -20,7 +20,7 @@ const grid = document.querySelector("#plan-grid");
 function renderPlans() {
   const cta = language === "en" ? "Start your intake" : "Inicia tu entrevista";
   const savings = language === "en" ? ["", "Save ₡500 / class", "Save ₡1,000 / class", "Save ₡1,500 / class"] : ["", "Ahorra ₡500 / clase", "Ahorra ₡1.000 / clase", "Ahorra ₡1.500 / clase"];
-  grid.innerHTML = planData[language].map((plan, index) => `<article class="plan-card"><div class="plan-top"><span>${String(index + 1).padStart(2, "0")}</span></div><h3>${plan[0]}</h3><strong>${plan[1]}</strong><p>${plan[2]}</p><div class="price">${savings[index] ? `<small class="savings">${savings[index]}</small>` : ""}<b>${plan[3]}</b><span>${plan[4]}</span></div><a class="whatsapp" href="https://wa.me/50686858056" target="_blank" rel="noreferrer">${cta} ↗</a></article>`).join("");
+  grid.innerHTML = planData[language].map((plan, index) => `<article class="plan-card"><div class="plan-top"><span>${String(index + 1).padStart(2, "0")}</span></div><h3>${plan[0]}</h3><strong>${plan[1]}</strong><p>${plan[2]}</p><div class="price">${savings[index] ? `<small class="savings">${savings[index]}</small>` : ""}<b>${plan[3]}</b><span>${plan[4]}</span></div><a class="whatsapp plan-cta" href="https://wa.me/50686858056" target="_blank" rel="noreferrer"><span>${cta}</span><img class="whatsapp-icon" src="brand/whatsapp-sky.png" alt="" aria-hidden="true"></a></article>`).join("");
 }
 
 function setLanguage(next) {
