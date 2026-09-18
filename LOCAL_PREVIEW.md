@@ -1,7 +1,7 @@
 # Local preview
 
-The site is a dependency-free static build. Serve this `site/` folder with any local web server, then open its local address in a browser.
+From this directory, run `pnpm dev` and open the local address printed by the development server.
 
-The tested preview address for this workspace is `http://127.0.0.1:4173/`.
+Run `pnpm check` before handoff. The check covers the production build, content regressions, responsive browser behavior, console errors, horizontal overflow, and serious automated accessibility findings.
 
-Do not publish until the launch blockers in `../project/BRIEF.md` are resolved.
+Publishing requires separate approval from the project owner.
