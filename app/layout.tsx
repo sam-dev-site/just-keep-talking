@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   openGraph: {
     type: "website",
@@ -9,7 +11,7 @@ export const metadata: Metadata = {
     card: "summary",
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.svg`,
   },
 };
 

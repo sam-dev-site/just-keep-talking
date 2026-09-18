@@ -1,11 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 const whatsapp = "https://wa.me/50686858056";
 const email = "justkeeptalkingcr@gmail.com";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const asset = (path: string) => `${basePath}${path}`;
+const subscribeToLocation = (callback: () => void) => {
+  window.addEventListener("popstate", callback);
+  return () => window.removeEventListener("popstate", callback);
+};
 // Owner-confirmed two-plan offer supersedes the older pricing graphics.
 const tuition = {
   adults: {
@@ -26,9 +31,9 @@ const tuition = {
   },
 };
 const portraits: Record<string, string> = {
-  Audrey: "/brand/audrey-teacher.webp",
-  Cristian: "/brand/cristian-teacher.webp",
-  Monique: "/brand/monique-teacher.webp",
+  Audrey: asset("/brand/audrey-teacher.webp"),
+  Cristian: asset("/brand/cristian-teacher.webp"),
+  Monique: asset("/brand/monique-teacher.webp"),
 };
 const pages = ["home", "classes", "about", "policies", "teach"] as const;
 type Page = typeof pages[number];
@@ -44,7 +49,12 @@ const team = [
 ];
 
 export default function Home() {
-  const params = useSearchParams();
+  const search = useSyncExternalStore(
+    subscribeToLocation,
+    () => window.location.search,
+    () => "",
+  );
+  const params = new URLSearchParams(search);
   const language = params.get("lang") === "es" ? "es" : "en";
   const l = (en: string, es: string) => language === "en" ? en : es;
   const requestedPage = params.get("page");
@@ -71,13 +81,14 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const shell = useRef<HTMLDivElement>(null);
-  const url = (updates: Record<string, string> = {}, hash = "") => `/?${new URLSearchParams({ lang: language, page, audience, format, currency, size, ...updates }).toString()}${hash}`;
+  const url = (updates: Record<string, string> = {}, hash = "") => `${basePath}/?${new URLSearchParams({ lang: language, page, audience, format, currency, size, ...updates }).toString()}${hash}`;
   const change = (key: string, value: string) => {
     // These controls change only this page's presentation. Updating native
     // history avoids overlapping route requests when options change quickly.
     const next = new URL(window.location.href);
     next.searchParams.set(key, value);
     window.history.replaceState(null, "", `${next.pathname}${next.search}`);
+    window.dispatchEvent(new PopStateEvent("popstate"));
   };
   const wa = (message: string) => `${whatsapp}?text=${encodeURIComponent(message)}`;
   const cta = l("Let’s talk on WhatsApp", "Conversemos por WhatsApp");
@@ -127,7 +138,7 @@ export default function Home() {
     <meta name="twitter:description" content={description} />
     <a className="skip-link" href="#main">{l("Skip to content", "Ir al contenido")}</a>
     <header className="header" onKeyDown={event => { if (event.key === "Escape" && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); } }}>
-      <a href={url({ page: "home" })} aria-label={l("Just Keep Talking home", "Just Keep Talking, inicio")}><Image className="logo" src="/brand/logo.png" alt="Just Keep Talking" width={600} height={464} priority unoptimized /></a>
+      <a href={url({ page: "home" })} aria-label={l("Just Keep Talking home", "Just Keep Talking, inicio")}><Image className="logo" src={asset("/brand/logo.png")} alt="Just Keep Talking" width={600} height={464} priority unoptimized /></a>
       <button ref={menuButton} className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? l("Close", "Cerrar") : l("Menu", "Menú")}</button>
       <nav id="main-navigation" className={menuOpen ? "is-open" : ""} aria-label={l("Main navigation", "Navegación principal")}>{nav.map(item => <a href={item.href} key={item.label} aria-current={item.current ? "page" : undefined}>{item.label}</a>)}<a className="nav-whatsapp" href={generalUrl} target="_blank" rel="noreferrer">WhatsApp</a></nav>
       <a className="language" href={url({ lang: language === "en" ? "es" : "en" })} hrefLang={language === "en" ? "es" : "en"} aria-label={l("Cambiar a español", "Switch to English")}>{language === "en" ? "ES" : "EN"}</a>
@@ -136,15 +147,15 @@ export default function Home() {
       {page === "home" && <>
         <section className="hero">
           <div><p className="eyebrow">{l("Your virtual language academy", "Tu academia virtual de idiomas")}</p><h1>{l("Build the confidence", "Gana confianza")} <em>{l("to speak.", "para hablar.")}</em></h1><p className="intro">{l("Personalized online English classes for adults and kids, with private and small-group options.", "Clases de inglés en línea personalizadas para adultos y niños, con opciones privadas y en grupos pequeños.")}</p><a className="button primary" href={generalUrl} target="_blank" rel="noreferrer">{cta}</a><p className="micro">{l("All levels · Across the Americas · Online through Zoom", "Todos los niveles · En toda América · En línea por Zoom")}</p></div>
-          <div className="hero-visual"><Image src="/brand/students-talking.webp" alt={l("Two people talking together at a table with books", "Dos personas conversando en una mesa con libros")} width={1600} height={1066} priority unoptimized /></div>
+          <div className="hero-visual"><Image src={asset("/brand/students-talking.webp")} alt={l("Two people talking together at a table with books", "Dos personas conversando en una mesa con libros")} width={1600} height={1066} priority unoptimized /></div>
         </section>
         <section className="section audience-section" aria-labelledby="audiences-title"><p className="eyebrow">{l("Find your starting point", "Encuentra tu punto de partida")}</p><h2 id="audiences-title">{l("Who are the classes for?", "¿Para quién son las clases?")}</h2><div className="audience-grid">
           <a className="audience-card" href={url({ page: "classes", audience: "adults" })}><span className="eyebrow">{l("Adults", "Adultos")}</span><h3>{l("Your goals. Your voice.", "Tus metas. Tu voz.")}</h3><p>{l("English for work, travel, and the conversations you want to have.", "Inglés para el trabajo, los viajes y las conversaciones que quieres tener.")}</p><span className="text-link">{l("Explore adult classes", "Explora las clases para adultos")} ↗</span></a>
           <a className="audience-card" href={url({ page: "classes", audience: "kids" })}><span className="eyebrow">{l("For your child", "Para tu hijo o hija")}</span><h3>{l("Curiosity becomes conversation.", "La curiosidad se vuelve conversación.")}</h3><p>{l("Personalized practice, meaningful connection, and space to grow in confidence.", "Práctica personalizada, una conexión cercana y espacio para ganar confianza.")}</p><span className="text-link">{l("Explore kids’ classes", "Explora las clases para niños")} ↗</span></a>
         </div></section>
         <section className="section" id="approach"><div className="section-intro"><div><p className="eyebrow">{l("Our approach", "Nuestro enfoque")}</p><h2>{l("Learning starts with connection.", "El aprendizaje empieza con una conexión.")}</h2></div><p>{l("Personalized learning for the moments that matter: at work, in school, while traveling, and in everyday life.", "Aprendizaje personalizado para los momentos que importan: en el trabajo, en los estudios, al viajar y en la vida cotidiana.")}</p></div><div className="card-grid">{principles.map((item, index) => <article className="feature-card" key={item[0]}><span className="number">0{index + 1}</span><h3>{item[0]}</h3><p>{item[1]}</p></article>)}</div></section>
-        <section className="founder-band"><div className="section founder-preview"><div><p className="eyebrow">{l("Why Just Keep Talking began", "Cómo nació Just Keep Talking")}</p><h2>{l("Knowing the words is only the beginning.", "Conocer las palabras es solo el comienzo.")}</h2></div><div><Image className="founder-preview-portrait" src="/brand/audrey-founder.webp" alt={l("Audrey, founder of Just Keep Talking", "Audrey, fundadora de Just Keep Talking")} width={900} height={1350} unoptimized /><p className="intro">{founderPreview}</p><a className="text-link" href={url({ page: "about" })}>{l("Read Audrey’s story", "Lee la historia de Audrey")} ↗</a></div></div></section>
-        <section className="section process" id="process"><div className="process-photo"><Image src="/brand/teacher.jpg" alt={l("Online teaching from a home workspace", "Enseñanza en línea desde un espacio de trabajo en casa")} width={1600} height={1066} unoptimized /></div><div><p className="eyebrow">{l("Getting started", "Cómo comenzar")}</p><h2>{l("Let’s find your rhythm.", "Encontremos tu ritmo.")}</h2><ol>{[
+        <section className="founder-band"><div className="section founder-preview"><div><p className="eyebrow">{l("Why Just Keep Talking began", "Cómo nació Just Keep Talking")}</p><h2>{l("Knowing the words is only the beginning.", "Conocer las palabras es solo el comienzo.")}</h2></div><div><Image className="founder-preview-portrait" src={asset("/brand/audrey-founder.webp")} alt={l("Audrey, founder of Just Keep Talking", "Audrey, fundadora de Just Keep Talking")} width={900} height={1350} unoptimized /><p className="intro">{founderPreview}</p><a className="text-link" href={url({ page: "about" })}>{l("Read Audrey’s story", "Lee la historia de Audrey")} ↗</a></div></div></section>
+        <section className="section process" id="process"><div className="process-photo"><Image src={asset("/brand/teacher.jpg")} alt={l("Online teaching from a home workspace", "Enseñanza en línea desde un espacio de trabajo en casa")} width={1600} height={1066} unoptimized /></div><div><p className="eyebrow">{l("Getting started", "Cómo comenzar")}</p><h2>{l("Let’s find your rhythm.", "Encontremos tu ritmo.")}</h2><ol>{[
           [l("Talk with us", "Conversemos"), l("Arrange an intake conversation on WhatsApp. Tell us about your goals and your starting point.", "Coordina una entrevista por WhatsApp. Cuéntanos tus metas y tu punto de partida.")],
           [l("Find your format", "Encuentra tu formato"), l("Choose private or small-group learning and an appropriate schedule with JKT.", "Elige con JKT clases privadas o en grupo pequeño y un horario adecuado.")],
           [l("Just keep talking", "Solo sigue hablando"), l("Meet your teacher on Zoom and build confidence through meaningful practice.", "Reúnete con tu docente por Zoom y gana confianza con práctica significativa.")],
@@ -167,7 +178,7 @@ export default function Home() {
         <p className="policy-link"><a href={url({ page: "policies" })}>{l("Upcoming 2027 policy overview", "Resumen de la próxima política de 2027")}</a> · {l("Effective January 4, 2027", "Vigente a partir del 4 de enero de 2027")}</p>
       </section>}
       {page === "about" && <>
-        <section className="section story"><div><p className="eyebrow">{l("Our story", "Nuestra historia")}</p><h1 className="page-title">{l("From learning the rules to finding a voice.", "De aprender las reglas a encontrar una voz.")}</h1><Image className="founder-portrait" src="/brand/audrey-founder.webp" alt={l("Audrey, founder of Just Keep Talking", "Audrey, fundadora de Just Keep Talking")} width={900} height={1350} unoptimized /><p className="story-signature">{l("Audrey · Founder of Just Keep Talking", "Audrey · Fundadora de Just Keep Talking")}</p></div><div className="story-copy">
+        <section className="section story"><div><p className="eyebrow">{l("Our story", "Nuestra historia")}</p><h1 className="page-title">{l("From learning the rules to finding a voice.", "De aprender las reglas a encontrar una voz.")}</h1><Image className="founder-portrait" src={asset("/brand/audrey-founder.webp")} alt={l("Audrey, founder of Just Keep Talking", "Audrey, fundadora de Just Keep Talking")} width={900} height={1350} unoptimized /><p className="story-signature">{l("Audrey · Founder of Just Keep Talking", "Audrey · Fundadora de Just Keep Talking")}</p></div><div className="story-copy">
           <p>{l("For years, Audrey studied Spanish at school and university. She practiced grammar and memorized vocabulary, but speaking still didn’t feel natural. Knowing the rules had not given her the confidence to join a conversation.", "Durante años, Audrey estudió español en la escuela, el colegio y la universidad. Practicaba gramática y memorizaba vocabulario, pero hablar todavía no le resultaba natural. Conocer las reglas no le había dado la confianza para participar en una conversación.")}</p>
           <p>{l("An exchange program in Costa Rica changed that. Surrounded by people, culture, and everyday conversations, she began to feel that she could really speak the language. The experience changed how she understood learning: connection and meaningful interaction made a difference.", "Un intercambio en Costa Rica cambió esa experiencia. Rodeada de personas, cultura y conversaciones cotidianas, comenzó a sentir que realmente podía hablar el idioma. Eso transformó su manera de entender el aprendizaje: la conexión y la interacción significativa marcaban la diferencia.")}</p>
           <p>{l("Back in the United States, she continued studying education with a focus on teaching Spanish and English as a second language. In 2021, she moved to Costa Rica and began creating personalized virtual lessons, building the academy that became Just Keep Talking.", "De regreso en Estados Unidos, continuó estudiando educación con un enfoque en la enseñanza del español y del inglés como segunda lengua. En 2021, se mudó a Costa Rica y comenzó a crear clases virtuales personalizadas, construyendo la academia Just Keep Talking.")}</p>
@@ -195,6 +206,6 @@ export default function Home() {
         ].map(item => <li key={item}>{item}</li>)}</ul></div></div><div className="application"><h2>{l("Start a conversation with our team.", "Inicia una conversación con nuestro equipo.")}</h2><a className="button primary" href={wa(l("Hi! I’m interested in teaching with Just Keep Talking and would like to arrange an interview.", "¡Hola! Me interesa enseñar con Just Keep Talking y quisiera coordinar una entrevista."))} target="_blank" rel="noreferrer">{l("Apply on WhatsApp", "Postúlate por WhatsApp")}</a><a className="text-link" href={`mailto:${email}?subject=${encodeURIComponent(l("Teaching at Just Keep Talking", "Enseñar en Just Keep Talking"))}`}>{l("Or send us an email", "O envíanos un correo")}</a></div></section>}
       {page !== "teach" && page !== "policies" && <section className="closing"><div><p className="eyebrow">{l("Your next conversation starts here", "Tu próxima conversación empieza aquí")}</p><h2>{l("Tell us where you want English to take you.", "Cuéntanos adónde quieres llegar con el inglés.")}</h2><p>{l("We’ll talk about your goals, experience, and schedule, then help you find a starting point.", "Conversaremos sobre tus metas, experiencia y horario para ayudarte a encontrar un punto de partida.")}</p></div><a className="button light" href={generalUrl} target="_blank" rel="noreferrer">{cta}</a></section>}
     </main>
-    <footer><div className="footer-brand"><Image src="/brand/logo-white.png" alt="Just Keep Talking" width={600} height={464} unoptimized /><p>{l("Online English. Real connection.", "Inglés en línea. Conexión real.")}</p></div><nav aria-label={l("Footer navigation", "Navegación del pie de página")}><a href={url({ page: "classes" })}>{l("Classes & pricing", "Clases y precios")}</a><a href={url({ page: "policies" })}>{l("Policies", "Políticas")}</a><a href={url({ page: "teach" })}>{l("Teach with us", "Enseña con nosotros")}</a></nav><div className="footer-contact"><a href={generalUrl} target="_blank" rel="noreferrer">WhatsApp · +506 8685 8056</a><a href={`mailto:${email}`}>{email}</a><a href="https://www.instagram.com/justkeeptalkingcr/" target="_blank" rel="noreferrer">Instagram · @justkeeptalkingcr</a></div></footer>
+    <footer><div className="footer-brand"><Image src={asset("/brand/logo-white.png")} alt="Just Keep Talking" width={600} height={464} unoptimized /><p>{l("Online English. Real connection.", "Inglés en línea. Conexión real.")}</p></div><nav aria-label={l("Footer navigation", "Navegación del pie de página")}><a href={url({ page: "classes" })}>{l("Classes & pricing", "Clases y precios")}</a><a href={url({ page: "policies" })}>{l("Policies", "Políticas")}</a><a href={url({ page: "teach" })}>{l("Teach with us", "Enseña con nosotros")}</a></nav><div className="footer-contact"><a href={generalUrl} target="_blank" rel="noreferrer">WhatsApp · +506 8685 8056</a><a href={`mailto:${email}`}>{email}</a><a href="https://www.instagram.com/justkeeptalkingcr/" target="_blank" rel="noreferrer">Instagram · @justkeeptalkingcr</a></div></footer>
   </div>;
 }
