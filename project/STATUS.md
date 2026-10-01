@@ -38,6 +38,10 @@ The homepage now speaks to adult professionals without dropping the kids path or
 - Classes still show exactly two plans. Testimonials are not on the site.
 - This pass is not published. Do not push `main` unless the owner asks.
 
+`pnpm check` passed on this branch: ESLint, production build, two server-render tests, seven Playwright tests, and one intentionally skipped duplicate mobile accessibility pass.
+
+Browser check at http://localhost:4173/: English and Spanish home, including the four intake steps and the learning-plan list; classes for adult private in colones (Essential ₡65,000, Standard ₡125,000) and a Spanish kids group of 4+ in dollars (Explorer $42, Builder $80); header and footer lockup; mobile menu at 390px. No horizontal overflow and no console errors. Chromium only. No WhatsApp or email message was sent.
+
 ## This working tree — 1 October 2026
 
 Cursor now uses this directory as the project root. Superseded planning notes are in `project/history/`. The current brief is `project/BRIEF.md`.
