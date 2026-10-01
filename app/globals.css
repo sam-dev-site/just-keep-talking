@@ -105,7 +105,7 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
 .segmented button:hover:not([aria-pressed=true]) { background:white; }
 .selection-heading h2 { font-size:1.65rem; margin-bottom:.5rem; }
 .selection-heading p { color:var(--muted); }
-.plan-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+.plan-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; max-width:900px; }
 .plan-card { display:flex; flex-direction:column; padding:1.5rem; min-height:310px; background:white; border:1px solid var(--line); border-top:5px solid var(--sky); border-radius:8px; transition:box-shadow .2s,border-color .2s; }
 .plan-card:nth-child(2) { border-top-color:var(--lime); }
 .plan-card:nth-child(3) { border-top-color:var(--blue); }
@@ -117,11 +117,8 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
 .price { border-top:1px solid var(--line); padding-top:1rem; margin-top:auto; display:grid; gap:.2rem; }
 .price b { font-size:clamp(1.2rem,1.7vw,1.55rem); white-space:nowrap; }
 .price span { font-size:.875rem; color:var(--muted); }
-.plan-card>a { margin-top:1.4rem; font-size:.95rem; font-weight:700; }
+.plan-card>a { margin-top:1.4rem; font-size:.95rem; font-weight:700; align-self:flex-start; }
 .enrollment { margin-top:1.5rem; padding:1rem; border-left:4px solid var(--green); background:#edf0dc; }
-.inquiry-panel { background:white; border:1px solid var(--line); border-radius:16px; padding:2rem; max-width:800px; }
-.inquiry-panel p { max-width:650px; }
-.selection-label { font-weight:700; }
 .policy-link { font-size:.875rem; margin:2rem 0 0; }
 .story { display:grid; grid-template-columns:1fr 1fr; gap:6vw; align-items:start; }
 .story .page-title { font-size:clamp(2.8rem,4.4vw,4.3rem); }
@@ -151,7 +148,6 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
   .hero { gap:3vw; }
   .card-grid,.team-grid { gap:1rem; }
   .feature-card,.team-card { padding:1.25rem; }
-  .plan-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .price b { font-size:1.6rem; }
   .currency-control { margin-left:0; }
   .closing { grid-template-columns:1fr; gap:1rem; }
@@ -184,7 +180,6 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
   .pricing-controls { gap:1rem; }
   .plan-grid { grid-template-columns:1fr; }
   .plan-card { min-height:270px; }
-  .inquiry-panel { padding:1.5rem; }
   .story { gap:0; }
   .story-copy { padding-top:1rem; }
   .recruitment-grid { gap:1rem; margin:2rem 0; }
@@ -201,5 +196,4 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
 .portrait-placeholder small { font-size:.875rem; }
 .founder-portrait { display:block; width:100%; max-width:400px; height:auto; border-radius:12px; margin-top:2rem; }
 .founder-preview-portrait { float:left; width:150px; height:190px; object-fit:cover; object-position:center 25%; margin:0 1.5rem 1rem 0; border-radius:8px; }
-.plan-grid { grid-template-columns:repeat(2,minmax(0,1fr)); max-width:900px; }
-@media(max-width:700px) { .plan-grid { grid-template-columns:1fr; } .founder-preview-portrait { float:none; width:180px; height:225px; } }
+@media(max-width:700px) { .founder-preview-portrait { float:none; width:180px; height:225px; } }

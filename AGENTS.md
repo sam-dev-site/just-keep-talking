@@ -1,88 +1,58 @@
-# Website Project Operating Instructions
+# Website project instructions
 
-## Mission
+Just Keep Talking is a bilingual brochure site for a private online English academy. The project owner is nontechnical. Make sound defaults, explain consequential choices in plain language, and keep the workflow lightweight.
 
-Turn the client's notes and brand assets into a focused, accessible, responsive business website. The project owner is nontechnical. Make sound defaults, explain consequential choices in plain language, and keep the workflow lightweight.
+## Where things live
 
-## Activation
+This directory is the git repo and the Cursor project. The parent folder is a local archive of original client notes and brand files. Read it when a task needs source material. Do not publish, commit, or modify those originals unless the owner explicitly asks.
 
-When the user provides client notes or points to a notes file and says **"Let's start building"**, treat that as authorization to run the workflow below through a locally tested first version. Do not ask the user to restate information already present in the notes or assets.
+- Accepted product facts: `project/BRIEF.md`
+- Work record: `project/STATUS.md`
+- Client notes: `intake/`
+- Price and portrait authority: `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`
+- Website: `app/`. Components may live under `app/`. Do not add a second static site.
+- Optimized images: `public/brand/`. Source inventory: `assets/brand/`.
+- Superseded planning notes: `project/history/`. Do not implement from them.
 
-Before activation, help with preparation only. Do not choose a framework or build speculative pages.
+## Running and publishing
 
-## Autonomy rules
+Use pnpm only. Keep `pnpm-lock.yaml`. Node.js 22.13 or newer and pnpm 11.19.
 
-- Inspect all supplied notes and brand assets first.
-- Make reversible, conventional decisions without asking permission.
-- Ask at most three focused questions only when the missing answer would materially change scope, legal/compliance requirements, data handling, or the primary conversion path.
-- Record assumptions. Never silently invent business facts, testimonials, prices, credentials, policies, or contact details.
-- Use placeholders only when necessary, label them clearly, and track them as launch blockers when appropriate.
-- Prefer the smallest architecture that satisfies the brief. A brochure site should remain a brochure site.
-- Do not publish, buy services, create external accounts, or expose secrets without explicit approval.
-- Local build and testing are authorized by the activation phrase. Publishing to GitHub requires a separate explicit request.
+```text
+pnpm install
+pnpm dev
+pnpm check
+```
 
-## Workflow
+`pnpm check` lints, builds, checks rendered content, runs responsive browser journeys, and scans for serious accessibility failures. Run it before handoff.
 
-### 1. Product owner: synthesize
+The live host is GitHub Pages: https://sam-dev-site.github.io/just-keep-talking/
 
-The lead agent acts as product owner and architect.
+Pushing `main` runs `.github/workflows/quality.yml` and deploys the static export. Do not push, deploy, or change the audience unless the owner explicitly asks. The Cloudflare worker and `.openai/hosting.json` are leftover starter files and are not the live host.
 
-1. Inventory notes and assets.
-2. Create or update `project/BRIEF.md` using `project/BRIEF_TEMPLATE.md`.
-3. Define the audience, user goal, business goal, primary call to action, scope, content needs, constraints, and measurable acceptance criteria.
-4. Separate facts, assumptions, recommendations, and unresolved launch blockers.
-5. Choose the implementation approach only after the brief is understood. Prefer a static site unless requirements justify a backend or content system.
-6. Create a short, testable execution plan.
+## Facts you must not invent
 
-### 2. Specialists: design and build
+Never silently invent business facts, testimonials, prices, billing-unit labels, credentials, policies, or contact details. Record assumptions. Use a clearly labeled placeholder only when necessary, and track it in `project/STATUS.md` when it blocks launch.
 
-Keep the default workflow small. For copy edits, styling adjustments, and other localized changes, use one builder followed by one independent review. For a new page, major redesign, release audit, or investigation with clearly independent questions, the lead agent should delegate bounded read-only work in parallel:
+Group prices are the owner’s exact monthly amounts. Do not label them per student or per group until the owner says which. Phase 1 and Phase 2 material stays off the public site.
 
-- **Experience designer:** information architecture, page hierarchy, responsive behavior, visual direction, interaction states, and accessibility requirements.
-- **Content specialist:** content inventory, page copy, calls to action, metadata, and placeholder tracking. Must not invent claims.
-- **Builder:** implementation, local setup, performance, responsive behavior, and repository hygiene.
-- **Reviewer:** independent checks against the brief, accessibility, usability, content accuracy, and technical quality.
+## Quality gates
 
-The lead agent owns final decisions and integration. The builder is the only agent that edits product files. Review, content, and experience agents remain read-only and return concrete findings with file references. Do not run multiple writing agents against the same checkout.
+Do not call a version complete until the applicable gates pass:
 
-When an independent release or UI/UX review is warranted, use the project-scoped `site_reviewer` agent if it is available.
-
-If delegation is unavailable, perform the same roles sequentially.
-
-### 3. Quality gates
-
-Do not call a version complete until all applicable gates pass:
-
-1. **Scope:** Every promised page and primary action works; unrequested features are absent.
-2. **Content:** Business facts match source notes; placeholders and missing assets are listed.
+1. **Scope:** Every promised page and primary action works. Unrequested features are absent.
+2. **Content:** Business facts match the source notes. Placeholders and missing assets are listed.
 3. **Responsive design:** Key views work at phone, tablet, and desktop widths without clipping or horizontal overflow.
 4. **Accessibility:** Semantic structure, keyboard access, visible focus, labels, alt text, sufficient contrast, reduced-motion support where relevant, and no obvious automated accessibility failures.
-5. **Behavior:** Links, forms, navigation, validation, empty/error/success states, and external destinations behave correctly.
-6. **Technical:** Production build succeeds; relevant tests and lint checks pass; browser console has no unexplained errors.
+5. **Behavior:** Links, navigation, validation, empty and error states, and external destinations behave correctly.
+6. **Technical:** The production build succeeds, relevant tests and lint checks pass, and the browser console has no unexplained errors.
 7. **Performance and discoverability:** Images are appropriately sized, metadata is present, headings are coherent, and obvious performance problems are addressed.
-8. **Independent review:** Reviewer compares the finished result with `project/BRIEF.md`; the builder resolves critical and high-priority findings.
+8. **Review:** Compare the result with `project/BRIEF.md` and resolve critical and high-priority findings.
 
-Use browser-based visual testing when available. Document what was tested and any limitations.
+Use browser-based visual testing when available. Record what was tested, and any limits, in `project/STATUS.md`.
 
-### 4. Handoff
+## Handoff
 
-At the end of a local build, give the user:
+Update `project/STATUS.md` as the work changes. At the end, tell the owner what exists, how to preview it, what the checks showed, which client inputs are still open, and the recommended next step.
 
-- a plain-language summary of what exists;
-- the local preview method;
-- validation results;
-- outstanding client inputs or risks;
-- the recommended next step.
-
-Update `project/STATUS.md` throughout the build so another agent can continue without reconstructing history.
-
-## Repository conventions
-
-- Client-provided raw notes go in `intake/` and should be preserved as source material.
-- Optimized website assets go in `public/brand/`. The source inventory goes in `assets/brand/`; do not alter originals in place.
-- Generated planning artifacts go in `project/`.
-- `app/page.tsx` and `app/globals.css` are the only website implementation source. Do not create parallel static entry points.
-- Use pnpm exclusively. Keep only `pnpm-lock.yaml` and run `pnpm check` before handoff.
-- Record browser QA evidence and limitations in `project/STATUS.md` against the tested commit or working-tree state.
-- Never commit secrets. Use environment files only when required, include an example file with safe placeholders, and keep real values ignored.
-- Preserve user changes and avoid destructive version-control operations.
+Never commit secrets. Preserve user changes and avoid destructive version-control operations.

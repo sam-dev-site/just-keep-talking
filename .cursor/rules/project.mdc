@@ -1,0 +1,18 @@
+---
+description: Operating facts for the Just Keep Talking website
+alwaysApply: true
+---
+
+# Just Keep Talking
+
+This folder is the git repo. The parent directory is a local archive of original client files. Do not publish or edit those originals.
+
+- Facts: `project/BRIEF.md`. Prices and portraits: `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`.
+- Do not invent prices, billing labels, testimonials, credentials, policies, or contact details.
+- One site under `app/`. Do not add a second static implementation.
+- Use pnpm. Run `pnpm check` before handoff. Update `project/STATUS.md`.
+- Live site: https://sam-dev-site.github.io/just-keep-talking/
+- A push to `main` deploys GitHub Pages. Do not push unless the owner asks.
+- The Cloudflare worker and `.openai/hosting.json` are unused starter files.
+
+Example: a classes link may include `audience`, `format`, `currency`, and `size`. A home, story, policy, or recruitment link should not.

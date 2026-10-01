@@ -18,4 +18,4 @@
 ## Derived project references
 
 - `project/2027_PROGRAM_CONTEXT.md`
-- `project/WEBSITE_UPDATE_PROPOSAL.md`
+- `project/history/WEBSITE_UPDATE_PROPOSAL.md` (archived; the current brief is `project/BRIEF.md`)
