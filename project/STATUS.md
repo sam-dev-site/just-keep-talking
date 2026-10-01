@@ -40,10 +40,10 @@ UI pass, using only facts already on the site:
 
 Browser check at http://localhost:4173/: desktop home, “Our approach” landing on `#approach`, direct `#team` on the story page, classes controls for group size and USD, Spanish with the same selection kept, and a 390px-wide Spanish kids group of 4+ (Explorer $42, Builder $80, no horizontal overflow, mobile menu opens). Chromium only. No WhatsApp or email message was sent.
 
-GitHub repo description and homepage were not changed. The GitHub CLI on this machine is not logged in. After `gh auth login`, run:
+Pushed to `main` as `344308f` on 1 October 2026. That push starts the GitHub Pages deploy.
+
+GitHub repo description and homepage were not changed. GitHub CLI 2.102.0 is installed, and it is not logged in. After `gh auth login`, run:
 
 ```text
 gh repo edit sam-dev-site/just-keep-talking --description "Bilingual marketing site for Just Keep Talking, an online English academy." --homepage https://sam-dev-site.github.io/just-keep-talking/
 ```
-
-Nothing has been pushed. A push to `main` deploys GitHub Pages.
