@@ -30,6 +30,10 @@ The September status that said the two-plan pricing and portraits were uncommitt
 
 “Our approach” is its own page. The homepage keeps a short invitation and a link. The page explains how conversation is guided, how the learning plan is built, and the four steps for getting started. It is not published until this branch is merged.
 
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests, and one skipped duplicate mobile accessibility pass.
+
+Browser check at http://localhost:4173/: from a scrolled English homepage, “Our approach” opens `?page=approach` at the top, with the nav item marked current. Spanish shows the same page. A 390px-wide view has no horizontal overflow. No WhatsApp or email message was sent. Chromium only.
+
 ## Credibility pass — 1 October 2026
 
 The homepage now speaks to adult professionals without dropping the kids path or the conversational tone.
