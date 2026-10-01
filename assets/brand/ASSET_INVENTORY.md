@@ -28,8 +28,9 @@ These values were sampled from the raster logo. Confirm against an original vect
 
 ## Icons and shapes
 
-- Original icons remain in the workspace archive; none are required by the current website.
+- Original icons remain in the workspace archive.
 - 50 PNG decorative shape/icon files.
+- Header and footer marks, published 1 October 2026: `public/brand/mark.png` (full color) and `public/brand/mark-white.png` (white). These are the speech-bubble pair from the official full-color wordmark, cropped from `public/brand/logo.png` because the archive files `icono JKT-01` and `icono JKT-06` were not in this checkout. The wordmark files `logo.png` and `logo-white.png` stay in `public/brand/` and are no longer used in the header or footer. Archive originals were not modified.
 
 ## Brand photography
 

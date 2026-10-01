@@ -22,7 +22,21 @@ The September status that said the two-plan pricing and portraits were uncommitt
 - Photos for Iain, Shay, and Charlie.
 - A group-price billing unit, if the owner wants one shown.
 - Detailed policy text. The public page stays a short overview effective 4 January 2027 until that is requested.
+- Real student testimonials. Do not invent them. When quotes arrive, use two or three short lines from adult professionals, with permission for a first name and a role or city, after the learning-plan section, in both languages.
+- Whether 3-hour and 4-hour plans should return. Audrey asked for four plans on 18 September 2026. The prices confirmed after that are still the two published plans. Older graphics are not being restored.
 - Optional clarifications listed in `project/BRIEF.md`. Do not invent them.
+
+## Credibility pass — 1 October 2026
+
+The homepage now speaks to adult professionals without dropping the kids path or the conversational tone.
+
+- Hero support line and proof line use Audrey’s wording: personalized instruction around level, goals, and the conversations that matter; certified native teachers, personalized learning, real conversation, online across the Americas.
+- A “How your learning is planned” section covers the one-to-one meeting, brief oral evaluation, personal learning plan, developed lesson library, and progress reports. It does not state a report schedule, a year count, a certification body, or a lesson count.
+- Getting started is Audrey’s four steps, beginning with a WhatsApp message and the one-to-one meeting.
+- Visible “JKT” is now “Just Keep Talking.” Teacher bios are unchanged.
+- Header and footer use the speech-bubble mark beside the name. The tall wordmark is no longer in the header.
+- Classes still show exactly two plans. Testimonials are not on the site.
+- This pass is not published. Do not push `main` unless the owner asks.
 
 ## This working tree — 1 October 2026
 
