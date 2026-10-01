@@ -35,6 +35,12 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await expect(page.getByRole("button", { name: "Niños", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".plan-card")).toHaveCount(2);
   await noOverflow(page);
+  if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Menú", exact: true }).click();
+  await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Nuestro enfoque" }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Conversación, con un plan");
+  await expect(page.locator(".process li")).toHaveCount(4);
+  await expect(page.locator(".structure-list li")).toHaveCount(5);
+  await noOverflow(page);
   expect(errors).toEqual([]);
 });
 
@@ -84,7 +90,7 @@ test("pricing preserves selections, switches currency independently and carries 
 test("secondary pages, contacts, image loading and layout work in both languages", async ({ page }) => {
   test.setTimeout(90_000);
   for (const lang of ["en", "es"]) {
-    for (const destination of ["home", "classes", "about", "policies", "teach"]) {
+    for (const destination of ["home", "classes", "approach", "about", "policies", "teach"]) {
       await page.goto(`/?page=${destination}&lang=${lang}`);
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
       await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
@@ -111,7 +117,7 @@ test("all views pass automated accessibility checks", async ({ page }, testInfo)
   test.setTimeout(120_000);
   test.skip(testInfo.project.name !== "desktop", "Desktop checks cover every view and both languages.");
   for (const lang of ["en", "es"]) {
-    for (const destination of ["home", "classes", "about", "policies", "teach"]) {
+    for (const destination of ["home", "classes", "approach", "about", "policies", "teach"]) {
       await page.goto(`/?page=${destination}&lang=${lang}`);
       const results = await new AxeBuilder({ page }).analyze();
       const blocking = results.violations.filter(item => item.impact === "serious" || item.impact === "critical");

@@ -14,7 +14,8 @@ Adults and parents should understand the online English offer, choose an audienc
 
 ## What the site contains
 
-- Home: hero aimed at adult professionals, adult and child paths, three teaching principles, a five-part learning plan, founder preview, four enrollment steps, team preview, FAQs, and WhatsApp. The hero line is “Build the confidence to speak.” The support line is personalized instruction built around level, goals, and the conversations that matter. The proof line names certified native teachers, personalized learning, real conversation, and online classes across the Americas. Individual teacher bios stay as supplied.
+- Home: hero aimed at adult professionals, adult and child paths, a short invitation to the approach, founder preview, team preview, FAQs, and WhatsApp. The hero line is “Build the confidence to speak.” The support line is personalized instruction built around level, goals, and the conversations that matter. The proof line names certified native teachers, personalized learning, real conversation, and online classes across the Americas.
+- Our approach: its own page, not a homepage scroll. It explains guided conversation, the five-part learning plan, the four-step start, and that classes are led by certified native teachers. Individual teacher bios stay on the story page.
 - Classes and pricing: audience, private or group, group size when needed, independent CRC and USD controls, exactly two plans, a separate one-time enrollment fee, and a contextual WhatsApp inquiry.
 - Story and team: founder history and six biographies. Audrey, Cristian, and Monique have portraits. Iain, Shay, and Charlie use equal placeholders until photos arrive.
 - Policies: a short upcoming overview effective 4 January 2027. Detailed policy reconciliation is still deferred.
@@ -35,5 +36,5 @@ Views are query parameters on `app/page.tsx` (`page`, `lang`, and on the classes
 - Whether group prices are per student or for the whole group. Do not add a label until the owner says which.
 - Detailed current cancellation and attendance terms.
 - Whether Cristian’s public bio should state that he teaches English here. The supplied bio describes teaching Spanish.
-- Testimonials, a kids age range, and a custom domain are not in the confirmed notes. Do not publish testimonials until the owner supplies real quotes, with permission to use a first name and a role or city. When they arrive, place two or three short lines after the learning-plan section.
+- Testimonials, a kids age range, and a custom domain are not in the confirmed notes. Do not publish testimonials until the owner supplies real quotes, with permission to use a first name and a role or city. When they arrive, place two or three short lines on the approach page after the learning plan.
 - Audrey asked on 18 September 2026 for four plans on every audience. The prices confirmed after that are still the two plans above. Do not restore Intensive, Immersion, Achiever, or Fluent from older graphics. Ask whether the longer plans should return, and for current prices if they should. Kids third-plan durations in those graphics are still unresolved.

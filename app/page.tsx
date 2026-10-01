@@ -43,7 +43,7 @@ const portraits: Record<string, string> = {
   Cristian: asset("/brand/cristian-teacher.webp"),
   Monique: asset("/brand/monique-teacher.webp"),
 };
-const pages = ["home", "classes", "about", "policies", "teach"] as const;
+const pages = ["home", "classes", "approach", "about", "policies", "teach"] as const;
 type Page = typeof pages[number];
 
 // Source: September 2026 website information and owner-labelled portraits.
@@ -70,12 +70,15 @@ export default function Home() {
   const titles = {
     home: l("Online English for Adults & Kids", "Inglés en línea para adultos y niños"),
     classes: l("Classes & Pricing", "Clases y precios"),
+    approach: l("Our Approach", "Nuestro enfoque"),
     about: l("Our Story & Team", "Nuestra historia y equipo"),
     policies: l("Upcoming 2027 Policy", "Próxima política de 2027"),
     teach: l("Teach With Us", "Enseña con nosotros"),
   };
   const title = `Just Keep Talking | ${titles[page]}`;
-  const description = l("Personalized online English instruction built around your level, your goals, and the conversations that matter in your life.", "Instrucción de inglés en línea personalizada, diseñada según tu nivel, tus metas y las conversaciones que importan en tu vida.");
+  const description = page === "approach"
+    ? l("How Just Keep Talking teaches: a one-to-one meeting, a brief oral evaluation, a personal learning plan, and conversation guided by your goals.", "Cómo enseña Just Keep Talking: una reunión individual, una breve evaluación oral, un plan de aprendizaje personal y una conversación guiada por tus metas.")
+    : l("Personalized online English instruction built around your level, your goals, and the conversations that matter in your life.", "Instrucción de inglés en línea personalizada, diseñada según tu nivel, tus metas y las conversaciones que importan en tu vida.");
   const audience = params.get("audience") === "kids" ? "kids" : "adults";
   const format = params.get("format") === "group" ? "group" : "private";
   const currency = params.get("currency") === "USD" ? "USD" : "CRC";
@@ -120,7 +123,7 @@ export default function Home() {
   ));
   const nav = [
     { label: l("Classes & pricing", "Clases y precios"), href: url({ page: "classes" }), current: page === "classes" },
-    { label: l("Our approach", "Nuestro enfoque"), href: url({ page: "home" }, "#approach"), current: false },
+    { label: l("Our approach", "Nuestro enfoque"), href: url({ page: "approach" }), current: page === "approach" },
     { label: l("Story & team", "Historia y equipo"), href: url({ page: "about" }), current: page === "about" },
   ];
   useEffect(() => {
@@ -129,10 +132,22 @@ export default function Home() {
     const id = window.location.hash.replace(/^#/, "");
     if (id) document.getElementById(id)?.scrollIntoView();
   }, [language, page]);
-  const principles = [
-    [l("Your goals shape the lesson", "Tus metas dan forma a la clase"), l("Work, travel, school, or everyday life: your interests and learning style guide what you practice.", "Trabajo, viajes, estudios o vida cotidiana: tus intereses y tu forma de aprender guían lo que practicas.")],
-    [l("Real conversation, real practice", "Conversación real, práctica real"), l("Every conversation is guided by your goals. Grammar, vocabulary, listening, reading, and writing are part of the plan, not left to chance.", "Cada conversación sigue tus metas. La gramática, el vocabulario, la escucha, la lectura y la escritura forman parte del plan, no quedan al azar.")],
-    [l("Room to make mistakes", "Espacio para equivocarte"), l("Build a connection with your teacher in a supportive setting where you can try, ask questions, and keep talking.", "Crea una conexión con tu docente en un ambiente de apoyo donde puedes intentar, preguntar y seguir hablando.")],
+  const followNav = () => {
+    setMenuOpen(false);
+    window.scrollTo(0, 0);
+  };
+  const planPoints = [
+    [l("A meeting before classes begin", "Una reunión antes de empezar las clases"), l("We meet with you one to one before your classes start. That conversation is how we understand you as a learner.", "Nos reunimos contigo de forma individual antes de que comiencen las clases. Esa conversación es la forma en que te conocemos como estudiante.")],
+    [l("Your experience and a brief oral evaluation", "Tu experiencia y una breve evaluación oral"), l("We talk about your experience with English, the level you feel you have, your goals, and your challenges. Then we listen to how you communicate now, so we can hear what you already do well and where you need support.", "Conversamos sobre tu experiencia con el inglés, el nivel que sientes que tienes, tus metas y tus retos. Después escuchamos cómo te comunicas ahora, para reconocer lo que ya haces bien y dónde necesitas apoyo.")],
+    [l("A personal learning plan", "Un plan de aprendizaje personal"), l("From that meeting we recommend a class format, weekly time, teacher, schedule, and learning priorities. The plan is set with you before classes begin.", "A partir de esa reunión recomendamos un formato de clase, un tiempo semanal, un docente, un horario y prioridades de aprendizaje. El plan se define contigo antes de que empiecen las clases.")],
+    [l("Lessons from a developed library", "Clases a partir de una biblioteca ya desarrollada"), l("Your teacher draws on lessons and resources already developed for the academy, then shapes each one to your goals. The lessons are personal. They are not the same sequence for every student.", "Tu docente trabaja con lecciones y recursos ya desarrollados para la academia y adapta cada una a tus metas. Las clases son personales. No son la misma secuencia para todos.")],
+    [l("Progress reports", "Informes de progreso"), l("We follow your progress and share it with you in progress reports, so you can see how the plan is moving.", "Seguimos tu progreso y lo compartimos contigo en informes de progreso, para que veas cómo avanza el plan.")],
+  ];
+  const startSteps = [
+    [l("Tell us where you want to go", "Cuéntanos adónde quieres llegar"), l("Message us on WhatsApp, and we will set up a one-to-one meeting. We talk about your experience with English, your goals, your challenges, and the situations where you want to communicate more confidently.", "Escríbenos por WhatsApp y coordinamos una reunión individual. Conversamos sobre tu experiencia con el inglés, tus metas, tus retos y las situaciones en las que quieres comunicarte con más confianza.")],
+    [l("Discover your starting point", "Descubre tu punto de partida"), l("We evaluate your current communication skills, including a brief oral evaluation, so we understand what you already do well and where you need support.", "Evaluamos tus habilidades actuales de comunicación, con una breve evaluación oral, para entender lo que ya haces bien y dónde necesitas apoyo.")],
+    [l("Receive your learning plan", "Recibe tu plan de aprendizaje"), l("We recommend a class format, frequency, teacher, schedule, and learning priorities based on your goals and your current level.", "Recomendamos un formato de clase, una frecuencia, un docente, un horario y prioridades de aprendizaje según tus metas y tu nivel actual.")],
+    [l("Start speaking", "Empieza a hablar"), l("Your teacher begins working with you through personalized lessons and meaningful conversation.", "Tu docente comienza a trabajar contigo con clases personalizadas y conversación significativa.")],
   ];
   const founderPreview = l(
     "Audrey knew Spanish grammar, but speaking still felt difficult. An exchange in Costa Rica changed that: real conversations helped her find her voice. In 2021, she began Just Keep Talking to bring that same connection into online learning, with personalized lessons and a space where students could feel comfortable making mistakes and trying again.",
@@ -158,10 +173,10 @@ export default function Home() {
     <meta name="twitter:description" content={description} />
     <a className="skip-link" href="#main">{l("Skip to content", "Ir al contenido")}</a>
     <header className="header" onKeyDown={event => { if (event.key === "Escape" && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); } }}>
-      <a className="brand-lockup" href={url({ page: "home" })} aria-label={l("Just Keep Talking home", "Just Keep Talking, inicio")}><Image className="logo" src={asset("/brand/mark.png")} alt="" width={240} height={164} priority unoptimized /><span className="brand-name">Just Keep Talking</span></a>
+      <a className="brand-lockup" href={url({ page: "home" })} aria-label={l("Just Keep Talking home", "Just Keep Talking, inicio")} onClick={followNav}><Image className="logo" src={asset("/brand/mark.png")} alt="" width={240} height={164} priority unoptimized /><span className="brand-name">Just Keep Talking</span></a>
       <button ref={menuButton} className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? l("Close", "Cerrar") : l("Menu", "Menú")}</button>
-      <nav id="main-navigation" className={menuOpen ? "is-open" : ""} aria-label={l("Main navigation", "Navegación principal")}>{nav.map(item => <a href={item.href} key={item.label} aria-current={item.current ? "page" : undefined}>{item.label}</a>)}<a className="nav-whatsapp" href={generalUrl} target="_blank" rel="noreferrer">WhatsApp</a></nav>
-      <a className="language" href={url({ lang: language === "en" ? "es" : "en" })} hrefLang={language === "en" ? "es" : "en"} aria-label={l("Cambiar a español", "Switch to English")}>{language === "en" ? "ES" : "EN"}</a>
+      <nav id="main-navigation" className={menuOpen ? "is-open" : ""} aria-label={l("Main navigation", "Navegación principal")}>{nav.map(item => <a href={item.href} key={item.label} aria-current={item.current ? "page" : undefined} onClick={followNav}>{item.label}</a>)}<a className="nav-whatsapp" href={generalUrl} target="_blank" rel="noreferrer">WhatsApp</a></nav>
+      <a className="language" href={url({ lang: language === "en" ? "es" : "en" })} hrefLang={language === "en" ? "es" : "en"} aria-label={l("Cambiar a español", "Switch to English")} onClick={followNav}>{language === "en" ? "ES" : "EN"}</a>
     </header>
     <main id="main">
       {page === "home" && <>
@@ -173,23 +188,29 @@ export default function Home() {
           <a className="audience-card" href={url({ page: "classes", audience: "adults" })}><span className="eyebrow">{l("Adults", "Adultos")}</span><h3>{l("English for your work.", "Inglés para tu trabajo.")}</h3><p>{l("Meetings, presentations, and the professional conversations you want to handle with confidence.", "Reuniones, presentaciones y las conversaciones profesionales que quieres manejar con confianza.")}</p><span className="text-link">{l("Explore adult classes", "Explora las clases para adultos")} ↗</span></a>
           <a className="audience-card" href={url({ page: "classes", audience: "kids" })}><span className="eyebrow">{l("For your child", "Para tu hijo o hija")}</span><h3>{l("Curiosity becomes conversation.", "La curiosidad se vuelve conversación.")}</h3><p>{l("Personalized practice, meaningful connection, and space to grow in confidence.", "Práctica personalizada, una conexión cercana y espacio para ganar confianza.")}</p><span className="text-link">{l("Explore kids’ classes", "Explora las clases para niños")} ↗</span></a>
         </div></section>
-        <section className="section" id="approach"><div className="section-intro"><div><p className="eyebrow">{l("Our approach", "Nuestro enfoque")}</p><h2>{l("Conversation, with a plan behind it.", "Conversación, con un plan detrás.")}</h2></div><p>{l("Lessons for the moments that matter: at work, in school, while traveling, and in everyday life.", "Clases para los momentos que importan: en el trabajo, en los estudios, al viajar y en la vida cotidiana.")}</p></div><div className="card-grid">{principles.map((item, index) => <article className="feature-card" key={item[0]}><span className="number">0{index + 1}</span><h3>{item[0]}</h3><p>{item[1]}</p></article>)}</div></section>
-        <section className="section structure" id="plan"><div className="section-intro"><div><p className="eyebrow">{l("How your learning is planned", "Cómo se planifica tu aprendizaje")}</p><h2>{l("The conversation is personal. The plan behind it is deliberate.", "La conversación es personal. El plan que la sostiene es deliberado.")}</h2></div></div><ol className="structure-list">{[
-          [l("A meeting before classes begin", "Una reunión antes de empezar las clases"), l("We meet with you one to one before your classes start.", "Nos reunimos contigo de forma individual antes de que comiencen las clases.")],
-          [l("Your experience and a brief oral evaluation", "Tu experiencia y una breve evaluación oral"), l("We talk about your experience, goals, and challenges, and listen to how you communicate now.", "Conversamos sobre tu experiencia, tus metas y tus retos, y escuchamos cómo te comunicas ahora.")],
-          [l("A personal learning plan", "Un plan de aprendizaje personal"), l("The plan sets your format, weekly time, teacher, schedule, and learning priorities.", "El plan define el formato, el tiempo semanal, el docente, el horario y las prioridades de aprendizaje.")],
-          [l("Lessons from a developed library", "Clases a partir de una biblioteca ya desarrollada"), l("Your teacher draws on lessons and resources already developed for the academy, then shapes them to you.", "Tu docente trabaja con lecciones y recursos ya desarrollados para la academia y los adapta a ti.")],
-          [l("Progress reports", "Informes de progreso"), l("We follow your progress and share it with you in progress reports.", "Seguimos tu progreso y lo compartimos contigo en informes de progreso.")],
-        ].map((item, index) => <li key={item[0]}><span className="number">0{index + 1}</span><div><h3>{item[0]}</h3><p>{item[1]}</p></div></li>)}</ol></section>
+        <section className="section approach-teaser"><div><p className="eyebrow">{l("Our approach", "Nuestro enfoque")}</p><h2>{l("Conversation, with a plan behind it.", "Conversación, con un plan detrás.")}</h2><p className="intro">{l("Before the conversation, there is a one-to-one meeting, a brief oral evaluation, and a personal learning plan. Certified native teachers shape each lesson to your goals and follow your progress.", "Antes de la conversación hay una reunión individual, una breve evaluación oral y un plan de aprendizaje personal. Docentes nativos certificados adaptan cada clase a tus metas y siguen tu progreso.")}</p><a className="text-link" href={url({ page: "approach" })} onClick={followNav}>{l("Read our approach", "Lee nuestro enfoque")} ↗</a></div></section>
         <section className="founder-band"><div className="section founder-preview"><div><p className="eyebrow">{l("Why Just Keep Talking began", "Cómo nació Just Keep Talking")}</p><h2>{l("Knowing the words is only the beginning.", "Conocer las palabras es solo el comienzo.")}</h2></div><div><Image className="founder-preview-portrait" src={asset("/brand/audrey-founder.webp")} alt={l("Audrey, founder of Just Keep Talking", "Audrey, fundadora de Just Keep Talking")} width={900} height={1350} unoptimized /><p className="intro">{founderPreview}</p><a className="text-link" href={url({ page: "about" })}>{l("Read Audrey’s story", "Lee la historia de Audrey")} ↗</a></div></div></section>
-        <section className="section process" id="process"><div className="process-photo"><Image src={asset("/brand/teacher.jpg")} alt={l("Online teaching from a home workspace", "Enseñanza en línea desde un espacio de trabajo en casa")} width={1600} height={1066} unoptimized /></div><div><p className="eyebrow">{l("Getting started", "Cómo comenzar")}</p><h2>{l("A considered start.", "Un comienzo pensado.")}</h2><ol>{[
-          [l("Tell us where you want to go", "Cuéntanos adónde quieres llegar"), l("Message us on WhatsApp, and we will set up a one-to-one meeting. We talk about your experience with English, your goals, your challenges, and the situations where you want to communicate more confidently.", "Escríbenos por WhatsApp y coordinamos una reunión individual. Conversamos sobre tu experiencia con el inglés, tus metas, tus retos y las situaciones en las que quieres comunicarte con más confianza.")],
-          [l("Discover your starting point", "Descubre tu punto de partida"), l("We evaluate your current communication skills, including a brief oral evaluation, so we understand what you already do well and where you need support.", "Evaluamos tus habilidades actuales de comunicación, con una breve evaluación oral, para entender lo que ya haces bien y dónde necesitas apoyo.")],
-          [l("Receive your learning plan", "Recibe tu plan de aprendizaje"), l("We recommend a class format, frequency, teacher, schedule, and learning priorities based on your goals and your current level.", "Recomendamos un formato de clase, una frecuencia, un docente, un horario y prioridades de aprendizaje según tus metas y tu nivel actual.")],
-          [l("Start speaking", "Empieza a hablar"), l("Your teacher begins working with you through personalized lessons and meaningful conversation.", "Tu docente comienza a trabajar contigo con clases personalizadas y conversación significativa.")],
-        ].map((step, index) => <li key={step[0]}><span className="number">0{index + 1}</span><div><h3>{step[0]}</h3><p>{step[1]}</p></div></li>)}</ol></div></section>
         <section className="section"><div className="section-intro"><div><p className="eyebrow">{l("People behind the conversations", "Las personas detrás de las conversaciones")}</p><h2>{l("Meet your learning community.", "Conoce a tu comunidad de aprendizaje.")}</h2></div><a className="text-link" href={url({ page: "about" }, "#team")}>{l("Meet the whole team", "Conoce a todo el equipo")} ↗</a></div>{teamGrid(true)}</section>
         <section className="section faq"><div><p className="eyebrow">{l("Good to know", "Información útil")}</p><h2>{l("Before you start", "Antes de comenzar")}</h2><a className="text-link" href={url({ page: "classes" })}>{l("See classes and pricing", "Ver clases y precios")} ↗</a></div><div className="faq-list">{faqs.map(faq => <details key={faq[0]}><summary>{faq[0]}<span aria-hidden="true">+</span></summary><p>{faq[1]}</p></details>)}</div></section>
+      </>}
+      {page === "approach" && <>
+        <section className="section approach-page">
+          <p className="eyebrow">{l("Our approach", "Nuestro enfoque")}</p>
+          <h1 className="page-title">{l("Conversation, with a plan behind it.", "Conversación, con un plan detrás.")}</h1>
+          <p className="intro">{l("The conversation is personal. The plan behind it is deliberate. Instruction is built around your level, your goals, and the situations where you want to speak with confidence.", "La conversación es personal. El plan que la sostiene es deliberado. La instrucción se construye según tu nivel, tus metas y las situaciones en las que quieres hablar con confianza.")}</p>
+          <div className="approach-copy">
+            <h2>{l("Speaking is the work.", "Hablar es el trabajo.")}</h2>
+            <p>{l("Classes are built around real conversation: meetings, presentations, travel, studies, and the everyday situations that matter to you. Your interests and the way you learn shape what you practice.", "Las clases se construyen alrededor de la conversación real: reuniones, presentaciones, viajes, estudios y las situaciones cotidianas que te importan. Tus intereses y tu forma de aprender dan forma a lo que practicas.")}</p>
+            <p>{l("That conversation is guided. Grammar, vocabulary, listening, reading, and writing are part of the plan, not left to chance. Your teacher draws on lessons and resources already developed for the academy, then shapes them to you. It is not a generic course that every student follows in the same order.", "Esa conversación está guiada. La gramática, el vocabulario, la escucha, la lectura y la escritura forman parte del plan, no quedan al azar. Tu docente trabaja con lecciones y recursos ya desarrollados para la academia y los adapta a ti. No es un curso genérico que todos siguen en el mismo orden.")}</p>
+            <p>{l("You also need room to try. Your teacher builds a supportive relationship so you can make mistakes, ask questions, and keep speaking.", "También necesitas espacio para intentar. Tu docente construye una relación de apoyo para que puedas equivocarte, preguntar y seguir hablando.")}</p>
+          </div>
+          <div className="approach-copy">
+            <h2>{l("How your learning is planned", "Cómo se planifica tu aprendizaje")}</h2>
+            <ol className="structure-list">{planPoints.map((item, index) => <li key={item[0]}><span className="number">0{index + 1}</span><div><h3>{item[0]}</h3><p>{item[1]}</p></div></li>)}</ol>
+          </div>
+        </section>
+        <section className="section process"><div className="process-photo"><Image src={asset("/brand/teacher.jpg")} alt={l("Online teaching from a home workspace", "Enseñanza en línea desde un espacio de trabajo en casa")} width={1600} height={1066} unoptimized /></div><div><p className="eyebrow">{l("Getting started", "Cómo comenzar")}</p><h2>{l("A considered start.", "Un comienzo pensado.")}</h2><ol>{startSteps.map((step, index) => <li key={step[0]}><span className="number">0{index + 1}</span><div><h3>{step[0]}</h3><p>{step[1]}</p></div></li>)}</ol></div></section>
+        <section className="section approach-teachers"><h2>{l("Certified native teachers", "Docentes nativos certificados")}</h2><p className="intro">{l("Classes are led by certified native teachers. In your one-to-one meeting, we match a teacher, a weekly schedule, and the format that fits your goals.", "Las clases las imparten docentes nativos certificados. En la reunión individual elegimos un docente, un horario semanal y el formato que se ajusta a tus metas.")}</p><a className="text-link" href={url({ page: "about" }, "#team")}>{l("Meet the team", "Conoce al equipo")} ↗</a></section>
       </>}
       {page === "classes" && <section className="section pricing-page">
         <p className="eyebrow">{l("Classes & pricing", "Clases y precios")}</p><h1 className="page-title">{l("Choose your weekly commitment.", "Elige tu compromiso semanal.")}</h1><p className="intro">{l("Choose who’s learning and how. Your one-to-one meeting confirms the teacher, schedule, and learning priorities.", "Elige quién va a aprender y cómo. En la reunión individual confirmamos el docente, el horario y las prioridades de aprendizaje.")}</p>

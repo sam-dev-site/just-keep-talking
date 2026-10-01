@@ -26,6 +26,10 @@ The September status that said the two-plan pricing and portraits were uncommitt
 - Whether 3-hour and 4-hour plans should return. Audrey asked for four plans on 18 September 2026. The prices confirmed after that are still the two published plans. Older graphics are not being restored.
 - Optional clarifications listed in `project/BRIEF.md`. Do not invent them.
 
+## Approach page — 1 October 2026
+
+“Our approach” is its own page. The homepage keeps a short invitation and a link. The page explains how conversation is guided, how the learning plan is built, and the four steps for getting started. It is not published until this branch is merged.
+
 ## Credibility pass — 1 October 2026
 
 The homepage now speaks to adult professionals without dropping the kids path or the conversational tone.
