@@ -195,7 +195,10 @@ export default function PlacementQuiz({ open, onClose, classesHref, wa }: { open
   const [sitting, setSitting] = useState<QuizItem[]>([]);
   const [picks, setPicks] = useState<number[]>([]);
   const [parentPicks, setParentPicks] = useState<number[]>([]);
-  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     if (!open) return;

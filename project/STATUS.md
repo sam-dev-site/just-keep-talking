@@ -10,6 +10,10 @@ The result is one of three pictures: Recién comenzando, Encontrando tu voz, or 
 
 This is not published until the branch is merged. The owner should read the 24 items in `app/placement-quiz.tsx` before that.
 
+`pnpm check` passed: ESLint, production build, two server-render tests, nine Playwright tests, and one skipped duplicate mobile accessibility pass.
+
+Browser check at http://localhost:4173/: the quiz opens from the home starting-point section, an adult sitting ends on “Listo para ir más lejos” with three focuses and a Spanish WhatsApp message, and the parent path ends on “Una clase a su medida” without a level. Desktop at 1280px and a 390px-wide phone showed the dialog without horizontal overflow. No WhatsApp message was sent. Chromium only.
+
 ## Current state — 1 October 2026
 
 The published site, GitHub `main`, and this checkout started from the same revision: `0e99c96` (“Deploy website correctly to GitHub Pages”, 18 Sep 2026).
