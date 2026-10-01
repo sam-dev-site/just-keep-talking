@@ -43,6 +43,19 @@ test("pricing preserves selections, switches currency independently and carries 
   await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
   await expect(page.locator(".plan-card")).toHaveCount(2);
   await expect(page.locator(".plan-card").first()).toContainText("₡65,000 CRC");
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    document.querySelector(".plan-grid")?.scrollIntoView({ block: "center" });
+  });
+  const scrollBeforeOption = await page.evaluate(() => window.scrollY);
+  expect(scrollBeforeOption).toBeGreaterThan(0);
+  await page.evaluate(() => {
+    const kids = [...document.querySelectorAll("button")].find(button => button.textContent === "Kids");
+    kids?.click();
+  });
+  await expect(page.getByRole("button", { name: "Kids", exact: true })).toHaveAttribute("aria-pressed", "true");
+  expect(await page.evaluate(() => window.scrollY)).toBe(scrollBeforeOption);
+  await page.getByRole("button", { name: "Adults", exact: true }).click();
   await page.getByRole("button", { name: "USD", exact: true }).click();
   await expect(page.locator(".plan-card").first()).toContainText("$150 USD");
   const href = await page.locator(".plan-card a").nth(1).getAttribute("href");

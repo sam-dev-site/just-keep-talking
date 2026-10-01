@@ -40,7 +40,9 @@ UI pass, using only facts already on the site:
 
 Browser check at http://localhost:4173/: desktop home, “Our approach” landing on `#approach`, direct `#team` on the story page, classes controls for group size and USD, Spanish with the same selection kept, and a 390px-wide Spanish kids group of 4+ (Explorer $42, Builder $80, no horizontal overflow, mobile menu opens). Chromium only. No WhatsApp or email message was sent.
 
-Pushed to `main` as `344308f` on 1 October 2026. That push starts the GitHub Pages deploy.
+Pushed to `main` as `e720567` on 1 October 2026. That push starts the GitHub Pages deploy.
+
+Pricing options were reloading the static page: updating the address went through the app router and jumped back to the top. They now update the address directly, so the plans change without a refresh.
 
 GitHub repo description and homepage were not changed. GitHub CLI 2.102.0 is installed, and it is not logged in. After `gh auth login`, run:
 

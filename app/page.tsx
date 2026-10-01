@@ -7,10 +7,18 @@ const whatsapp = "https://wa.me/50686858056";
 const email = "justkeeptalkingcr@gmail.com";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${basePath}${path}`;
+const locationEvent = "jkt-location";
 const subscribeToLocation = (callback: () => void) => {
   window.addEventListener("popstate", callback);
-  return () => window.removeEventListener("popstate", callback);
+  window.addEventListener(locationEvent, callback);
+  return () => {
+    window.removeEventListener("popstate", callback);
+    window.removeEventListener(locationEvent, callback);
+  };
 };
+// Captured before the app router wraps history. Calling that wrapper for these
+// options reloads the static page and jumps back to the top.
+const nativeReplaceState = typeof window === "undefined" ? undefined : window.history.replaceState;
 // Owner-confirmed two-plan offer supersedes the older pricing graphics.
 const tuition = {
   adults: {
@@ -93,12 +101,11 @@ export default function Home() {
     return `${basePath}/?${query.toString()}${hash}`;
   };
   const change = (key: string, value: string) => {
-    // These controls change only this page's presentation. Updating native
-    // history avoids overlapping route requests when options change quickly.
     const next = new URL(window.location.href);
+    if (next.searchParams.get(key) === value) return;
     next.searchParams.set(key, value);
-    window.history.replaceState(null, "", `${next.pathname}${next.search}`);
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    nativeReplaceState?.call(window.history, window.history.state, "", `${next.pathname}${next.search}`);
+    window.dispatchEvent(new Event(locationEvent));
   };
   const wa = (message: string) => `${whatsapp}?text=${encodeURIComponent(message)}`;
   const cta = l("Let’s talk on WhatsApp", "Conversemos por WhatsApp");
@@ -178,10 +185,10 @@ export default function Home() {
       {page === "classes" && <section className="section pricing-page">
         <p className="eyebrow">{l("Classes & pricing", "Clases y precios")}</p><h1 className="page-title">{l("A rhythm that fits your life.", "Un ritmo que se adapta a tu vida.")}</h1><p className="intro">{l("Choose who’s learning and how. We’ll help you find an appropriate schedule during your intake conversation.", "Elige quién va a aprender y cómo. En la entrevista te ayudaremos a encontrar un horario adecuado.")}</p>
         <div className="pricing-controls">
-          <fieldset><legend>{l("Who’s learning?", "¿Quién va a aprender?")}</legend><div className="segmented">{[["adults", l("Adults", "Adultos")], ["kids", l("Kids", "Niños")]].map(([value, label]) => <button key={value} aria-pressed={audience === value} onClick={() => change("audience", value)}>{label}</button>)}</div></fieldset>
-          <fieldset><legend>{l("Class format", "Formato de clase")}</legend><div className="segmented">{[["private", l("Private", "Privadas")], ["group", l("Small group", "Grupo pequeño")]].map(([value, label]) => <button key={value} aria-pressed={format === value} onClick={() => change("format", value)}>{label}</button>)}</div></fieldset>
-          {format === "group" && <fieldset><legend>{l("Group size", "Tamaño del grupo")}</legend><div className="segmented">{["2", "3", "4+"].map(value => <button key={value} aria-pressed={size === value} onClick={() => change("size", value)}>{value}<span className="sr-only"> {l("students", "estudiantes")}</span></button>)}</div></fieldset>}
-          <fieldset className="currency-control"><legend>{l("Currency", "Moneda")}</legend><div className="segmented">{["CRC", "USD"].map(value => <button key={value} aria-pressed={currency === value} onClick={() => change("currency", value)}>{value}</button>)}</div></fieldset>
+          <fieldset><legend>{l("Who’s learning?", "¿Quién va a aprender?")}</legend><div className="segmented">{[["adults", l("Adults", "Adultos")], ["kids", l("Kids", "Niños")]].map(([value, label]) => <button type="button" key={value} aria-pressed={audience === value} onClick={() => change("audience", value)}>{label}</button>)}</div></fieldset>
+          <fieldset><legend>{l("Class format", "Formato de clase")}</legend><div className="segmented">{[["private", l("Private", "Privadas")], ["group", l("Small group", "Grupo pequeño")]].map(([value, label]) => <button type="button" key={value} aria-pressed={format === value} onClick={() => change("format", value)}>{label}</button>)}</div></fieldset>
+          {format === "group" && <fieldset><legend>{l("Group size", "Tamaño del grupo")}</legend><div className="segmented">{["2", "3", "4+"].map(value => <button type="button" key={value} aria-pressed={size === value} onClick={() => change("size", value)}>{value}<span className="sr-only"> {l("students", "estudiantes")}</span></button>)}</div></fieldset>}
+          <fieldset className="currency-control"><legend>{l("Currency", "Moneda")}</legend><div className="segmented">{["CRC", "USD"].map(value => <button type="button" key={value} aria-pressed={currency === value} onClick={() => change("currency", value)}>{value}</button>)}</div></fieldset>
         </div>
         <div className="selection-heading" aria-live="polite"><h2>{audienceLabel} · {formatLabel}</h2><p>{audience === "adults" ? l("You know more English than you’re saying. Let’s put it into practice.", "Sabes más inglés del que estás hablando. Pongámoslo en práctica.") : l("Tell us about your child’s interests, experience with English, and schedule.", "Cuéntanos los intereses de tu hijo o hija, su experiencia con el inglés y su horario.")}</p></div>
         <div className="plan-grid">{planNames.map((name, index) => <article className="plan-card" key={name}><span className="number">0{index + 1}</span><h3>{name}</h3><p className="schedule">{weeklyTime(index)}</p><div className="price"><b>{money(prices[index])}</b><span>{l("per month", "por mes")}</span></div><a className="button primary" href={inquiry(index)} target="_blank" rel="noreferrer">{l("Ask about this plan", "Consulta por este plan")}</a></article>)}</div>
