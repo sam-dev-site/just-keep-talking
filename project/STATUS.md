@@ -1,5 +1,15 @@
 # Project status
 
+## Starting-point quiz — 1 October 2026
+
+The home page opens a Spanish-directed quiz, “Quiz: tu punto de partida,” from the starting-point section and from beside the beginner question. It does not open on its own, and it does not follow the site’s EN/ES toggle.
+
+An adult sitting asks who it is for, what they want English for, five English questions, and what happens when someone speaks quickly. The five questions are drawn from 24 original items (eight easy, eight mid, eight harder): *do*-support, articles, present and past, phrasal verbs, false friends such as *actual* and *sensible*, dependent prepositions, and which sentence sounds natural. The sentences are not copied from a published exam. The browser remembers the items it has shown (`jkt-quiz-seen`) and prefers unseen ones, so a second sitting is not the same five questions.
+
+The result is one of three pictures: Recién comenzando, Encontrando tu voz, or Listo para ir más lejos. It names three focuses and opens WhatsApp with that picture already written. It does not assign A1–C2 or recommend Essential or Standard. Five items are only a broad picture; the intake conversation still places the student. A parent path asks four unscored questions and does not give the child a level.
+
+This is not published until the branch is merged. The owner should read the 24 items in `app/placement-quiz.tsx` before that.
+
 ## Current state — 1 October 2026
 
 The published site, GitHub `main`, and this checkout started from the same revision: `0e99c96` (“Deploy website correctly to GitHub Pages”, 18 Sep 2026).

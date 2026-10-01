@@ -113,6 +113,41 @@ test("secondary pages, contacts, image loading and layout work in both languages
   }
 });
 
+test("starting-point quiz draws a fresh adult sitting and sends it on WhatsApp", async ({ page }) => {
+  const seen = ["e3", "e4", "e5", "e6", "e7", "e8", "m3", "m4", "m5", "m6", "m7", "m8", "h2", "h3", "h4", "h5", "h6", "h7", "h8"];
+  await page.addInitScript(stored => {
+    Math.random = () => 0;
+    localStorage.setItem("jkt-quiz-seen", JSON.stringify(stored));
+  }, seen);
+  await page.goto("/");
+  await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
+  const opener = page.getByRole("button", { name: "Quiz: tu punto de partida" }).first();
+  await opener.click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog.getByRole("heading", { name: "¿Este quiz es para ti?" })).toBeVisible();
+  await dialog.getByRole("button", { name: "Para mí" }).click();
+  await dialog.getByRole("button", { name: "El trabajo" }).click();
+  await expect(dialog.locator("[data-item]")).toHaveAttribute("data-item", "e2");
+  for (const answer of ["are", "speaks", "I have a car.", "have lived", "I wanted to follow up on yesterday’s meeting."]) {
+    await dialog.getByRole("button", { name: answer, exact: true }).click();
+  }
+  await dialog.getByRole("button", { name: "Me bloqueo y vuelvo al español" }).click();
+  await expect(dialog.getByRole("heading", { name: "Listo para ir más lejos" })).toBeVisible();
+  await expect(dialog.getByRole("list", { name: "En qué enfocarse" })).toContainText("conversaciones de trabajo");
+  await expect(dialog.getByRole("list", { name: "En qué enfocarse" })).toContainText("explicar una idea con claridad");
+  await expect(dialog.getByRole("list", { name: "En qué enfocarse" })).toContainText("un lugar tranquilo para intentar de nuevo");
+  await expect(dialog.getByRole("link", { name: "Ver clases y precios" })).toHaveAttribute("href", /page=classes&audience=adults/);
+  const href = await dialog.getByRole("link", { name: "Enviar por WhatsApp" }).getAttribute("href");
+  const message = new URL(href!).searchParams.get("text");
+  expect(message).toContain("Listo para ir más lejos");
+  expect(message).toContain("conversaciones de trabajo, explicar una idea con claridad y un lugar tranquilo para intentar de nuevo");
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem("jkt-quiz-seen") || "[]").slice(-5))).toEqual(["e2", "e1", "m2", "m1", "h1"]);
+  await noOverflow(page);
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(opener).toBeFocused();
+});
+
 test("all views pass automated accessibility checks", async ({ page }, testInfo) => {
   test.setTimeout(120_000);
   test.skip(testInfo.project.name !== "desktop", "Desktop checks cover every view and both languages.");
