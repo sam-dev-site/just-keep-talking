@@ -26,7 +26,7 @@ Kids groups use Explorer (30 minutes weekly) and Builder (1 hour weekly). Every 
 
 ## Architecture
 
-One static brochure. The live host is GitHub Pages at `https://sam-dev-site.github.io/just-keep-talking/`. A push to `main` runs `.github/workflows/quality.yml`, which builds with `NEXT_PUBLIC_BASE_PATH=/just-keep-talking` and `STATIC_EXPORT=true`, then deploys `dist/client`. Do not push unless the owner asks.
+One static brochure. The live host is GitHub Pages at `https://www.justkeeptalkingcr.com`. A push to `main` runs `.github/workflows/quality.yml`, which builds with `STATIC_EXPORT=true` and deploys `dist/client` at the domain root. Do not push unless the owner asks.
 
 Views are query parameters on `app/page.tsx` (`page`, `lang`, and on the classes view `audience`, `format`, `currency`, `size`). Components may live under `app/`. Do not add a second static site. The Cloudflare worker and `.openai/hosting.json` are leftover starter files and are not the live host.
 
@@ -36,5 +36,5 @@ Views are query parameters on `app/page.tsx` (`page`, `lang`, and on the classes
 - Whether group prices are per student or for the whole group. Do not add a label until the owner says which.
 - Detailed current cancellation and attendance terms.
 - Whether Cristian’s public bio should state that he teaches English here. The supplied bio describes teaching Spanish.
-- Testimonials, a kids age range, and a custom domain are not in the confirmed notes. Do not publish testimonials until the owner supplies real quotes, with permission to use a first name and a role or city. When they arrive, place two or three short lines on the approach page after the learning plan.
+- Testimonials and a kids age range are not in the confirmed notes. Do not publish testimonials until the owner supplies real quotes, with permission to use a first name and a role or city. When they arrive, place two or three short lines on the approach page after the learning plan.
 - Audrey asked on 18 September 2026 for four plans on every audience. The prices confirmed after that are still the two plans above. Do not restore Intensive, Immersion, Achiever, or Fluent from older graphics. Ask whether the longer plans should return, and for current prices if they should. Kids third-plan durations in those graphics are still unresolved.

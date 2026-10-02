@@ -14,11 +14,11 @@ This is not published until the branch is merged. The owner should read the 24 i
 
 Browser check at http://localhost:4173/: the quiz opens from the home starting-point section, an adult sitting ends on “Listo para ir más lejos” with three focuses and a Spanish WhatsApp message, and the parent path ends on “Una clase a su medida” without a level. Desktop at 1280px and a 390px-wide phone showed the dialog without horizontal overflow. No WhatsApp message was sent. Chromium only.
 
-## Current state — 1 October 2026
+## Current state — 2 October 2026
 
-The published site, GitHub `main`, and this checkout started from the same revision: `0e99c96` (“Deploy website correctly to GitHub Pages”, 18 Sep 2026).
+Live site: https://www.justkeeptalkingcr.com
 
-Live site: https://sam-dev-site.github.io/just-keep-talking/
+GoDaddy DNS for `justkeeptalkingcr.com` points at GitHub Pages. The custom domain in the repository Pages settings is `www.justkeeptalkingcr.com`. The Pages build no longer sets `NEXT_PUBLIC_BASE_PATH=/just-keep-talking`, so styles, images, and links are served from the domain root. `justkeeptalking.com` is a different site and is not part of this project.
 
 Local preview: from this directory, `pnpm dev`, then open the address the dev server prints. `pnpm check` is the handoff check.
 
@@ -82,10 +82,12 @@ Browser check at http://localhost:4173/: desktop home, “Our approach” landin
 
 Pushed to `main` as `e720567` on 1 October 2026. That push starts the GitHub Pages deploy.
 
+On 2 October 2026 the Pages artifact build stopped setting `NEXT_PUBLIC_BASE_PATH`. A local static export wrote stylesheet, image, and page links at `/`, with no `/just-keep-talking` prefix. After rebasing onto the quiz and approach-page commits, ESLint passed, both server-render tests passed, and Playwright passed 9 tests with the usual mobile accessibility check skipped.
+
 Pricing options were reloading the static page: updating the address went through the app router and jumped back to the top. They now update the address directly, so the plans change without a refresh.
 
 GitHub repo description and homepage were not changed. GitHub CLI 2.102.0 is installed, and it is not logged in. After `gh auth login`, run:
 
 ```text
-gh repo edit sam-dev-site/just-keep-talking --description "Bilingual marketing site for Just Keep Talking, an online English academy." --homepage https://sam-dev-site.github.io/just-keep-talking/
+gh repo edit sam-dev-site/just-keep-talking --description "Bilingual marketing site for Just Keep Talking, an online English academy." --homepage https://www.justkeeptalkingcr.com
 ```

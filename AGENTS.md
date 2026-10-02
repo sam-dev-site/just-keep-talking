@@ -26,7 +26,7 @@ pnpm check
 
 `pnpm check` lints, builds, checks rendered content, runs responsive browser journeys, and scans for serious accessibility failures. Run it before handoff.
 
-The live host is GitHub Pages: https://sam-dev-site.github.io/just-keep-talking/
+The live host is GitHub Pages: https://www.justkeeptalkingcr.com
 
 Pushing `main` runs `.github/workflows/quality.yml` and deploys the static export. Do not push, deploy, or change the audience unless the owner explicitly asks. The Cloudflare worker and `.openai/hosting.json` are leftover starter files and are not the live host.
 

@@ -2,7 +2,7 @@
 
 Bilingual marketing site for Just Keep Talking, a private online English academy. It is a static brochure with no database, sign-in, or private runtime data.
 
-Live site: https://sam-dev-site.github.io/just-keep-talking/
+Live site: https://www.justkeeptalkingcr.com
 
 GitHub: https://github.com/sam-dev-site/just-keep-talking
 

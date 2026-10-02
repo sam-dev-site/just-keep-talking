@@ -33,8 +33,10 @@ jobs:
         if: github.event_name == 'push'
         run: pnpm build
         env:
-          NEXT_PUBLIC_BASE_PATH: /just-keep-talking
           STATIC_EXPORT: "true"
+      - name: Include the custom domain file
+        if: github.event_name == 'push'
+        run: cp CNAME dist/client/CNAME
       - if: github.event_name == 'push'
         uses: actions/configure-pages@v5
       - if: github.event_name == 'push'

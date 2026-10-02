@@ -11,7 +11,7 @@ This folder is the git repo. The parent directory is a local archive of original
 - Do not invent prices, billing labels, testimonials, credentials, policies, or contact details.
 - One site under `app/`. Do not add a second static implementation.
 - Use pnpm. Run `pnpm check` before handoff. Update `project/STATUS.md`.
-- Live site: https://sam-dev-site.github.io/just-keep-talking/
+- Live site: https://www.justkeeptalkingcr.com
 - A push to `main` deploys GitHub Pages. Do not push unless the owner asks.
 - The Cloudflare worker and `.openai/hosting.json` are unused starter files.
 
