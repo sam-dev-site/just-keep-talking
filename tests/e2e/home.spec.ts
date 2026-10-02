@@ -121,7 +121,7 @@ test("starting-point quiz draws a fresh adult sitting and sends it on WhatsApp",
   }, seen);
   await page.goto("/");
   await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
-  const opener = page.getByRole("button", { name: "Quiz: tu punto de partida" }).first();
+  const opener = page.locator(".quiz-callout").getByRole("button", { name: "Start the quiz" });
   await opener.click();
   const dialog = page.getByRole("dialog");
   await expect(dialog.getByRole("heading", { name: "¿Este quiz es para ti?" })).toBeVisible();

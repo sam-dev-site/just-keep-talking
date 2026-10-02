@@ -1,8 +1,14 @@
 # Project status
 
+## Quiz callout — 2 October 2026
+
+The home-page quiz is a navy card under the adult and kids paths, with a short invitation and a button: “Start the quiz” / “Empieza el quiz.” The quiz itself is still in Spanish. A text link remains beside the beginner question. This card is not on the live site until this branch is merged.
+
+`pnpm check` passed: ESLint, production build, two server-render tests, nine Playwright tests, and one skipped duplicate mobile accessibility pass. Browser check at http://localhost:4173/: the card on a 1280px desktop, a 390px phone, and the Spanish page. No horizontal overflow. The quiz still opens from that button. Chromium only.
+
 ## Starting-point quiz — 1 October 2026
 
-The home page opens a Spanish-directed quiz, “Quiz: tu punto de partida,” from the starting-point section and from beside the beginner question. It does not open on its own, and it does not follow the site’s EN/ES toggle.
+The home page opens a Spanish-directed quiz from the starting-point section and from beside the beginner question. It does not open on its own, and it does not follow the site’s EN/ES toggle.
 
 An adult sitting asks who it is for, what they want English for, five English questions, and what happens when someone speaks quickly. The five questions are drawn from 24 original items (eight easy, eight mid, eight harder): *do*-support, articles, present and past, phrasal verbs, false friends such as *actual* and *sensible*, dependent prepositions, and which sentence sounds natural. The sentences are not copied from a published exam. The browser remembers the items it has shown (`jkt-quiz-seen`) and prefers unseen ones, so a second sitting is not the same five questions.
 

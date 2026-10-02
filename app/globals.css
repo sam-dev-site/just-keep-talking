@@ -201,6 +201,16 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
 button.text-link { background:none; border:0; padding:0; color:inherit; font-weight:700; text-decoration:underline; text-underline-offset:5px; }
 .quiz-invite { margin:1.25rem 0 0; }
 .faq-list .quiz-invite { margin:.35rem 0; }
+.quiz-callout { display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; margin-top:1.25rem; padding:1.75rem 2rem; background:var(--ink); color:white; border-radius:20px 20px 3px 20px; }
+.quiz-callout .eyebrow { color:var(--lime); margin-bottom:.55rem; }
+.quiz-callout h3 { font-size:clamp(1.8rem,2.6vw,2.4rem); max-width:14ch; margin-bottom:.55rem; }
+.quiz-callout p { max-width:40rem; margin:0; color:#e7f2f6; }
+.quiz-callout .button { white-space:nowrap; }
+.quiz-callout :focus-visible { outline-color:var(--lime); }
+@media(max-width:700px) {
+  .quiz-callout { grid-template-columns:1fr; padding:1.4rem 1.25rem; }
+  .quiz-callout .button { justify-self:start; white-space:normal; }
+}
 .quiz-layer { position:fixed; inset:0; z-index:200; background:#072f4fcc; display:grid; align-items:end; justify-items:stretch; }
 .quiz-dialog { width:100%; max-height:100dvh; overflow:auto; overflow-wrap:break-word; background:var(--cream); color:var(--ink); padding:1.1rem 1.2rem 1.5rem; border-radius:16px 16px 0 0; box-shadow:0 16px 40px #072f4f33; }
 .quiz-top { display:flex; align-items:center; gap:.75rem; }
