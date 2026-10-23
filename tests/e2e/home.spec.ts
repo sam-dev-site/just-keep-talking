@@ -47,7 +47,8 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Nuestro enfoque" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Aprenda un idioma usándolo");
   await expect(page.locator(".process")).toHaveCount(0);
-  await expect(page.locator(".method-bubble")).toHaveCount(5);
+  await expect(page.locator(".method-bubble")).toHaveCount(6);
+  await expect(page.locator(".method-bubble-6").getByRole("link", { name: /Conozca al equipo/ })).toBeVisible();
   await expect(page.locator(".learning-step")).toHaveCount(3);
   await expect(page.locator(".learning-step-points")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Cómo se estructura su plan de aprendizaje" })).toBeVisible();

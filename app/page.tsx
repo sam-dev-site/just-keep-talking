@@ -165,6 +165,11 @@ export default function Home() {
     { title: l("All four skills", "Las cuatro habilidades"), body: l("You practice listening, reading, writing, and speaking, with conversation at the center.", "Practica escucha, lectura, escritura y habla, con la conversación al centro.") },
     { title: l("Comfort speaking", "Comodidad al hablar"), body: l("A big part of class is helping English feel more natural when you use it.", "Gran parte de la clase es ayudar a que el inglés se sienta más natural cuando lo usa.") },
     { title: l("Useful grammar", "Gramática útil"), body: l("We bring in grammar when it helps you say what you mean.", "Incluimos gramática cuando le ayuda a decir lo que quiere decir.") },
+    {
+      title: l("Certified native teachers", "Docentes nativos certificados"),
+      body: l("Classes are led by certified native teachers. In your intake meeting, we match a teacher, a weekly schedule, and the format that fits your goals.", "Las clases las imparten docentes nativos certificados. En su reunión de entrevista elegimos un docente, un horario semanal y el formato que se ajusta a sus metas."),
+      link: { href: url({ page: "about" }, "#team"), label: l("Meet the team", "Conozca al equipo") },
+    },
   ];
   const learningSteps = [
     {
@@ -259,6 +264,7 @@ export default function Home() {
                   <li key={bubble.title} className={`method-bubble method-bubble-${index + 1}`}>
                     <h3>{bubble.title}</h3>
                     <p>{bubble.body}</p>
+                    {"link" in bubble && bubble.link ? <a className="text-link" href={bubble.link.href}>{bubble.link.label} ↗</a> : null}
                   </li>
                 ))}
               </ul>
@@ -284,7 +290,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="section approach-teachers"><h2>{l("Certified native teachers", "Docentes nativos certificados")}</h2><p className="intro">{l("Classes are led by certified native teachers. In your intake meeting, we match a teacher, a weekly schedule, and the format that fits your goals.", "Las clases las imparten docentes nativos certificados. En su reunión de entrevista elegimos un docente, un horario semanal y el formato que se ajusta a sus metas.")}</p><a className="text-link" href={url({ page: "about" }, "#team")}>{l("Meet the team", "Conozca al equipo")} ↗</a></section>
       </>}
       {page === "classes" && <section className="section pricing-page">
         <h1 className="page-title">{l("Explore our plans.", "Explore nuestros planes.")}</h1>

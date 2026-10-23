@@ -1,5 +1,11 @@
 # Project status
 
+## Certified teachers in How we teach — 23 October 2026
+
+Moved the “Certified native teachers” block into the How we teach bubble grid as a sixth full-width standout under Comfort speaking / Useful grammar, with the Meet the team link kept. Removed the separate approach-teachers section below the learning plan.
+
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. Screenshots of the How we teach bubbles at 1280px and the teachers bubble at 390px. Not merged to `main` unless the owner asks to publish.
+
 ## Audrey Our Story update — 23 October 2026
 
 Owner supplied a new Our Story for Audrey (third person). Saved as `intake/owner-voice/2026-10-23-audrey-our-story.md`. Updated `project/VOICE.md` so the living guide points at that paste. Replaced the previous first-person story block on `?page=about` with her four paragraphs (EN exact; ES natural adaptation). Homepage founder preview left unchanged.

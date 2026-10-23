@@ -59,7 +59,7 @@ footer :focus-visible,.closing :focus-visible,.founder-band :focus-visible { out
 .section-intro>a { justify-self:end; }
 .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
 .number { font-size:.875rem; font-weight:800; color:var(--blue); display:block; margin-bottom:1.5rem; }
-.approach-teaser h2,.approach-teachers h2 { max-width:14em; }
+.approach-teaser h2 { max-width:14em; }
 .approach-teaser .intro { margin-bottom:.5rem; max-width:42rem; }
 .faq-page .page-title { margin-bottom:1rem; }
 .faq-page .intro { margin-bottom:1rem; }
@@ -78,6 +78,8 @@ footer :focus-visible,.closing :focus-visible,.founder-band :focus-visible { out
 .method-bubble-3 { background:white; border:1px solid var(--line); grid-column:1 / -1; }
 .method-bubble-4 { background:var(--sky); color:var(--ink); }
 .method-bubble-5 { background:#e8eef2; border-radius:22px 22px 6px 22px; }
+.method-bubble-6 { background:white; border:1px solid var(--line); grid-column:1 / -1; }
+.method-bubble .text-link { display:inline-block; margin-top:.85rem; }
 .approach-plan { margin-top:4.5rem; display:grid; grid-template-columns:1.2fr .8fr; gap:4vw; align-items:start; }
 .approach-plan-intro { grid-column:1 / -1; max-width:760px; }
 .approach-plan-intro h2 { font-size:clamp(1.8rem,3vw,2.5rem); }
@@ -203,7 +205,7 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
   .approach-method,.approach-plan { grid-template-columns:1fr; }
   .approach-method-visual,.approach-plan-photo { max-width:420px; }
   .method-bubbles { grid-template-columns:1fr; }
-  .method-bubble-3 { grid-column:auto; }
+  .method-bubble-3,.method-bubble-6 { grid-column:auto; }
   .hero { grid-template-columns:1fr; padding:2.5rem 1.2rem 3rem; gap:2rem; }
   h1 { font-size:clamp(3rem,12vw,4.5rem); }
   .hero-visual { margin-right:12px; }
