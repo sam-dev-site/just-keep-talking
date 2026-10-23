@@ -2,7 +2,9 @@
 
 ## Audrey Our Story update — 23 October 2026
 
-Owner supplied a new Our Story for Audrey (third person). Saved as `intake/owner-voice/2026-10-23-audrey-our-story.md`. Updated `project/VOICE.md` so the living guide points at that paste. Replaced the previous first-person story block on `?page=about` with her four paragraphs (EN exact; ES natural adaptation). Homepage founder preview left unchanged. H1 remains “How this project began.”
+Owner supplied a new Our Story for Audrey (third person). Saved as `intake/owner-voice/2026-10-23-audrey-our-story.md`. Updated `project/VOICE.md` so the living guide points at that paste. Replaced the previous first-person story block on `?page=about` with her four paragraphs (EN exact; ES natural adaptation). Homepage founder preview left unchanged.
+
+Removed the large story headline (“From learning the rules to finding a voice.” / “How this project began.”). The page keeps a single heading: the existing “Our story” / “Nuestra historia” label (styled as the eyebrow, marked up as `h1` for accessibility).
 
 `pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. Not merged to `main` unless the owner asks to publish.
 
