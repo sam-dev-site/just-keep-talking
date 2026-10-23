@@ -9,6 +9,7 @@ This folder is the git repo. The parent directory is a local archive of original
 
 - Facts: `project/BRIEF.md`. Prices and portraits: `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`.
 - Voice: `project/VOICE.md`. Owner copy sample: `intake/2027-program-update/website-information.txt`.
+- When Audrey supplies new copy or voice feedback, save it under `intake/`, refine `project/VOICE.md`, note it in `project/STATUS.md`, then update site strings. Keep the guide current.
 - Do not invent prices, billing labels, testimonials, credentials, policies, or contact details.
 - Do not LLM-polish owner wording. No em dashes, “not X but Y,” or clever From/to headlines in site copy.
 - One site under `app/`. Do not add a second static implementation.

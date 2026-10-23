@@ -7,6 +7,7 @@ Grounded visitor-facing copy in Audrey’s voice and locked the rule for future 
 - Added `project/VOICE.md`: keep owner wording, ban em dashes and “not X but Y” / From-to polish, prefer first-person bios and story from `intake/2027-program-update/website-information.txt`.
 - Pointed `AGENTS.md`, `.cursor/rules/project.mdc`, and `project/BRIEF.md` at that guide.
 - Rewrote AI-smoothed site strings in `app/page.tsx`: founder story restored to her first person, teacher bios restored to supplied first person (Monique typo `hope` → `hop`), approach/home/teach headlines and method lead stripped of antithesis and em dashes, teach lists aligned to her supplied benefits and expectations.
+- Made the guide a living document: any new Audrey copy or voice feedback must be saved under `intake/`, used to refine `project/VOICE.md`, noted here, then applied to the site in the same task.
 
 `pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. No WhatsApp or email sent.
 

@@ -10,6 +10,7 @@ This directory is the git repo and the Cursor project. The parent folder is a lo
 - Voice and phrasing: `project/VOICE.md` (owner voice; do not LLM-polish owner text)
 - Work record: `project/STATUS.md`
 - Client notes: `intake/`
+- Ongoing owner voice samples: `intake/owner-voice/`
 - Owner-supplied website copy sample: `intake/2027-program-update/website-information.txt`
 - Price and portrait authority: `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`
 - Website: `app/`. Components may live under `app/`. Do not add a second static site.
@@ -43,6 +44,8 @@ Group prices are the owner’s exact monthly amounts. Do not label them per stud
 Follow `project/VOICE.md` for every visitor-facing string. When the owner supplies wording, keep it. Do not rewrite it into a smoother “AI” voice.
 
 Never add em dashes, “not X but Y” contrasts, From/to transformation headlines, or other banned patterns from that guide when drafting or editing copy.
+
+Whenever there is new input from Audrey or about her voice (pasted copy, phrasing feedback, WhatsApp/email/social samples, “this sounds too AI”), update and refine `project/VOICE.md` in that same task before or while changing site copy. Save the raw source under `intake/`, note the guide change in `project/STATUS.md`, then apply the wording to the site. The guide must not lag behind her latest voice.
 
 ## Quality gates
 

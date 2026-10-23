@@ -2,6 +2,19 @@
 
 Authority for how Just Keep Talking should sound. Product facts still come from `project/BRIEF.md` and `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`. Source samples live in `intake/2027-program-update/website-information.txt` and `intake/CLIENT_NOTES.md`.
 
+This file is a living guide. Every time Audrey (or someone forwarding her words) supplies new copy, feedback on phrasing, WhatsApp/email/social samples, or corrections about how something should sound, update this guide in the same piece of work. Do not only change the site and leave the guide stale.
+
+## When new voice input arrives
+
+Do this in order, in the same task that handles the input:
+
+1. **Save the source.** Put the raw material under `intake/` (for example `intake/owner-voice/` or the relevant program-update folder). Prefer dated filenames. Do not rewrite the archive copy into “better” English.
+2. **Refine this guide.** Add or adjust patterns under “What her writing is like,” “Preserve owner wording,” “Ban these AI habits,” or Spanish notes. Quote short examples from the new material when they teach something the old guide missed. Remove or soften a rule if her new wording clearly contradicts it.
+3. **Record the update.** Note in `project/STATUS.md` what was added to the guide and which source file it came from.
+4. **Then apply to the site.** Only after the guide reflects the new input, update visitor-facing strings that the input affects. Keep her words; do not LLM-polish them.
+
+If the input is only a tone correction (“too AI,” “too formal,” “use my paste”), still update this guide with that lesson before rewriting pages.
+
 ## Who is speaking
 
 Audrey founded Just Keep Talking. Public copy should sound like her: a teacher who learned Spanish the hard way, moved to Costa Rica, and built a warm online academy. It should not sound like a marketing agency or a generic LLM.
