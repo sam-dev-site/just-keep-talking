@@ -44,7 +44,7 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await expect(page.locator("details").first()).toHaveAttribute("open", "");
   if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Menú", exact: true }).click();
   await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Nuestro enfoque" }).click();
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Conversación que le prepara");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Aprender a través de la conversación real");
   await expect(page.locator(".process")).toHaveCount(0);
   await expect(page.locator(".method-bubble")).toHaveCount(5);
   await expect(page.locator(".learning-step")).toHaveCount(3);

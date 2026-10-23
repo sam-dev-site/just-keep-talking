@@ -1,5 +1,17 @@
 # Project status
 
+## Owner voice grounding — 23 October 2026
+
+Grounded visitor-facing copy in Audrey’s voice and locked the rule for future edits.
+
+- Added `project/VOICE.md`: keep owner wording, ban em dashes and “not X but Y” / From-to polish, prefer first-person bios and story from `intake/2027-program-update/website-information.txt`.
+- Pointed `AGENTS.md`, `.cursor/rules/project.mdc`, and `project/BRIEF.md` at that guide.
+- Rewrote AI-smoothed site strings in `app/page.tsx`: founder story restored to her first person, teacher bios restored to supplied first person (Monique typo `hope` → `hop`), approach/home/teach headlines and method lead stripped of antithesis and em dashes, teach lists aligned to her supplied benefits and expectations.
+
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. No WhatsApp or email sent.
+
+Still ask the owner for any newer voice samples (emails, WhatsApp replies, social posts) if a line still feels off. Do not push `main` unless she asks.
+
 ## Classes & Approach four-plan refresh — 23 October 2026
 
 Scope: Classes & pricing and Our approach only. Home was left for the parallel home-page agent.

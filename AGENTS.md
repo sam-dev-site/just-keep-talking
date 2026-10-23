@@ -7,8 +7,10 @@ Just Keep Talking is a bilingual brochure site for a private online English acad
 This directory is the git repo and the Cursor project. The parent folder is a local archive of original client notes and brand files. Read it when a task needs source material. Do not publish, commit, or modify those originals unless the owner explicitly asks.
 
 - Accepted product facts: `project/BRIEF.md`
+- Voice and phrasing: `project/VOICE.md` (owner voice; do not LLM-polish owner text)
 - Work record: `project/STATUS.md`
 - Client notes: `intake/`
+- Owner-supplied website copy sample: `intake/2027-program-update/website-information.txt`
 - Price and portrait authority: `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`
 - Website: `app/`. Components may live under `app/`. Do not add a second static site.
 - Optimized images: `public/brand/`. Source inventory: `assets/brand/`.
@@ -35,6 +37,12 @@ Pushing `main` runs `.github/workflows/quality.yml` and deploys the static expor
 Never silently invent business facts, testimonials, prices, billing-unit labels, credentials, policies, or contact details. Record assumptions. Use a clearly labeled placeholder only when necessary, and track it in `project/STATUS.md` when it blocks launch.
 
 Group prices are the owner’s exact monthly amounts. Do not label them per student or per group until the owner says which. Phase 1 and Phase 2 material stays off the public site.
+
+## Voice you must not invent
+
+Follow `project/VOICE.md` for every visitor-facing string. When the owner supplies wording, keep it. Do not rewrite it into a smoother “AI” voice.
+
+Never add em dashes, “not X but Y” contrasts, From/to transformation headlines, or other banned patterns from that guide when drafting or editing copy.
 
 ## Quality gates
 

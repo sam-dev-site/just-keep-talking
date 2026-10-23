@@ -6,6 +6,8 @@ Current as of the published site at commit `0e99c96` (18 Sep 2026). Older layere
 
 Accepted prices, plan names, weekly time, enrollment fees, and portrait assignments come from `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`. That file supersedes the four-plan prices and the inquiry-only kids and group limitation in `project/history/`.
 
+Visitor-facing voice follows `project/VOICE.md`. Prefer owner-supplied wording from `intake/2027-program-update/website-information.txt` and later owner pastes. Do not LLM-polish that wording into antithesis headlines, em dashes, or “not X but Y” patterns.
+
 Do not invent prices, billing-unit labels, testimonials, credentials, policies, or contact details. Phase 1 and Phase 2 pricing stays in the archive and off the public site.
 
 ## Audience and outcome
