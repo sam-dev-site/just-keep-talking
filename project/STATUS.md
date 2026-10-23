@@ -2,7 +2,7 @@
 
 ## Home page updates — 23 October 2026
 
-Owner-directed home pass on branch `cursor/home-page-updates-c604` (not pushed to `main` unless asked):
+Owner-directed home pass. Merged to `main` on 23 October 2026 (America/Guatemala) at the owner’s request so GitHub Pages can publish:
 
 - Hero support and proof lines updated; closing CTA says “language”; footer tagline removed; policy links say “Policy overview.”
 - Second scroll is adults-by-need (work, travel, personal interest, school) plus a kids path; placement quiz removed from the home UI (file kept unwired).
