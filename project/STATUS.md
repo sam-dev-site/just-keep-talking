@@ -1,5 +1,11 @@
 # Project status
 
+## Audrey Our Story update — 23 October 2026
+
+Owner supplied a new Our Story for Audrey (third person). Saved as `intake/owner-voice/2026-10-23-audrey-our-story.md`. Updated `project/VOICE.md` so the living guide points at that paste. Replaced the previous first-person story block on `?page=about` with her four paragraphs (EN exact; ES natural adaptation). Homepage founder preview left unchanged. H1 remains “How this project began.”
+
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. Not merged to `main` unless the owner asks to publish.
+
 ## Updates round 2 + voice guide — 23 October 2026
 
 Merged owner voice grounding (`cursor/owner-voice-grounding-64a9` / PR #7) into `cursor/updates-round-2-5ed6` (PR #8).
