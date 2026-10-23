@@ -1,15 +1,22 @@
 # Project status
 
-## Updates round 2 — 23 October 2026
+## Updates round 2 + voice guide — 23 October 2026
 
-Owner-directed home, approach, classes, and curriculum pass on branch `cursor/updates-round-2-5ed6`:
+Merged owner voice grounding (`cursor/owner-voice-grounding-64a9` / PR #7) into `cursor/updates-round-2-5ed6` (PR #8).
 
-- Home audience wall is two boxes (Adults / Kids); work, travel, school, and personal interest sit in the Adults copy. Founder band is a single white heading “How Just Keep Talking started.” Closing eyebrow “Your next conversation starts here” is lime.
+### Round 2
+- Home audience wall is two boxes (Adults / Kids). Founder band is a single white heading “How Just Keep Talking started.” Closing eyebrow is lime.
 - Classes title is “Explore our plans.” with a Costa Rica / Americas reach line; intake meeting is not restated there.
-- Approach method bubbles rewritten in a plainer voice; learning-plan pill tags and the “Three steps… not three appointments” lead removed.
-- New `?page=curriculum`: Curriculum for teachers (A1–C2 scope list), Ask for more info → WhatsApp, plus email. Footer “Curriculum inquiries” under Teach with us; quiet link on Teach. No curriculum prices on the site.
+- Approach method bubbles in a plainer voice; learning-plan pill tags and the “Three steps…” lead removed.
+- New `?page=curriculum`: Curriculum for teachers (A1–C2), Ask for more info → WhatsApp + email. Footer “Curriculum inquiries.” No curriculum prices.
 
-`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium screenshots at 1280px and 390px for home, approach, classes, and curriculum (EN; curriculum also ES). Closing eyebrow verified lime; founder single white title; audience two boxes; curriculum inquiry-only with no prices. No WhatsApp or email sent. Not pushed to `main`.
+### Voice (ingested and applied)
+- Saved `intake/owner-voice/2026-10-23-brand-voice-and-communication-guide.md` and rebuilt `project/VOICE.md` (personality, “Learn a language by using it,” do/don’t examples, platforms, founder vs academy, Spanish usted, three feelings).
+- Approach H1 uses the central message; classes adult line uses her preferred “understand a lot… when it's time to speak…” example.
+- Public Spanish shifted to usted; first-person bios and founder story kept.
+- Living-guide workflow noted in `AGENTS.md` and `.cursor/rules/project.mdc`.
+
+`pnpm check` passed after the merge: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. No WhatsApp or email sent. Branch pushed; not merged to `main` unless the owner asks to publish.
 
 ## Classes & Approach four-plan refresh — 23 October 2026
 
@@ -60,78 +67,4 @@ Browser check at http://localhost:4173/: the quiz opens from the home starting-p
 
 ## Current state — 2 October 2026
 
-Live site: https://www.justkeeptalkingcr.com
-
-GoDaddy DNS for `justkeeptalkingcr.com` points at GitHub Pages. The custom domain in the repository Pages settings is `www.justkeeptalkingcr.com`. The Pages build no longer sets `NEXT_PUBLIC_BASE_PATH=/just-keep-talking`, so styles, images, and links are served from the domain root. `justkeeptalking.com` is a different site and is not part of this project.
-
-Local preview: from this directory, `pnpm dev`, then open the address the dev server prints. `pnpm check` is the handoff check.
-
-The September status that said the two-plan pricing and portraits were uncommitted and unpublished is archived in `project/history/STATUS-2026-09.md`. Those changes are what `0e99c96` deployed.
-
-## What is live
-
-- Bilingual home, classes and pricing, story and team, upcoming 2027 policy overview, and teacher recruitment.
-- Two plans for every audience, format, group size, and currency, using the amounts in `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`.
-- Portraits for Audrey (founder and teacher), Cristian, and Monique. Placeholders for Iain, Shay, and Charlie.
-- WhatsApp as the primary inquiry, with the selected plan included from the classes page.
-
-## Remaining inputs
-
-- Photos for Iain, Shay, and Charlie.
-- A group-price billing unit, if the owner wants one shown.
-- Detailed policy text. The public page stays a short overview effective 4 January 2027 until that is requested.
-- Real student testimonials. Do not invent them. When quotes arrive, use two or three short lines from adult professionals, with permission for a first name and a role or city, after the learning-plan section, in both languages.
-- Whether 3-hour and 4-hour plans should return. Audrey asked for four plans on 18 September 2026. The prices confirmed after that are still the two published plans. Older graphics are not being restored.
-- Optional clarifications listed in `project/BRIEF.md`. Do not invent them.
-
-## Approach page — 1 October 2026
-
-“Our approach” is its own page. The homepage keeps a short invitation and a link. The page explains how conversation is guided, how the learning plan is built, and the four steps for getting started. It is not published until this branch is merged.
-
-`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests, and one skipped duplicate mobile accessibility pass.
-
-Browser check at http://localhost:4173/: from a scrolled English homepage, “Our approach” opens `?page=approach` at the top, with the nav item marked current. Spanish shows the same page. A 390px-wide view has no horizontal overflow. No WhatsApp or email message was sent. Chromium only.
-
-## Credibility pass — 1 October 2026
-
-The homepage now speaks to adult professionals without dropping the kids path or the conversational tone.
-
-- Hero support line and proof line use Audrey’s wording: personalized instruction around level, goals, and the conversations that matter; certified native teachers, personalized learning, real conversation, online across the Americas.
-- A “How your learning is planned” section covers the one-to-one meeting, brief oral evaluation, personal learning plan, developed lesson library, and progress reports. It does not state a report schedule, a year count, a certification body, or a lesson count.
-- Getting started is Audrey’s four steps, beginning with a WhatsApp message and the one-to-one meeting.
-- Visible “JKT” is now “Just Keep Talking.” Teacher bios are unchanged.
-- Header and footer use the speech-bubble mark beside the name. The tall wordmark is no longer in the header.
-- Classes still show exactly two plans. Testimonials are not on the site.
-- This pass is not published. Do not push `main` unless the owner asks.
-
-`pnpm check` passed on this branch: ESLint, production build, two server-render tests, seven Playwright tests, and one intentionally skipped duplicate mobile accessibility pass.
-
-Browser check at http://localhost:4173/: English and Spanish home, including the four intake steps and the learning-plan list; classes for adult private in colones (Essential ₡65,000, Standard ₡125,000) and a Spanish kids group of 4+ in dollars (Explorer $42, Builder $80); header and footer lockup; mobile menu at 390px. No horizontal overflow and no console errors. Chromium only. No WhatsApp or email message was sent.
-
-## This working tree — 1 October 2026
-
-Cursor now uses this directory as the project root. Superseded planning notes are in `project/history/`. The current brief is `project/BRIEF.md`.
-
-UI pass, using only facts already on the site:
-
-- Hash targets scroll into view after the client view loads.
-- `audience`, `format`, `currency`, and `size` stay on classes links only.
-- Plan inquiries use the same button treatment as the main WhatsApp action.
-- The home team preview shows Audrey, Monique, and Cristian. The full team page keeps its original order.
-- The footer policy link says “Upcoming 2027 policy overview” / “Resumen de la próxima política de 2027”.
-
-`pnpm check` passed on this working tree: ESLint, production build, two server-render tests, seven Playwright tests, and one intentionally skipped duplicate mobile accessibility pass. An earlier desktop run failed two hydration waits while the dev server was still starting; the same suite passed on the next run and in the full check.
-
-Browser check at http://localhost:4173/: desktop home, “Our approach” landing on `#approach`, direct `#team` on the story page, classes controls for group size and USD, Spanish with the same selection kept, and a 390px-wide Spanish kids group of 4+ (Explorer $42, Builder $80, no horizontal overflow, mobile menu opens). Chromium only. No WhatsApp or email message was sent.
-
-Pushed to `main` as `e720567` on 1 October 2026. That push starts the GitHub Pages deploy.
-
-On 2 October 2026 the Pages artifact build stopped setting `NEXT_PUBLIC_BASE_PATH`. A local static export wrote stylesheet, image, and page links at `/`, with no `/just-keep-talking` prefix. After rebasing onto the quiz and approach-page commits, ESLint passed, both server-render tests passed, and Playwright passed 9 tests with the usual mobile accessibility check skipped.
-
-Pricing options were reloading the static page: updating the address went through the app router and jumped back to the top. They now update the address directly, so the plans change without a refresh.
-
-GitHub repo description and homepage were not changed. GitHub CLI 2.102.0 is installed, and it is not logged in. After `gh auth login`, run:
-
-```text
-gh repo edit sam-dev-site/just-keep-talking --description "Bilingual marketing site for Just Keep Talking, an online English academy." --homepage https://www.justkeeptalkingcr.com
-```
+See newer sections above for the live four-plan and home status.

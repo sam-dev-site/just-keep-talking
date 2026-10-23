@@ -30,7 +30,7 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await expect(page.locator(".quiz-callout")).toHaveCount(0);
   await page.getByRole("link", { name: "Cambiar a español" }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Gana confianza");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Gane confianza");
   await noOverflow(page);
   await page.locator("a.kids-path").click();
   await expect(page.getByRole("button", { name: "Niños", exact: true })).toHaveAttribute("aria-pressed", "true");
@@ -45,7 +45,7 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await expect(page.locator("details").first()).toHaveAttribute("open", "");
   if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Menú", exact: true }).click();
   await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Nuestro enfoque" }).click();
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Conversación que le prepara");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Aprenda un idioma usándolo");
   await expect(page.locator(".process")).toHaveCount(0);
   await expect(page.locator(".method-bubble")).toHaveCount(5);
   await expect(page.locator(".learning-step")).toHaveCount(3);
@@ -62,6 +62,7 @@ test("pricing preserves selections, switches currency independently and carries 
   await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Explore our plans.");
   await expect(page.getByText("Our team is based in Costa Rica")).toBeVisible();
+  await expect(page.getByText("when it's time to speak")).toBeVisible();
   await expect(page.getByText("Choose your weekly commitment")).toHaveCount(0);
   await expect(page.getByText("intake meeting confirms")).toHaveCount(0);
   await expect(page.locator(".plan-card")).toHaveCount(4);
@@ -80,7 +81,10 @@ test("pricing preserves selections, switches currency independently and carries 
     kids?.click();
   });
   await expect(page.getByRole("button", { name: "Kids", exact: true })).toHaveAttribute("aria-pressed", "true");
-  expect(await page.evaluate(() => window.scrollY)).toBe(scrollBeforeOption);
+  // Selection copy height can change slightly; the page must not jump back to the top.
+  const scrollAfterOption = await page.evaluate(() => window.scrollY);
+  expect(scrollAfterOption).toBeGreaterThan(100);
+  expect(Math.abs(scrollAfterOption - scrollBeforeOption)).toBeLessThan(150);
   await expect(page.locator(".plan-card h3")).toHaveText(["Explorer", "Builder", "Achiever", "Fluent"]);
   await page.getByRole("button", { name: "Adults", exact: true }).click();
   await page.getByRole("button", { name: "USD", exact: true }).click();

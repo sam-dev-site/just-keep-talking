@@ -6,6 +6,8 @@ Current as of the published site at commit `0e99c96` (18 Sep 2026). Older layere
 
 Accepted prices, plan names, weekly time, enrollment fees, and portrait assignments come from `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`. That file supersedes the four-plan prices and the inquiry-only kids and group limitation in `project/history/`.
 
+Visitor-facing voice follows `project/VOICE.md`, which is distilled from `intake/owner-voice/2026-10-23-brand-voice-and-communication-guide.md` and earlier samples such as `intake/2027-program-update/website-information.txt`. Do not LLM-polish owner wording into antithesis headlines, em dashes, or sales hype. When new owner voice input arrives, refine `project/VOICE.md` in the same task (save the source under `intake/owner-voice/`, update the guide, note it in `project/STATUS.md`), then apply it to the site. Spanish on the public site generally uses usted.
+
 Do not invent prices, billing-unit labels, testimonials, credentials, policies, or contact details. Phase 1 and Phase 2 pricing stays in the archive and off the public site.
 
 ## Audience and outcome
@@ -15,7 +17,7 @@ Adults and parents should understand the online language offer (English for all 
 ## What the site contains
 
 - Home: hero aimed at adults, a second-scroll “Language for you” with two paths (Adults and Kids), a short Our approach invitation, founder preview (“How Just Keep Talking started”), community preview, and WhatsApp. The hero line is “Build the confidence to speak.” The support line is personalized language instruction built around level, goals, and needs. The proof line names certified native teachers, personalized learning, and authentic conversation. The placement quiz is not on the public home page.
-- Our approach: its own page, not a homepage scroll. It presents conversational methodology visually (speech-bubble skills), a three-step learning plan (intake meeting, start classes, measure progress), and that classes are led by certified native teachers. Individual teacher bios stay on the story page.
+- Our approach: its own page, not a homepage scroll. The H1 is the central message “Learn a language by using it.” It presents conversational methodology visually (speech-bubble skills), a three-step learning plan (intake meeting, start classes, measure progress), and that classes are led by certified native teachers. Individual teacher bios stay on the story page.
 - FAQ: its own nav tab (`?page=faq`), covering levels, ages, online vs in-person immersion activities, private or group, getting started, methodology, and languages offered.
 - Classes and pricing: title “Explore our plans,” a Costa Rica / Americas reach line, audience, private or group, group size when needed, independent CRC and USD controls, four plans, a separate one-time enrollment fee, and a contextual WhatsApp inquiry. No policy overview line on this page.
 - Story and team: founder history and six biographies. Every card shows a role (Founder & teacher for Audrey; Teacher for others). Audrey, Cristian, and Monique have portraits. Iain, Shay, and Charlie use equal placeholders until photos arrive.

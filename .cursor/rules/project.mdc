@@ -8,7 +8,10 @@ alwaysApply: true
 This folder is the git repo. The parent directory is a local archive of original client files. Do not publish or edit those originals.
 
 - Facts: `project/BRIEF.md`. Prices and portraits: `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`.
+- Voice: `project/VOICE.md`, from `intake/owner-voice/` (current: brand voice guide 23 Oct 2026).
+- When Audrey supplies new copy or voice feedback, save it under `intake/owner-voice/`, refine `project/VOICE.md`, note it in `project/STATUS.md`, then update site strings. Keep the guide current. Spanish on the site generally uses usted.
 - Do not invent prices, billing labels, testimonials, credentials, policies, or contact details.
+- Do not LLM-polish owner wording. No em dashes, “not X but Y,” or clever From/to headlines in site copy.
 - One site under `app/`. Do not add a second static implementation.
 - Use pnpm. Run `pnpm check` before handoff. Update `project/STATUS.md`.
 - Live site: https://www.justkeeptalkingcr.com
