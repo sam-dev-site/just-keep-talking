@@ -1,5 +1,15 @@
 # Project status
 
+## Classes & Approach four-plan refresh — 23 October 2026
+
+Scope: Classes & pricing and Our approach only. Home was left for the parallel home-page agent.
+
+- Classes show four plans. Adults: Essential / Standard / Intensive / Immersion (1–4 hours). Kids: Explorer / Builder / Achiever / Fluent. Kids private weekly times differ by currency (CRC 30 min / 1 / 1.5 / 4; USD 1 / 2 / 3 / 4). Kids group uses 30 min / 1 / 1.5 / 4 in both currencies. CRC Achiever “1. hours” is published as 1.5 hours.
+- Removed the classes-page policy overview line. Classes and Approach Spanish use usted; “one-to-one” → “intake meeting” / “reunión de entrevista” on those pages only.
+- Approach: dropped “Conversation, with a plan behind it” and the Getting started section. Visual methodology bubbles + three learning-plan steps. Photos: `approach-2508.webp` (primary), `approach-2602.webp` (plan section). `approach-7780.webp` optimized and reserved.
+
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Browser screenshots at 1280px and 390px for classes and approach EN/ES. Home hero still “Build the confidence.” Chromium only. No WhatsApp or email sent.
+
 ## Home page updates — 23 October 2026
 
 Owner-directed home pass. Merged to `main` on 23 October 2026 (America/Guatemala) at the owner’s request so GitHub Pages can publish:

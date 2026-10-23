@@ -33,7 +33,8 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await noOverflow(page);
   await page.locator("a.kids-path").click();
   await expect(page.getByRole("button", { name: "Niños", exact: true })).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator(".plan-card")).toHaveCount(2);
+  await expect(page.locator(".plan-card")).toHaveCount(4);
+  await expect(page.locator(".plan-card h3")).toHaveText(["Explorer", "Builder", "Achiever", "Fluent"]);
   await noOverflow(page);
   if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Menú", exact: true }).click();
   await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Preguntas frecuentes" }).click();
@@ -43,9 +44,12 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await expect(page.locator("details").first()).toHaveAttribute("open", "");
   if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Menú", exact: true }).click();
   await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Nuestro enfoque" }).click();
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Conversación, con un plan");
-  await expect(page.locator(".process li")).toHaveCount(4);
-  await expect(page.locator(".structure-list li")).toHaveCount(5);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Conversación que le prepara");
+  await expect(page.locator(".process")).toHaveCount(0);
+  await expect(page.locator(".method-bubble")).toHaveCount(5);
+  await expect(page.locator(".learning-step")).toHaveCount(3);
+  await expect(page.getByRole("heading", { name: "Cómo se estructura su plan de aprendizaje" })).toBeVisible();
+  await expect(page.getByText("reunión de entrevista").first()).toBeVisible();
   await noOverflow(page);
   expect(errors).toEqual([]);
 });
@@ -53,8 +57,11 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
 test("pricing preserves selections, switches currency independently and carries inquiry context", async ({ page }) => {
   await page.goto("/?page=classes");
   await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
-  await expect(page.locator(".plan-card")).toHaveCount(2);
+  await expect(page.locator(".plan-card")).toHaveCount(4);
+  await expect(page.locator(".plan-card h3")).toHaveText(["Essential", "Standard", "Intensive", "Immersion"]);
   await expect(page.locator(".plan-card").first()).toContainText("₡65,000 CRC");
+  await expect(page.locator(".plan-card").nth(2)).toContainText("₡183,000 CRC");
+  await expect(page.locator(".policy-link")).toHaveCount(0);
   await page.evaluate(() => {
     document.documentElement.style.scrollBehavior = "auto";
     document.querySelector(".plan-grid")?.scrollIntoView({ block: "center" });
@@ -67,13 +74,17 @@ test("pricing preserves selections, switches currency independently and carries 
   });
   await expect(page.getByRole("button", { name: "Kids", exact: true })).toHaveAttribute("aria-pressed", "true");
   expect(await page.evaluate(() => window.scrollY)).toBe(scrollBeforeOption);
+  await expect(page.locator(".plan-card h3")).toHaveText(["Explorer", "Builder", "Achiever", "Fluent"]);
   await page.getByRole("button", { name: "Adults", exact: true }).click();
   await page.getByRole("button", { name: "USD", exact: true }).click();
   await expect(page.locator(".plan-card").first()).toContainText("$150 USD");
+  await expect(page.locator(".plan-card").nth(3)).toContainText("$545 USD");
   const href = await page.locator(".plan-card a").nth(1).getAttribute("href");
   const message = new URL(href!).searchParams.get("text");
   expect(message).toContain("Adults · Private · USD");
   expect(message).toContain("Standard, 2 hours weekly, $285 USD per month");
+  const intensiveHref = await page.locator(".plan-card a").nth(2).getAttribute("href");
+  expect(new URL(intensiveHref!).searchParams.get("text")).toContain("Intensive, 3 hours weekly, $420 USD per month");
   await page.getByRole("button", { name: "Small group", exact: true }).click();
   await page.getByRole("button", { name: "3 students", exact: true }).click();
   await page.getByRole("button", { name: "Kids", exact: true }).click();
@@ -84,12 +95,19 @@ test("pricing preserves selections, switches currency independently and carries 
   await page.reload();
   const groupHref = await page.locator(".plan-card a").first().getAttribute("href");
   expect(new URL(groupHref!).searchParams.get("text")).toContain("Niños · Grupo pequeño · 3 estudiantes · USD");
-  await expect(page.locator(".plan-card")).toHaveCount(2);
+  expect(new URL(groupHref!).searchParams.get("text")).toContain("Explorer");
+  await expect(page.locator(".plan-card")).toHaveCount(4);
   await noOverflow(page);
   await page.getByRole("button", { name: "Privadas", exact: true }).click();
   await expect(page.getByRole("group", { name: "Tamaño del grupo" })).toHaveCount(0);
+  await expect(page.locator(".plan-card").first()).toContainText("1 hora semanal");
+  await expect(page.locator(".plan-card").nth(2)).toContainText("3 horas semanales");
+  await page.getByRole("button", { name: "CRC", exact: true }).click();
+  await expect(page.locator(".plan-card").first()).toContainText("30 minutos semanales");
+  await expect(page.locator(".plan-card").nth(2)).toContainText("1,5 horas semanales");
   await page.getByRole("button", { name: "Adultos", exact: true }).click();
-  await expect(page.locator(".plan-card")).toHaveCount(2);
+  await expect(page.locator(".plan-card")).toHaveCount(4);
+  await page.getByRole("button", { name: "USD", exact: true }).click();
   await expect(page.locator(".enrollment")).toContainText("$35 USD");
 });
 

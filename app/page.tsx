@@ -19,22 +19,22 @@ const subscribeToLocation = (callback: () => void) => {
 // Captured before the app router wraps history. Calling that wrapper for these
 // options reloads the static page and jumps back to the top.
 const nativeReplaceState = typeof window === "undefined" ? undefined : window.history.replaceState;
-// Owner-confirmed two-plan offer supersedes the older pricing graphics.
+// Owner-confirmed four-plan offer from 2027 pricing graphics.
 const tuition = {
   adults: {
-    private: { CRC: [65000, 125000], USD: [150, 285] },
+    private: { CRC: [65000, 125000, 183000, 238000], USD: [150, 285, 420, 545] },
     group: {
-      "2": { CRC: [48000, 92000], USD: [110, 210] },
-      "3": { CRC: [41000, 79000], USD: [95, 180] },
-      "4+": { CRC: [35000, 67000], USD: [80, 150] },
+      "2": { CRC: [48000, 92000, 135000, 176000], USD: [110, 210, 305, 395] },
+      "3": { CRC: [41000, 79000, 116000, 152000], USD: [95, 180, 265, 345] },
+      "4+": { CRC: [35000, 67000, 99000, 129000], USD: [80, 150, 220, 290] },
     },
   },
   kids: {
-    private: { CRC: [33000, 63000], USD: [75, 145] },
+    private: { CRC: [33000, 63000, 92000, 120000], USD: [75, 145, 210, 275] },
     group: {
-      "2": { CRC: [26000, 50000], USD: [60, 110] },
-      "3": { CRC: [22000, 42000], USD: [50, 95] },
-      "4+": { CRC: [18000, 36000], USD: [42, 80] },
+      "2": { CRC: [26000, 50000, 73000, 95000], USD: [60, 110, 160, 210] },
+      "3": { CRC: [22000, 42000, 62000, 81000], USD: [50, 95, 140, 180] },
+      "4+": { CRC: [18000, 36000, 52000, 68000], USD: [42, 80, 115, 150] },
     },
   },
 };
@@ -78,7 +78,7 @@ export default function Home() {
   };
   const title = `Just Keep Talking | ${titles[page]}`;
   const description = page === "approach"
-    ? l("How Just Keep Talking teaches: a one-to-one meeting, a brief oral evaluation, a personal learning plan, and conversation guided by your goals.", "Cómo enseña Just Keep Talking: una reunión individual, una breve evaluación oral, un plan de aprendizaje personal y una conversación guiada por tus metas.")
+    ? l("How Just Keep Talking teaches: an intake meeting, a brief oral evaluation, a personal learning plan, and conversation guided by your goals.", "Cómo enseña Just Keep Talking: una reunión de entrevista, una breve evaluación oral, un plan de aprendizaje personal y una conversación guiada por sus metas.")
     : page === "faq"
       ? l("Answers about language levels, ages, online classes, immersion activities, methodology, and the languages we offer.", "Respuestas sobre niveles, edades, clases en línea, actividades de inmersión, metodología y los idiomas que ofrecemos.")
       : l("Personalized language instruction built around your level, goals, and needs.", "Instrucción de idiomas personalizada, diseñada según tu nivel, tus metas y tus necesidades.");
@@ -86,12 +86,28 @@ export default function Home() {
   const format = params.get("format") === "group" ? "group" : "private";
   const currency = params.get("currency") === "USD" ? "USD" : "CRC";
   const size = (["2", "3", "4+"].includes(params.get("size") || "") ? params.get("size") : "2") as "2" | "3" | "4+";
-  const kidsGroup = audience === "kids" && format === "group";
-  const planNames = kidsGroup ? ["Explorer", "Builder"] : ["Essential", "Standard"];
+  const isKids = audience === "kids";
+  const planNames = isKids
+    ? ["Explorer", "Builder", "Achiever", "Fluent"]
+    : ["Essential", "Standard", "Intensive", "Immersion"];
   const prices = (format === "private" ? tuition[audience].private : tuition[audience].group[size])[currency];
-  const weeklyTime = (index: number) => kidsGroup
-    ? (index === 0 ? l("30 minutes weekly", "30 minutos semanales") : l("1 hour weekly", "1 hora semanal"))
-    : (index === 0 ? l("1 hour weekly", "1 hora semanal") : l("2 hours weekly", "2 horas semanales"));
+  const weeklyLabels = {
+    minutes30: l("30 minutes weekly", "30 minutos semanales"),
+    hour1: l("1 hour weekly", "1 hora semanal"),
+    hours15: l("1.5 hours weekly", "1,5 horas semanales"),
+    hours2: l("2 hours weekly", "2 horas semanales"),
+    hours3: l("3 hours weekly", "3 horas semanales"),
+    hours4: l("4 hours weekly", "4 horas semanales"),
+  };
+  const weeklyTime = (index: number) => {
+    if (isKids && format === "private" && currency === "USD") {
+      return [weeklyLabels.hour1, weeklyLabels.hours2, weeklyLabels.hours3, weeklyLabels.hours4][index];
+    }
+    if (isKids) {
+      return [weeklyLabels.minutes30, weeklyLabels.hour1, weeklyLabels.hours15, weeklyLabels.hours4][index];
+    }
+    return [weeklyLabels.hour1, weeklyLabels.hours2, weeklyLabels.hours3, weeklyLabels.hours4][index];
+  };
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const shell = useRef<HTMLDivElement>(null);
@@ -140,18 +156,43 @@ export default function Home() {
     setMenuOpen(false);
     window.scrollTo(0, 0);
   };
-  const planPoints = [
-    [l("A meeting before classes begin", "Una reunión antes de empezar las clases"), l("We meet with you one to one before your classes start. That conversation is how we understand you as a learner.", "Nos reunimos contigo de forma individual antes de que comiencen las clases. Esa conversación es la forma en que te conocemos como estudiante.")],
-    [l("Your experience and a brief oral evaluation", "Tu experiencia y una breve evaluación oral"), l("We talk about your experience with English, the level you feel you have, your goals, and your challenges. Then we listen to how you communicate now, so we can hear what you already do well and where you need support.", "Conversamos sobre tu experiencia con el inglés, el nivel que sientes que tienes, tus metas y tus retos. Después escuchamos cómo te comunicas ahora, para reconocer lo que ya haces bien y dónde necesitas apoyo.")],
-    [l("A personal learning plan", "Un plan de aprendizaje personal"), l("From that meeting we recommend a class format, weekly time, teacher, schedule, and learning priorities. The plan is set with you before classes begin.", "A partir de esa reunión recomendamos un formato de clase, un tiempo semanal, un docente, un horario y prioridades de aprendizaje. El plan se define contigo antes de que empiecen las clases.")],
-    [l("Lessons from a developed library", "Clases a partir de una biblioteca ya desarrollada"), l("Your teacher draws on lessons and resources already developed for the academy, then shapes each one to your goals. The lessons are personal. They are not the same sequence for every student.", "Tu docente trabaja con lecciones y recursos ya desarrollados para la academia y adapta cada una a tus metas. Las clases son personales. No son la misma secuencia para todos.")],
-    [l("Progress reports", "Informes de progreso"), l("We follow your progress and share it with you in progress reports, so you can see how the plan is moving.", "Seguimos tu progreso y lo compartimos contigo en informes de progreso, para que veas cómo avanza el plan.")],
+  const methodBubbles = [
+    { title: l("Conversational method", "Método conversacional"), body: l("Classes center on real talk—the situations you need English for.", "Las clases se centran en conversación real: las situaciones en las que necesita el inglés.") },
+    { title: l("Structured feedback", "Retroalimentación estructurada"), body: l("Your teacher guides the exchange and gives clear feedback as you speak.", "Su docente guía el intercambio y le da retroalimentación clara mientras habla.") },
+    { title: l("Listening, reading, writing, speaking", "Escucha, lectura, escritura y habla"), body: l("You practice the full set of skills, with conversation as the through-line.", "Practica el conjunto de habilidades, con la conversación como hilo conductor.") },
+    { title: l("Natural conversation", "Conversación natural"), body: l("A big focus is making English feel more natural when you use it.", "Un enfoque central es que el inglés se sienta más natural al usarlo.") },
+    { title: l("Applied to real life", "Aplicado a la vida real"), body: l("Grammar belongs in the plan when it helps you use what you are learning.", "La gramática forma parte del plan cuando le ayuda a aplicar lo que está aprendiendo.") },
   ];
-  const startSteps = [
-    [l("Tell us where you want to go", "Cuéntanos adónde quieres llegar"), l("Message us on WhatsApp, and we will set up a one-to-one meeting. We talk about your experience with English, your goals, your challenges, and the situations where you want to communicate more confidently.", "Escríbenos por WhatsApp y coordinamos una reunión individual. Conversamos sobre tu experiencia con el inglés, tus metas, tus retos y las situaciones en las que quieres comunicarte con más confianza.")],
-    [l("Discover your starting point", "Descubre tu punto de partida"), l("We evaluate your current communication skills, including a brief oral evaluation, so we understand what you already do well and where you need support.", "Evaluamos tus habilidades actuales de comunicación, con una breve evaluación oral, para entender lo que ya haces bien y dónde necesitas apoyo.")],
-    [l("Receive your learning plan", "Recibe tu plan de aprendizaje"), l("We recommend a class format, frequency, teacher, schedule, and learning priorities based on your goals and your current level.", "Recomendamos un formato de clase, una frecuencia, un docente, un horario y prioridades de aprendizaje según tus metas y tu nivel actual.")],
-    [l("Start speaking", "Empieza a hablar"), l("Your teacher begins working with you through personalized lessons and meaningful conversation.", "Tu docente comienza a trabajar contigo con clases personalizadas y conversación significativa.")],
+  const learningSteps = [
+    {
+      title: l("Your intake meeting", "Su reunión de entrevista"),
+      body: l("One meeting covers getting to know you, your goals and language background, a brief oral evaluation of your current level, a personalized learning plan, and logistics: teacher, schedule, policies, and payment.", "En una sola reunión nos conocemos, entendemos sus metas y su trayectoria con el idioma, hacemos una breve evaluación oral de su nivel actual, armamos un plan personalizado y definimos la logística: docente, horario, políticas y pago."),
+      points: [
+        l("Getting to know you", "Conocerle"),
+        l("Goals and language background", "Metas y trayectoria con el idioma"),
+        l("Brief oral evaluation", "Breve evaluación oral"),
+        l("Personalized learning plan", "Plan de aprendizaje personalizado"),
+        l("Teacher, schedule, policies, payment", "Docente, horario, políticas y pago"),
+      ],
+    },
+    {
+      title: l("Start classes with your teacher", "Comience clases con su docente"),
+      body: l("Your teacher draws on hundreds of academy resources to shape each class to you and your level. If you need a lesson we do not have yet, we create it for you.", "Su docente toma de cientos de recursos de la academia para adaptar cada clase a usted y a su nivel. Si necesita una lección que aún no tenemos, la creamos para usted."),
+      points: [
+        l("Hundreds of academy resources", "Cientos de recursos de la academia"),
+        l("Lessons shaped to you and that class", "Lecciones adaptadas a usted y a esa clase"),
+        l("New lessons created when needed", "Lecciones nuevas cuando haga falta"),
+      ],
+    },
+    {
+      title: l("Measure your progress", "Mida su progreso"),
+      body: l("Progress is measured through consistent check-ins with your teacher, quarterly progress reports, and evaluations as needed.", "El progreso se mide con seguimientos constantes con su docente, informes trimestrales y evaluaciones cuando haga falta."),
+      points: [
+        l("Consistent teacher check-ins", "Seguimientos constantes con el docente"),
+        l("Quarterly progress reports", "Informes de progreso trimestrales"),
+        l("Evaluations as needed", "Evaluaciones cuando haga falta"),
+      ],
+    },
   ];
   const founderPreview = l(
     "Audrey studied Spanish for years, but during an exchange in Costa Rica, she realized that understanding grammar and being able to interact with locals were two different things. During her exchange, her Spanish improved drastically through real life conversations and connections. In 2021, she began Just Keep Talking to bring that same connection into online learning, with personalized lessons and a space where students could feel comfortable making mistakes and trying again.",
@@ -221,35 +262,63 @@ export default function Home() {
       {page === "approach" && <>
         <section className="section approach-page">
           <p className="eyebrow">{l("Our approach", "Nuestro enfoque")}</p>
-          <h1 className="page-title">{l("Conversation, with a plan behind it.", "Conversación, con un plan detrás.")}</h1>
-          <p className="intro">{l("The conversation is personal. The plan behind it is deliberate. Instruction is built around your level, your goals, and the situations where you want to speak with confidence.", "La conversación es personal. El plan que la sostiene es deliberado. La instrucción se construye según tu nivel, tus metas y las situaciones en las que quieres hablar con confianza.")}</p>
-          <div className="approach-copy">
-            <h2>{l("Speaking is the work.", "Hablar es el trabajo.")}</h2>
-            <p>{l("Classes are built around real conversation: meetings, presentations, travel, studies, and the everyday situations that matter to you. Your interests and the way you learn shape what you practice.", "Las clases se construyen alrededor de la conversación real: reuniones, presentaciones, viajes, estudios y las situaciones cotidianas que te importan. Tus intereses y tu forma de aprender dan forma a lo que practicas.")}</p>
-            <p>{l("That conversation is guided. Grammar, vocabulary, listening, reading, and writing are part of the plan, not left to chance. Your teacher draws on lessons and resources already developed for the academy, then shapes them to you. It is not a generic course that every student follows in the same order.", "Esa conversación está guiada. La gramática, el vocabulario, la escucha, la lectura y la escritura forman parte del plan, no quedan al azar. Tu docente trabaja con lecciones y recursos ya desarrollados para la academia y los adapta a ti. No es un curso genérico que todos siguen en el mismo orden.")}</p>
-            <p>{l("You also need room to try. Your teacher builds a supportive relationship so you can make mistakes, ask questions, and keep speaking.", "También necesitas espacio para intentar. Tu docente construye una relación de apoyo para que puedas equivocarte, preguntar y seguir hablando.")}</p>
+          <h1 className="page-title">{l("Conversation that prepares you for real life.", "Conversación que le prepara para la vida real.")}</h1>
+          <p className="intro">{l("We teach through conversation, with structured feedback and a plan that applies what you learn to the situations that matter.", "Enseñamos a través de la conversación, con retroalimentación estructurada y un plan que aplica lo que aprende a las situaciones que le importan.")}</p>
+          <div className="approach-method">
+            <div className="approach-method-visual">
+              <Image src={asset("/brand/approach-2508.webp")} alt={l("A student thinking with a stack of books and a pencil", "Una estudiante pensativa con una pila de libros y un lápiz")} width={900} height={1350} unoptimized />
+            </div>
+            <div>
+              <h2>{l("How we teach", "Cómo enseñamos")}</h2>
+              <p className="approach-method-lead">{l("Conversation is the method. Feedback keeps it clear. Skills build together so speaking feels more natural in real life.", "La conversación es el método. La retroalimentación lo mantiene claro. Las habilidades se construyen juntas para que hablar se sienta más natural en la vida real.")}</p>
+              <ul className="method-bubbles">
+                {methodBubbles.map((bubble, index) => (
+                  <li key={bubble.title} className={`method-bubble method-bubble-${index + 1}`}>
+                    <h3>{bubble.title}</h3>
+                    <p>{bubble.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="approach-copy">
-            <h2>{l("How your learning is planned", "Cómo se planifica tu aprendizaje")}</h2>
-            <ol className="structure-list">{planPoints.map((item, index) => <li key={item[0]}><span className="number">0{index + 1}</span><div><h3>{item[0]}</h3><p>{item[1]}</p></div></li>)}</ol>
+          <div className="approach-plan">
+            <div className="approach-plan-intro">
+              <h2>{l("How your learning plan is structured", "Cómo se estructura su plan de aprendizaje")}</h2>
+              <p>{l("Three steps. The first is one intake meeting—not three separate appointments.", "Tres pasos. El primero es una sola reunión de entrevista, no tres citas aparte.")}</p>
+            </div>
+            <ol className="learning-steps">
+              {learningSteps.map((step, index) => (
+                <li key={step.title} className={`learning-step learning-step-${index + 1}`}>
+                  <span className="number">0{index + 1}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.body}</p>
+                    <ul className="learning-step-points">
+                      {step.points.map(point => <li key={point}>{point}</li>)}
+                    </ul>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="approach-plan-photo">
+              <Image src={asset("/brand/approach-2602.webp")} alt={l("A student smiling during an online class with headphones", "Un estudiante sonriendo durante una clase en línea con audífonos")} width={900} height={1350} unoptimized />
+            </div>
           </div>
         </section>
-        <section className="section process"><div className="process-photo"><Image src={asset("/brand/teacher.jpg")} alt={l("Online teaching from a home workspace", "Enseñanza en línea desde un espacio de trabajo en casa")} width={1600} height={1066} unoptimized /></div><div><p className="eyebrow">{l("Getting started", "Cómo comenzar")}</p><h2>{l("A considered start.", "Un comienzo pensado.")}</h2><ol>{startSteps.map((step, index) => <li key={step[0]}><span className="number">0{index + 1}</span><div><h3>{step[0]}</h3><p>{step[1]}</p></div></li>)}</ol></div></section>
-        <section className="section approach-teachers"><h2>{l("Certified native teachers", "Docentes nativos certificados")}</h2><p className="intro">{l("Classes are led by certified native teachers. In your one-to-one meeting, we match a teacher, a weekly schedule, and the format that fits your goals.", "Las clases las imparten docentes nativos certificados. En la reunión individual elegimos un docente, un horario semanal y el formato que se ajusta a tus metas.")}</p><a className="text-link" href={url({ page: "about" }, "#team")}>{l("Meet the team", "Conoce al equipo")} ↗</a></section>
+        <section className="section approach-teachers"><h2>{l("Certified native teachers", "Docentes nativos certificados")}</h2><p className="intro">{l("Classes are led by certified native teachers. In your intake meeting, we match a teacher, a weekly schedule, and the format that fits your goals.", "Las clases las imparten docentes nativos certificados. En su reunión de entrevista elegimos un docente, un horario semanal y el formato que se ajusta a sus metas.")}</p><a className="text-link" href={url({ page: "about" }, "#team")}>{l("Meet the team", "Conozca al equipo")} ↗</a></section>
       </>}
       {page === "classes" && <section className="section pricing-page">
-        <p className="eyebrow">{l("Classes & pricing", "Clases y precios")}</p><h1 className="page-title">{l("Choose your weekly commitment.", "Elige tu compromiso semanal.")}</h1><p className="intro">{l("Choose who’s learning and how. Your one-to-one meeting confirms the teacher, schedule, and learning priorities.", "Elige quién va a aprender y cómo. En la reunión individual confirmamos el docente, el horario y las prioridades de aprendizaje.")}</p>
+        <p className="eyebrow">{l("Classes & pricing", "Clases y precios")}</p><h1 className="page-title">{l("Choose your weekly commitment.", "Elija su compromiso semanal.")}</h1><p className="intro">{l("Choose who’s learning and how. Your intake meeting confirms the teacher, schedule, and learning priorities.", "Elija quién va a aprender y cómo. En su reunión de entrevista confirmamos el docente, el horario y las prioridades de aprendizaje.")}</p>
         <div className="pricing-controls">
           <fieldset><legend>{l("Who’s learning?", "¿Quién va a aprender?")}</legend><div className="segmented">{[["adults", l("Adults", "Adultos")], ["kids", l("Kids", "Niños")]].map(([value, label]) => <button type="button" key={value} aria-pressed={audience === value} onClick={() => change("audience", value)}>{label}</button>)}</div></fieldset>
           <fieldset><legend>{l("Class format", "Formato de clase")}</legend><div className="segmented">{[["private", l("Private", "Privadas")], ["group", l("Small group", "Grupo pequeño")]].map(([value, label]) => <button type="button" key={value} aria-pressed={format === value} onClick={() => change("format", value)}>{label}</button>)}</div></fieldset>
           {format === "group" && <fieldset><legend>{l("Group size", "Tamaño del grupo")}</legend><div className="segmented">{["2", "3", "4+"].map(value => <button type="button" key={value} aria-pressed={size === value} onClick={() => change("size", value)}>{value}<span className="sr-only"> {l("students", "estudiantes")}</span></button>)}</div></fieldset>}
           <fieldset className="currency-control"><legend>{l("Currency", "Moneda")}</legend><div className="segmented">{["CRC", "USD"].map(value => <button type="button" key={value} aria-pressed={currency === value} onClick={() => change("currency", value)}>{value}</button>)}</div></fieldset>
         </div>
-        <div className="selection-heading" aria-live="polite"><h2>{audienceLabel} · {formatLabel}</h2><p>{audience === "adults" ? l("You know more English than you’re saying. Let’s put it into practice.", "Sabes más inglés del que estás hablando. Pongámoslo en práctica.") : l("Tell us about your child’s interests, experience with English, and schedule.", "Cuéntanos los intereses de tu hijo o hija, su experiencia con el inglés y su horario.")}</p></div>
-        <div className="plan-grid">{planNames.map((name, index) => <article className="plan-card" key={name}><span className="number">0{index + 1}</span><h3>{name}</h3><p className="schedule">{weeklyTime(index)}</p><div className="price"><b>{money(prices[index])}</b><span>{l("per month", "por mes")}</span></div><a className="button primary" href={inquiry(index)} target="_blank" rel="noreferrer">{l("Ask about this plan", "Consulta por este plan")}</a></article>)}</div>
+        <div className="selection-heading" aria-live="polite"><h2>{audienceLabel} · {formatLabel}</h2><p>{audience === "adults" ? l("You know more English than you’re saying. Let’s put it into practice.", "Sabe más inglés del que está hablando. Pongámoslo en práctica.") : l("Tell us about your child’s interests, experience with English, and schedule.", "Cuéntenos los intereses de su hijo o hija, su experiencia con el inglés y su horario.")}</p></div>
+        <div className="plan-grid">{planNames.map((name, index) => <article className="plan-card" key={name}><span className="number">0{index + 1}</span><h3>{name}</h3><p className="schedule">{weeklyTime(index)}</p><div className="price"><b>{money(prices[index])}</b><span>{l("per month", "por mes")}</span></div><a className="button primary" href={inquiry(index)} target="_blank" rel="noreferrer">{l("Ask about this plan", "Consulte por este plan")}</a></article>)}</div>
         <p className="enrollment">{l("One-time enrollment fee", "Matrícula por única vez")}: <strong>{money(audience === "adults" ? (currency === "CRC" ? 15000 : 35) : (currency === "CRC" ? 10000 : 25))}</strong></p>
-        <p className="small-copy">{l("Monthly tuition. Contact us to discuss availability and enrollment; your inquiry does not reserve a place.", "Mensualidad. Escríbenos para consultar la disponibilidad y la matrícula; tu consulta no reserva un cupo.")}</p>
-        <p className="policy-link"><a href={url({ page: "policies" })}>{l("Policy overview", "Resumen de políticas")}</a> · {l("Effective January 4, 2027", "Vigente a partir del 4 de enero de 2027")}</p>
+        <p className="small-copy">{l("Monthly tuition. Contact us to discuss availability and enrollment; your inquiry does not reserve a place.", "Mensualidad. Escríbanos para consultar la disponibilidad y la matrícula; su consulta no reserva un cupo.")}</p>
       </section>}
       {page === "faq" && <section className="section faq faq-page">
         <div>
