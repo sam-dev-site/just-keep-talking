@@ -47,12 +47,9 @@ footer :focus-visible,.closing :focus-visible,.founder-band :focus-visible { out
 .audience-section { padding-top:1rem; }
 .audience-section > h2 { margin-bottom:1.5rem; max-width:14em; }
 .audience-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-.audience-grid.adult-needs { grid-template-columns:repeat(2,minmax(0,1fr)); margin-bottom:1.25rem; }
 .audience-card { background:var(--sky); padding:2.25rem; border-radius:20px 20px 20px 3px; text-decoration:none; }
 .audience-grid .audience-card:nth-child(even) { background:var(--lime); border-radius:20px 20px 3px 20px; }
 .audience-grid .audience-card:nth-child(odd) { background:var(--sky); border-radius:20px 20px 20px 3px; }
-.kids-path { display:block; background:var(--lime); border-radius:20px 20px 3px 20px; }
-.audience-card .eyebrow { color:var(--ink); }
 .audience-card h3 { font-size:2rem; max-width:450px; }
 .audience-card p { max-width:450px; }
 .audience-card:hover .text-link { text-decoration-thickness:3px; }
@@ -84,18 +81,14 @@ footer :focus-visible,.closing :focus-visible,.founder-band :focus-visible { out
 .approach-plan { margin-top:4.5rem; display:grid; grid-template-columns:1.2fr .8fr; gap:4vw; align-items:start; }
 .approach-plan-intro { grid-column:1 / -1; max-width:760px; }
 .approach-plan-intro h2 { font-size:clamp(1.8rem,3vw,2.5rem); }
-.approach-plan-intro p { color:var(--muted); max-width:40rem; }
 .learning-steps { list-style:none; padding:0; margin:0; display:grid; gap:1.5rem; }
 .learning-step { display:grid; grid-template-columns:2.75rem 1fr; gap:.85rem; padding:1.35rem 0 0; border-top:1px solid var(--line); }
 .learning-step h3 { font-size:1.35rem; margin-bottom:.55rem; }
-.learning-step > div > p { margin:0 0 1rem; color:var(--muted); }
-.learning-step-points { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:.5rem; }
-.learning-step-points li { margin:0; padding:.4rem .75rem; background:white; border:1px solid var(--line); border-radius:999px; font-size:.875rem; font-weight:700; }
+.learning-step > div > p { margin:0; color:var(--muted); }
 .approach-plan-photo img { display:block; width:100%; height:auto; aspect-ratio:2/3; object-fit:cover; object-position:center 15%; border-radius:18px 18px 18px 4px; }
 .founder-band { background:var(--ink); color:white; }
 .founder-preview { display:grid; grid-template-columns:1fr 1fr; gap:7vw; align-items:center; }
-.founder-preview .eyebrow { color:var(--lime); }
-.founder-preview h2 { margin-bottom:0; }
+.founder-preview h2 { margin-bottom:0; color:white; }
 .process { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:6vw; }
 .process-photo img { width:100%; height:570px; object-fit:cover; object-position:47% center; border-radius:16px; display:block; }
 .process ol { list-style:none; padding:0; margin:2rem 0 0; }
@@ -123,7 +116,7 @@ details p { color:var(--muted); margin-bottom:1.3rem; }
 .closing { background:var(--blue); color:white; padding:4rem max(4vw,calc((100vw - 1250px)/2)); display:grid; grid-template-columns:1fr auto; align-items:center; gap:3rem; }
 .closing h2 { max-width:740px; }
 .closing p { max-width:670px; }
-.closing .eyebrow { color:white; }
+.closing .eyebrow { color:var(--lime); }
 footer { background:var(--ink); color:white; display:grid; grid-template-columns:1fr .7fr 1fr; gap:3rem; padding:3rem 4vw; }
 footer .brand-lockup { margin-bottom:.85rem; }
 footer .brand-name { color:white; }
@@ -177,6 +170,13 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
 .application { padding-top:2rem; border-top:1px solid var(--line); }
 .application h2 { font-size:2rem; }
 .application>a { margin:0 1.5rem 1rem 0; }
+.curriculum-teaser { margin:1.25rem 0 0; color:var(--muted); font-size:.95rem; }
+.curriculum-page .page-title { margin-bottom:1rem; }
+.curriculum-page .intro { margin-bottom:1.5rem; }
+.curriculum-list { list-style:none; padding:0; margin:0 0 1.5rem; max-width:40rem; display:grid; gap:.85rem; }
+.curriculum-list li { margin:0; padding:.9rem 0 0; border-top:1px solid var(--line); font-size:1.05rem; font-weight:700; }
+.curriculum-list li:first-child { border-top:0; padding-top:0; }
+.curriculum-page .application { margin-top:1.5rem; }
 @media(max-width:1000px) {
   .header { gap:1rem; flex-wrap:wrap; }
   .menu-toggle { display:block; margin-left:auto; border:1px solid var(--ink); border-radius:5px; background:transparent; color:var(--ink); padding:.5rem 1rem; min-height:44px; }
@@ -204,7 +204,6 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
   .approach-method-visual,.approach-plan-photo { max-width:420px; }
   .method-bubbles { grid-template-columns:1fr; }
   .method-bubble-3 { grid-column:auto; }
-  .learning-step-points li { border-radius:8px; }
   .hero { grid-template-columns:1fr; padding:2.5rem 1.2rem 3rem; gap:2rem; }
   h1 { font-size:clamp(3rem,12vw,4.5rem); }
   .hero-visual { margin-right:12px; }

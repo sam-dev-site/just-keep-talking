@@ -14,13 +14,14 @@ Adults and parents should understand the online language offer (English for all 
 
 ## What the site contains
 
-- Home: hero aimed at adults, a second-scroll “Language for you” grid of adult needs (work, travel, personal interest, school), a kids path (“English for your child”), a short Our approach invitation, founder preview, community preview, and WhatsApp. The hero line is “Build the confidence to speak.” The support line is personalized language instruction built around level, goals, and needs. The proof line names certified native teachers, personalized learning, and authentic conversation. The placement quiz is not on the public home page.
+- Home: hero aimed at adults, a second-scroll “Language for you” with two paths (Adults and Kids), a short Our approach invitation, founder preview (“How Just Keep Talking started”), community preview, and WhatsApp. The hero line is “Build the confidence to speak.” The support line is personalized language instruction built around level, goals, and needs. The proof line names certified native teachers, personalized learning, and authentic conversation. The placement quiz is not on the public home page.
 - Our approach: its own page, not a homepage scroll. It presents conversational methodology visually (speech-bubble skills), a three-step learning plan (intake meeting, start classes, measure progress), and that classes are led by certified native teachers. Individual teacher bios stay on the story page.
 - FAQ: its own nav tab (`?page=faq`), covering levels, ages, online vs in-person immersion activities, private or group, getting started, methodology, and languages offered.
-- Classes and pricing: audience, private or group, group size when needed, independent CRC and USD controls, four plans, a separate one-time enrollment fee, and a contextual WhatsApp inquiry. No policy overview line on this page.
+- Classes and pricing: title “Explore our plans,” a Costa Rica / Americas reach line, audience, private or group, group size when needed, independent CRC and USD controls, four plans, a separate one-time enrollment fee, and a contextual WhatsApp inquiry. No policy overview line on this page.
 - Story and team: founder history and six biographies. Every card shows a role (Founder & teacher for Audrey; Teacher for others). Audrey, Cristian, and Monique have portraits. Iain, Shay, and Charlie use equal placeholders until photos arrive.
 - Policies: a short policy overview effective 4 January 2027. Detailed policy reconciliation is still deferred. Footer and classes links say “Policy overview.”
 - Teach with us: supplied benefits, expectations, and a separate application contact.
+- Curriculum inquiries (`?page=curriculum`): low-profile page for teachers interested in the packaged A1–C2 curriculum. Footer link under Teach with us; WhatsApp and email inquiry only; no public curriculum pricing.
 - English and Spanish UI, with the choice stored in the `lang` query parameter. Classes offered: English for all ages and Spanish for adults.
 
 Adults use Essential, Standard, Intensive, and Immersion (1 / 2 / 3 / 4 hours weekly). Kids use Explorer, Builder, Achiever, and Fluent. Kids group weekly times are 30 min / 1 hr / 1.5 hr / 4 hr. Kids private weekly times follow the CRC and USD graphics separately (CRC: 30 min / 1 / 1.5 / 4; USD: 1 / 2 / 3 / 4).

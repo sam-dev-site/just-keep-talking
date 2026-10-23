@@ -1,5 +1,16 @@
 # Project status
 
+## Updates round 2 — 23 October 2026
+
+Owner-directed home, approach, classes, and curriculum pass on branch `cursor/updates-round-2-5ed6`:
+
+- Home audience wall is two boxes (Adults / Kids); work, travel, school, and personal interest sit in the Adults copy. Founder band is a single white heading “How Just Keep Talking started.” Closing eyebrow “Your next conversation starts here” is lime.
+- Classes title is “Explore our plans.” with a Costa Rica / Americas reach line; intake meeting is not restated there.
+- Approach method bubbles rewritten in a plainer voice; learning-plan pill tags and the “Three steps… not three appointments” lead removed.
+- New `?page=curriculum`: Curriculum for teachers (A1–C2 scope list), Ask for more info → WhatsApp, plus email. Footer “Curriculum inquiries” under Teach with us; quiet link on Teach. No curriculum prices on the site.
+
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium screenshots at 1280px and 390px for home, approach, classes, and curriculum (EN; curriculum also ES). Closing eyebrow verified lime; founder single white title; audience two boxes; curriculum inquiry-only with no prices. No WhatsApp or email sent. Not pushed to `main`.
+
 ## Classes & Approach four-plan refresh — 23 October 2026
 
 Scope: Classes & pricing and Our approach only. Home was left for the parallel home-page agent.

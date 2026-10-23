@@ -25,7 +25,8 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
     await expect(page.locator("#main-navigation")).toBeHidden();
   }
   await expect(page.getByRole("heading", { name: "Language for you." })).toBeVisible();
-  await expect(page.locator(".adult-needs .audience-card")).toHaveCount(4);
+  await expect(page.locator(".audience-grid .audience-card")).toHaveCount(2);
+  await expect(page.getByRole("heading", { name: "How Just Keep Talking started" })).toBeVisible();
   await expect(page.locator(".quiz-callout")).toHaveCount(0);
   await page.getByRole("link", { name: "Cambiar a español" }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
@@ -48,8 +49,10 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
   await expect(page.locator(".process")).toHaveCount(0);
   await expect(page.locator(".method-bubble")).toHaveCount(5);
   await expect(page.locator(".learning-step")).toHaveCount(3);
+  await expect(page.locator(".learning-step-points")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Cómo se estructura su plan de aprendizaje" })).toBeVisible();
   await expect(page.getByText("reunión de entrevista").first()).toBeVisible();
+  await expect(page.getByText("Tres pasos. El primero es una sola reunión")).toHaveCount(0);
   await noOverflow(page);
   expect(errors).toEqual([]);
 });
@@ -57,6 +60,10 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
 test("pricing preserves selections, switches currency independently and carries inquiry context", async ({ page }) => {
   await page.goto("/?page=classes");
   await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Explore our plans.");
+  await expect(page.getByText("Our team is based in Costa Rica")).toBeVisible();
+  await expect(page.getByText("Choose your weekly commitment")).toHaveCount(0);
+  await expect(page.getByText("intake meeting confirms")).toHaveCount(0);
   await expect(page.locator(".plan-card")).toHaveCount(4);
   await expect(page.locator(".plan-card h3")).toHaveText(["Essential", "Standard", "Intensive", "Immersion"]);
   await expect(page.locator(".plan-card").first()).toContainText("₡65,000 CRC");
@@ -114,7 +121,7 @@ test("pricing preserves selections, switches currency independently and carries 
 test("secondary pages, contacts, image loading and layout work in both languages", async ({ page }) => {
   test.setTimeout(90_000);
   for (const lang of ["en", "es"]) {
-    for (const destination of ["home", "classes", "approach", "about", "faq", "policies", "teach"]) {
+    for (const destination of ["home", "classes", "approach", "about", "faq", "policies", "teach", "curriculum"]) {
       await page.goto(`/?page=${destination}&lang=${lang}`);
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
       await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
@@ -124,6 +131,7 @@ test("secondary pages, contacts, image loading and layout work in both languages
         await expect.poll(() => img.evaluate(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0)).toBe(true);
       }
       await expect(page.locator(`footer a[href="mailto:justkeeptalkingcr@gmail.com"]`)).toBeVisible();
+      await expect(page.locator("footer").getByRole("link", { name: lang === "en" ? "Curriculum inquiries" : "Consultas de currículo" })).toBeVisible();
       if (destination === "about") {
         await expect(page.locator(".team-card")).toHaveCount(6);
         await expect(page.locator(".team-card img")).toHaveCount(3);
@@ -137,6 +145,14 @@ test("secondary pages, contacts, image loading and layout work in both languages
         const href = await page.locator(".application .button").getAttribute("href");
         expect(new URL(href!).searchParams.get("text")).toMatch(/teaching|enseñar/);
       }
+      if (destination === "curriculum") {
+        await expect(page.getByRole("heading", { level: 1 })).toContainText(lang === "en" ? "Curriculum for teachers" : "Currículo para docentes");
+        await expect(page.locator(".curriculum-list li")).toHaveCount(4);
+        await expect(page.locator(".closing")).toHaveCount(0);
+        await expect(page.getByText(/₡|\$\d|per month|por mes|CRC|USD/)).toHaveCount(0);
+        const href = await page.locator(".application .button").getAttribute("href");
+        expect(new URL(href!).searchParams.get("text")).toMatch(/curriculum|currículo/);
+      }
     }
   }
 });
@@ -145,7 +161,7 @@ test("all views pass automated accessibility checks", async ({ page }, testInfo)
   test.setTimeout(120_000);
   test.skip(testInfo.project.name !== "desktop", "Desktop checks cover every view and both languages.");
   for (const lang of ["en", "es"]) {
-    for (const destination of ["home", "classes", "approach", "about", "faq", "policies", "teach"]) {
+    for (const destination of ["home", "classes", "approach", "about", "faq", "policies", "teach", "curriculum"]) {
       await page.goto(`/?page=${destination}&lang=${lang}`);
       const results = await new AxeBuilder({ page }).analyze();
       const blocking = results.violations.filter(item => item.impact === "serious" || item.impact === "critical");
