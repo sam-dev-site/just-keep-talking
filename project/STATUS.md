@@ -9,9 +9,13 @@ Owner-directed home pass on branch `cursor/home-page-updates-c604` (not pushed t
 - Approach teaser is a single “Our approach” heading with the intake-meeting copy. Founder band is “How Just Keep Talking started” with the updated Audrey preview bio.
 - Community section is “Meet our community” / “See more,” with a Teacher role under every team card (Founder & teacher for Audrey).
 - FAQ moved to `?page=faq` with rewritten questions, immersion-activities answer, methodology, and languages (English all ages; Spanish for adults).
-- Photo swaps for `dch_2644`, `dch_7245`, `DCH_2554-Editar`, and Monique `DCH_2425` are still open: source files were not in the workspace. Current WebP assets remain until those files arrive.
+- Photo swaps applied from owner uploads: hero `dch_2644`, Audrey teacher/bio `dch_7238` (corrected from `dch_7245`), home founder band `DCH_2554-Editar` → `audrey-home-founder.webp` (Our story still uses `audrey-founder.webp`), Monique `DCH_2425`.
 
-`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip as usual). Spot screenshots at desktop 1280 and phone 390 for home hero, audience grid, community, footer, and FAQ. Chromium only. No WhatsApp or email message was sent.
+`pnpm check` passed after the photo pass: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip as usual). Chromium only. No WhatsApp or email message was sent.
+
+## Photos applied — 23 October 2026
+
+Optimized WebPs written under `public/brand/` and wired on `cursor/home-page-updates-c604`. Audrey bio uses `dch_7238`, not `dch_7245`.
 
 ## Quiz callout — 2 October 2026
 

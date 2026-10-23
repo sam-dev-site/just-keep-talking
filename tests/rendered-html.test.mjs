@@ -22,7 +22,7 @@ test("the deployable shell server-renders the default home page", async () => {
   assert.equal((html.match(/<title>/g) ?? []).length, 1);
   assert.doesNotMatch(html, /<details[^>]*\sopen(?:=|\s|>)/i);
   assert.match(html, /\/brand\/students-talking\.webp/);
-  assert.match(html, /\/brand\/audrey-founder\.webp/);
+  assert.match(html, /\/brand\/audrey-home-founder\.webp/);
 });
 
 test("query-driven views retain a complete static shell before hydration", async () => {

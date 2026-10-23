@@ -33,7 +33,7 @@ Views are query parameters on `app/page.tsx` (`page`, `lang`, and on the classes
 
 ## Still open
 
-- Owner photo files to swap: home hero `dch_2644`, Audrey teacher card `dch_7245`, home founder band `DCH_2554-Editar` (Our story keeps current founder portrait), Monique teacher card `DCH_2425` (home and Meet Us). Source files were not in the workspace at implementation time.
+- Photo swaps applied: home hero `dch_2644`, Audrey teacher card `dch_7238` (not `dch_7245`), home founder band `DCH_2554-Editar` (Our story keeps current founder portrait), Monique teacher card `DCH_2425` (home and Meet Us).
 - Photos for Iain, Shay, and Charlie.
 - Whether group prices are per student or for the whole group. Do not add a label until the owner says which.
 - Detailed current cancellation and attendance terms.
