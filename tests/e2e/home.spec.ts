@@ -24,17 +24,23 @@ test("home, audience paths, FAQs and mobile keyboard navigation", async ({ page 
     await expect(page.getByRole("button", { name: "Menu", exact: true })).toBeFocused();
     await expect(page.locator("#main-navigation")).toBeHidden();
   }
-  await expect(page.locator("details[open]")).toHaveCount(0);
-  await page.locator("summary").first().click();
-  await expect(page.locator("details").first()).toHaveAttribute("open", "");
+  await expect(page.getByRole("heading", { name: "Language for you." })).toBeVisible();
+  await expect(page.locator(".adult-needs .audience-card")).toHaveCount(4);
+  await expect(page.locator(".quiz-callout")).toHaveCount(0);
   await page.getByRole("link", { name: "Cambiar a español" }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Gana confianza");
   await noOverflow(page);
-  await page.getByRole("link", { name: /Para tu hijo o hija/ }).click();
+  await page.locator("a.kids-path").click();
   await expect(page.getByRole("button", { name: "Niños", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".plan-card")).toHaveCount(2);
   await noOverflow(page);
+  if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Menú", exact: true }).click();
+  await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Preguntas frecuentes" }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Preguntas frecuentes");
+  await expect(page.locator("details[open]")).toHaveCount(0);
+  await page.locator("summary").first().click();
+  await expect(page.locator("details").first()).toHaveAttribute("open", "");
   if (testInfo.project.name === "mobile") await page.getByRole("button", { name: "Menú", exact: true }).click();
   await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name: "Nuestro enfoque" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Conversación, con un plan");
@@ -90,7 +96,7 @@ test("pricing preserves selections, switches currency independently and carries 
 test("secondary pages, contacts, image loading and layout work in both languages", async ({ page }) => {
   test.setTimeout(90_000);
   for (const lang of ["en", "es"]) {
-    for (const destination of ["home", "classes", "approach", "about", "policies", "teach"]) {
+    for (const destination of ["home", "classes", "approach", "about", "faq", "policies", "teach"]) {
       await page.goto(`/?page=${destination}&lang=${lang}`);
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
       await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
@@ -104,6 +110,10 @@ test("secondary pages, contacts, image loading and layout work in both languages
         await expect(page.locator(".team-card")).toHaveCount(6);
         await expect(page.locator(".team-card img")).toHaveCount(3);
         await expect(page.locator(".portrait-placeholder")).toHaveCount(3);
+        await expect(page.locator(".team-card .role")).toHaveCount(6);
+      }
+      if (destination === "faq") {
+        await expect(page.locator("details")).toHaveCount(7);
       }
       if (destination === "teach") {
         const href = await page.locator(".application .button").getAttribute("href");
@@ -113,46 +123,11 @@ test("secondary pages, contacts, image loading and layout work in both languages
   }
 });
 
-test("starting-point quiz draws a fresh adult sitting and sends it on WhatsApp", async ({ page }) => {
-  const seen = ["e3", "e4", "e5", "e6", "e7", "e8", "m3", "m4", "m5", "m6", "m7", "m8", "h2", "h3", "h4", "h5", "h6", "h7", "h8"];
-  await page.addInitScript(stored => {
-    Math.random = () => 0;
-    localStorage.setItem("jkt-quiz-seen", JSON.stringify(stored));
-  }, seen);
-  await page.goto("/");
-  await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
-  const opener = page.locator(".quiz-callout").getByRole("button", { name: "Start the quiz" });
-  await opener.click();
-  const dialog = page.getByRole("dialog");
-  await expect(dialog.getByRole("heading", { name: "¿Este quiz es para ti?" })).toBeVisible();
-  await dialog.getByRole("button", { name: "Para mí" }).click();
-  await dialog.getByRole("button", { name: "El trabajo" }).click();
-  await expect(dialog.locator("[data-item]")).toHaveAttribute("data-item", "e2");
-  for (const answer of ["are", "speaks", "I have a car.", "have lived", "I wanted to follow up on yesterday’s meeting."]) {
-    await dialog.getByRole("button", { name: answer, exact: true }).click();
-  }
-  await dialog.getByRole("button", { name: "Me bloqueo y vuelvo al español" }).click();
-  await expect(dialog.getByRole("heading", { name: "Listo para ir más lejos" })).toBeVisible();
-  await expect(dialog.getByRole("list", { name: "En qué enfocarse" })).toContainText("conversaciones de trabajo");
-  await expect(dialog.getByRole("list", { name: "En qué enfocarse" })).toContainText("explicar una idea con claridad");
-  await expect(dialog.getByRole("list", { name: "En qué enfocarse" })).toContainText("un lugar tranquilo para intentar de nuevo");
-  await expect(dialog.getByRole("link", { name: "Ver clases y precios" })).toHaveAttribute("href", /page=classes&audience=adults/);
-  const href = await dialog.getByRole("link", { name: "Enviar por WhatsApp" }).getAttribute("href");
-  const message = new URL(href!).searchParams.get("text");
-  expect(message).toContain("Listo para ir más lejos");
-  expect(message).toContain("conversaciones de trabajo, explicar una idea con claridad y un lugar tranquilo para intentar de nuevo");
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem("jkt-quiz-seen") || "[]").slice(-5))).toEqual(["e2", "e1", "m2", "m1", "h1"]);
-  await noOverflow(page);
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).toHaveCount(0);
-  await expect(opener).toBeFocused();
-});
-
 test("all views pass automated accessibility checks", async ({ page }, testInfo) => {
   test.setTimeout(120_000);
   test.skip(testInfo.project.name !== "desktop", "Desktop checks cover every view and both languages.");
   for (const lang of ["en", "es"]) {
-    for (const destination of ["home", "classes", "approach", "about", "policies", "teach"]) {
+    for (const destination of ["home", "classes", "approach", "about", "faq", "policies", "teach"]) {
       await page.goto(`/?page=${destination}&lang=${lang}`);
       const results = await new AxeBuilder({ page }).analyze();
       const blocking = results.violations.filter(item => item.impact === "serious" || item.impact === "critical");

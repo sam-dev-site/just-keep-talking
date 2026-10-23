@@ -21,4 +21,10 @@ Owner-labelled originals in the workspace archive `../assets/brand/photos/`:
 - Cristian-teacher.jpg: Cristian's teacher card.
 - Monique-teacher.jpg: Monique's teacher card.
 
+Pending owner DCH swaps (files not yet in the workspace):
+- `dch_2644`: home hero (replaces `students-talking.webp`).
+- `dch_7245`: Audrey teacher / bio card (replaces `audrey-teacher.webp`).
+- `DCH_2554-Editar`: home “How Just Keep Talking started” band only (Our story keeps the current founder portrait).
+- `DCH_2425`: Monique teacher card on home and Meet Us / about (replaces `monique-teacher.webp`).
+
 Use matching-size placeholders for Iain, Shay, and Charlie until their photos are supplied. Audrey remains one person with separate founder/teacher portraits, not two team profiles.

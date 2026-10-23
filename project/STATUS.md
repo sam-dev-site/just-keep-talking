@@ -1,5 +1,18 @@
 # Project status
 
+## Home page updates — 23 October 2026
+
+Owner-directed home pass on branch `cursor/home-page-updates-c604` (not pushed to `main` unless asked):
+
+- Hero support and proof lines updated; closing CTA says “language”; footer tagline removed; policy links say “Policy overview.”
+- Second scroll is adults-by-need (work, travel, personal interest, school) plus a kids path; placement quiz removed from the home UI (file kept unwired).
+- Approach teaser is a single “Our approach” heading with the intake-meeting copy. Founder band is “How Just Keep Talking started” with the updated Audrey preview bio.
+- Community section is “Meet our community” / “See more,” with a Teacher role under every team card (Founder & teacher for Audrey).
+- FAQ moved to `?page=faq` with rewritten questions, immersion-activities answer, methodology, and languages (English all ages; Spanish for adults).
+- Photo swaps for `dch_2644`, `dch_7245`, `DCH_2554-Editar`, and Monique `DCH_2425` are still open: source files were not in the workspace. Current WebP assets remain until those files arrive.
+
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip as usual). Spot screenshots at desktop 1280 and phone 390 for home hero, audience grid, community, footer, and FAQ. Chromium only. No WhatsApp or email message was sent.
+
 ## Quiz callout — 2 October 2026
 
 The home-page quiz is a navy card under the adult and kids paths, with a short invitation and a button: “Start the quiz” / “Empieza el quiz.” The quiz itself is still in Spanish. A text link remains beside the beginner question. This card is not on the live site until this branch is merged.

@@ -45,9 +45,13 @@ footer :focus-visible,.closing :focus-visible,.founder-band :focus-visible { out
 .hero-visual::before { content:""; position:absolute; inset:0 -12px 24px 22px; background:var(--sky); border-radius:48% 48% 12px 12px; z-index:-1; transform:rotate(3deg); }
 .hero-visual img { display:block; width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; object-position:center; border-radius:48% 48% 12px 12px; }
 .audience-section { padding-top:1rem; }
+.audience-section > h2 { margin-bottom:1.5rem; max-width:14em; }
 .audience-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+.audience-grid.adult-needs { grid-template-columns:repeat(2,minmax(0,1fr)); margin-bottom:1.25rem; }
 .audience-card { background:var(--sky); padding:2.25rem; border-radius:20px 20px 20px 3px; text-decoration:none; }
-.audience-card:nth-child(2) { background:var(--lime); border-radius:20px 20px 3px 20px; }
+.audience-grid .audience-card:nth-child(even) { background:var(--lime); border-radius:20px 20px 3px 20px; }
+.audience-grid .audience-card:nth-child(odd) { background:var(--sky); border-radius:20px 20px 20px 3px; }
+.kids-path { display:block; background:var(--lime); border-radius:20px 20px 3px 20px; }
 .audience-card .eyebrow { color:var(--ink); }
 .audience-card h3 { font-size:2rem; max-width:450px; }
 .audience-card p { max-width:450px; }
@@ -59,7 +63,9 @@ footer :focus-visible,.closing :focus-visible,.founder-band :focus-visible { out
 .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
 .number { font-size:.875rem; font-weight:800; color:var(--blue); display:block; margin-bottom:1.5rem; }
 .approach-teaser h2,.approach-teachers h2 { max-width:14em; }
-.approach-teaser .intro { margin-bottom:.5rem; }
+.approach-teaser .intro { margin-bottom:.5rem; max-width:42rem; }
+.faq-page .page-title { margin-bottom:1rem; }
+.faq-page .intro { margin-bottom:1rem; }
 .approach-copy { max-width:760px; margin-top:3.5rem; }
 .approach-copy h2 { font-size:clamp(1.8rem,3vw,2.5rem); }
 .approach-page .structure-list { grid-template-columns:1fr; max-width:760px; }
