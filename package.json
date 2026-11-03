@@ -13,7 +13,7 @@
     "test": "pnpm run test:render && pnpm run test:e2e",
     "test:render": "pnpm run build && node --test tests/rendered-html.test.mjs",
     "test:e2e": "playwright test",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern 'assets/*.js' --ignore-pattern 'assets/*.css'",
     "check": "pnpm run lint && pnpm run test"
   },
   "dependencies": {

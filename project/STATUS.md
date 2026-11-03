@@ -8,6 +8,8 @@ Mitigation on `main`: committed the current static export at the repo root (`ind
 
 **Owner action still needed:** Repo Settings → Pages → Source → **GitHub Actions**. After that switch, remove the temporary root publish files so Actions owns the deploy again.
 
+ESLint ignores the temporary root `assets/*.js` / `assets/*.css` bundles so `pnpm check` does not fail on minified publish output.
+
 ## Shay teacher portrait — 3 November 2026
 
 Owner supplied Shay’s headshot. Saved as `intake/owner-drop/photos/Shay-teacher.jpg`, optimized to `public/brand/shay-teacher.webp` (900×1350), wired on the team grid. All six teacher cards now have portraits. Merged to `main` for GitHub Pages publish at the owner’s request.

@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Temporary root static export for legacy GitHub Pages (built bundles).
+    "assets/*.js",
+    "assets/*.css",
+    "index.html",
+    "index.rsc",
+    "404.html",
   ]),
 ]);
 
