@@ -11,7 +11,9 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # Keep this name distinct from GitHub's built-in pages-build-deployment
+  # workflow so a legacy branch publish cannot cancel the Actions deploy.
+  group: quality-pages
   cancel-in-progress: true
 
 jobs:

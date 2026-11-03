@@ -1,5 +1,13 @@
 # Project status
 
+## Pages serving README — 3 November 2026
+
+GitHub Pages was set to **Deploy from a branch** (`main` `/`), so the live domain showed the repo README (Jekyll) instead of the built site. The Quality Actions deploy was also getting cancelled by the built-in `pages-build-deployment` job (shared concurrency group).
+
+Mitigation on `main`: committed the current static export at the repo root (`index.html`, `.nojekyll`, `brand/`, hashed files under `assets/`, `policies/`) so legacy Pages serves the real brochure again; renamed the workflow concurrency group to `quality-pages`.
+
+**Owner action still needed:** Repo Settings → Pages → Source → **GitHub Actions**. After that switch, remove the temporary root publish files so Actions owns the deploy again.
+
 ## Shay teacher portrait — 3 November 2026
 
 Owner supplied Shay’s headshot. Saved as `intake/owner-drop/photos/Shay-teacher.jpg`, optimized to `public/brand/shay-teacher.webp` (900×1350), wired on the team grid. All six teacher cards now have portraits. Merged to `main` for GitHub Pages publish at the owner’s request.
