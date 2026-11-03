@@ -136,8 +136,10 @@ legend { font-weight:700; font-size:.875rem; padding:0; margin-bottom:.5rem; }
 .segmented button { min-width:48px; min-height:44px; border:0; background:transparent; color:var(--ink); padding:.5rem 1rem; border-radius:5px; font-size:.95rem; font-weight:700; }
 .segmented button[aria-pressed=true] { background:var(--ink); color:white; }
 .segmented button:hover:not([aria-pressed=true]) { background:white; }
-.selection-heading h2 { font-size:1.65rem; margin-bottom:.5rem; }
+.selection-heading h2 { font-size:1.65rem; margin-bottom:1.25rem; }
 .selection-heading p { color:var(--muted); }
+.policy-links { list-style:none; padding:0; margin:2rem 0 0; display:grid; gap:1rem; max-width:40rem; }
+.policy-links a { display:inline-block; font-weight:700; color:var(--blue); text-decoration:underline; text-underline-offset:.2em; }
 .plan-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; max-width:980px; }
 .plan-card { display:flex; flex-direction:column; padding:1.5rem; min-height:300px; background:white; border:1px solid var(--line); border-top:5px solid var(--sky); border-radius:8px; transition:box-shadow .2s,border-color .2s; }
 .plan-card:nth-child(2) { border-top-color:var(--lime); }

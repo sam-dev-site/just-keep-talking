@@ -1,5 +1,15 @@
 # Project status
 
+## Owner copy, portraits, and policy PDFs — 3 November 2026
+
+Applied owner paste from `intake/owner-voice/2026-11-03-copy-portraits-policies.md` and refined `project/VOICE.md`.
+
+- Audrey teacher bio (first person), How we teach lead + method bubbles (including Practical Grammar and Certified Native Teachers), closing CTA subheader, about heading “How it All Started,” removed classes selection subheaders, stripped policies page to PDF links, removed teach “Administrative tasks” bullet.
+- Charlie and Iain portraits: sources in `intake/owner-drop/photos/`, WebPs in `public/brand/`. Shay still placeholder.
+- Policy PDFs archived under `intake/2027-program-update/policies/` and served from `public/policies/`.
+
+`pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. Not merged to `main` unless the owner asks to publish.
+
 ## Certified teachers in How we teach — 23 October 2026
 
 Moved the “Certified native teachers” block into the How we teach bubble grid as a sixth full-width standout under Comfort speaking / Useful grammar, with the Meet the team link kept. Removed the separate approach-teachers section below the learning plan.

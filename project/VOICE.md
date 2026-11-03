@@ -2,7 +2,7 @@
 
 Authority for how Just Keep Talking should sound. Product facts still come from `project/BRIEF.md` and `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`.
 
-Primary voice authority (23 October 2026): `intake/owner-voice/2026-10-23-brand-voice-and-communication-guide.md`. Founder Our Story page (23 October 2026): `intake/owner-voice/2026-10-23-audrey-our-story.md` (third-person owner paste; replaces the earlier first-person story draft). Earlier samples that still matter: `intake/2027-program-update/website-information.txt`, `intake/CLIENT_NOTES.md`.
+Primary voice authority (23 October 2026): `intake/owner-voice/2026-10-23-brand-voice-and-communication-guide.md`. Founder Our Story page (23 October 2026): `intake/owner-voice/2026-10-23-audrey-our-story.md` (third-person owner paste; replaces the earlier first-person story draft). Copy, portraits, and policy PDF pass (3 November 2026): `intake/owner-voice/2026-11-03-copy-portraits-policies.md` (Audrey teacher bio, How we teach bubbles, closing CTA, Certified Native Teachers, Practical Grammar). Earlier samples that still matter: `intake/2027-program-update/website-information.txt`, `intake/CLIENT_NOTES.md`.
 
 This file is a living guide. Every time Audrey (or someone forwarding her words) supplies new copy, feedback on phrasing, WhatsApp/email/social samples, or corrections about how something should sound, update this guide in the same piece of work. Do not only change the site and leave the guide stale.
 
@@ -55,7 +55,7 @@ The public site should be warm, clear, and professionally confident. Explain the
 Visitors should leave thinking: they understand what I need, they know what they are doing, and I would feel comfortable learning here.
 
 - Prefer “Just Keep Talking,” “we,” and “our.” Do not use the abbreviation “JKT” in visitor-facing copy.
-- Academy voice on service pages. Our Story uses the third-person owner paste in `intake/owner-voice/2026-10-23-audrey-our-story.md`. Keep first-person bios where she (or teachers) supplied them that way.
+- Academy voice on service pages. The about-page founder block still uses the third-person owner paste in `intake/owner-voice/2026-10-23-audrey-our-story.md`; the page heading is “How it All Started.” Keep first-person bios where she (or teachers) supplied them that way, including Audrey’s teacher card from `intake/owner-voice/2026-11-03-copy-portraits-policies.md`.
 - Gentle, relevant invitations (WhatsApp). No aggressive sales language.
 
 Other channels (for when content is drafted outside the site): Instagram Reels personal and natural; carousels thoughtful and useful; Stories casual and human; WhatsApp short and friendly; formal email/announcements organized and reassuring. Personality stays the same; presentation changes.

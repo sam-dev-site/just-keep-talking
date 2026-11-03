@@ -65,13 +65,15 @@ These values were sampled from the raster logo. Confirm against an original vect
 
 ## Identified portraits — September 17 owner update
 
-Originals are preserved in `../assets/brand/photos/`. Optimized, auto-oriented WebP derivatives are in `public/brand/`, each 900×1350 pixels:
+Originals are preserved in `../assets/brand/photos/` and `intake/owner-drop/photos/`. Optimized, auto-oriented WebP derivatives are in `public/brand/`, each 900×1350 pixels:
 
 - Audrey-founder.jpg → audrey-founder.webp (founder story/preview)
 - Audrey-teacher.jpg → audrey-teacher.webp (Audrey team profile)
 - Cristian-teacher.jpg → cristian-teacher.webp (Cristian team profile)
 - Monique-teacher.jpg → monique-teacher.webp (Monique team profile)
+- Charlie-teacher.jpg → charlie-teacher.webp (Charlie team profile)
+- Iain-teacher.jpg → iain-teacher.webp (Iain team profile; face-centered crop from landscape source)
 
-User requested equal-sized placeholders for Iain, Shay, Charlie. Photo identities above are grounded in owner-labelled filenames, not inferred from appearance. No originals were modified.
+Equal-sized placeholder remains for Shay until a photo is supplied. Photo identities above are grounded in owner-labelled filenames, not inferred from appearance. No originals were modified.
 
 - Homepage hero replacement: owner-selected ../assets/brand/photos/students-talking.jpg → public/brand/students-talking.webp (1600×1066, 119434 bytes). Original preserved; landscape frame keeps both subjects visible.

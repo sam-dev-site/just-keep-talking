@@ -63,7 +63,9 @@ test("pricing preserves selections, switches currency independently and carries 
   await expect(page.locator(".site-shell")).toHaveAttribute("data-hydrated", "true");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Explore our plans.");
   await expect(page.getByText("Our team is based in Costa Rica")).toBeVisible();
-  await expect(page.getByText("when it's time to speak")).toBeVisible();
+  await expect(page.locator(".selection-heading h2")).toContainText("Adults · Private");
+  await expect(page.locator(".selection-heading p")).toHaveCount(0);
+  await expect(page.getByText("when it's time to speak")).toHaveCount(0);
   await expect(page.getByText("Choose your weekly commitment")).toHaveCount(0);
   await expect(page.getByText("intake meeting confirms")).toHaveCount(0);
   await expect(page.locator(".plan-card")).toHaveCount(4);
@@ -139,9 +141,20 @@ test("secondary pages, contacts, image loading and layout work in both languages
       await expect(page.locator("footer").getByRole("link", { name: lang === "en" ? "Curriculum inquiries" : "Consultas de currículo" })).toBeVisible();
       if (destination === "about") {
         await expect(page.locator(".team-card")).toHaveCount(6);
-        await expect(page.locator(".team-card img")).toHaveCount(3);
-        await expect(page.locator(".portrait-placeholder")).toHaveCount(3);
+        await expect(page.locator(".team-card img")).toHaveCount(5);
+        await expect(page.locator(".portrait-placeholder")).toHaveCount(1);
         await expect(page.locator(".team-card .role")).toHaveCount(6);
+        await expect(page.getByRole("heading", { level: 1 })).toContainText(lang === "en" ? "How it All Started" : "Cómo empezó todo");
+      }
+      if (destination === "policies") {
+        await expect(page.getByRole("heading", { level: 1 })).toContainText(lang === "en" ? "Policies" : "Políticas");
+        const policyLinks = page.locator(".policy-links a");
+        await expect(policyLinks).toHaveCount(2);
+        await expect(policyLinks.nth(0)).toHaveAttribute("href", /\/policies\/JKT_2027_Enrollment_Payment_Attendance_Policy_FINAL\.pdf$/);
+        await expect(policyLinks.nth(0)).toHaveAttribute("target", "_blank");
+        await expect(policyLinks.nth(1)).toHaveAttribute("href", /\/policies\/JKT_2027_Politica_Matricula_Pagos_Asistencia_ES_FINAL\.pdf$/);
+        await expect(policyLinks.nth(1)).toHaveAttribute("target", "_blank");
+        await expect(page.locator("#tuition, #schedule, #enrollment")).toHaveCount(0);
       }
       if (destination === "faq") {
         await expect(page.locator("details")).toHaveCount(7);

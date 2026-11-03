@@ -33,11 +33,13 @@ Kids private weekly time **differs by currency** (owner screenshots):
 
 Existing one-time enrollment amounts are retained: adults CRC15000/USD35; kids CRC10000/USD25. Do not invent a per-student or whole-group billing label; the owner supplied the displayed monthly amounts without that wording.
 
-Owner-labelled originals in the workspace archive `../assets/brand/photos/`:
+Owner-labelled originals in the workspace archive `../assets/brand/photos/` and recent drops in `intake/owner-drop/photos/`:
 - Audrey-founder.jpg: founder story and homepage founder preview.
 - Audrey-teacher.jpg: Audrey's teacher card.
 - Cristian-teacher.jpg: Cristian's teacher card.
 - Monique-teacher.jpg: Monique's teacher card.
+- Charlie-teacher.jpg: Charlie's teacher card → `public/brand/charlie-teacher.webp`.
+- Iain-teacher.jpg: Iain's teacher card → `public/brand/iain-teacher.webp`.
 
 Owner DCH swaps applied from chat uploads (local Desktop archive is not mounted in cloud agents; optimized WebPs are in `public/brand/`):
 - `dch_2644`: home hero → `public/brand/students-talking.webp`.
@@ -48,4 +50,4 @@ Owner DCH swaps applied from chat uploads (local Desktop archive is not mounted 
 - `DCH_2602-Editar`: Approach learning-plan photo → `public/brand/approach-2602.webp`.
 - `DCH_7780`: reserved optimized WebP `public/brand/approach-7780.webp` (not required on the current Approach layout).
 
-Use matching-size placeholders for Iain, Shay, and Charlie until their photos are supplied. Audrey remains one person with separate founder/teacher portraits, not two team profiles.
+Use a matching-size placeholder for Shay until a photo is supplied. Charlie and Iain portraits are live. Audrey remains one person with separate founder/teacher portraits, not two team profiles.
