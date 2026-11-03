@@ -1,5 +1,9 @@
 # Project status
 
+## Recentered Charlie and Iain portraits — 3 November 2026
+
+Re-cropped `charlie-teacher.webp` (removed letterbox bars; face centered) and `iain-teacher.webp` (tighter right-side crop to center face). Sources unchanged in `intake/owner-drop/photos/`.
+
 ## Owner copy, portraits, and policy PDFs — 3 November 2026
 
 Applied owner paste from `intake/owner-voice/2026-11-03-copy-portraits-policies.md` and refined `project/VOICE.md`.
