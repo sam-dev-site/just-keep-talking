@@ -44,6 +44,7 @@ const portraits: Record<string, string> = {
   Monique: asset("/brand/monique-teacher.webp"),
   Charlie: asset("/brand/charlie-teacher.webp"),
   Iain: asset("/brand/iain-teacher.webp"),
+  Shay: asset("/brand/shay-teacher.webp"),
 };
 const pages = ["home", "classes", "approach", "about", "faq", "policies", "teach", "curriculum"] as const;
 type Page = typeof pages[number];

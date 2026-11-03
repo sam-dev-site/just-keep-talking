@@ -40,6 +40,7 @@ Owner-labelled originals in the workspace archive `../assets/brand/photos/` and 
 - Monique-teacher.jpg: Monique's teacher card.
 - Charlie-teacher.jpg: Charlie's teacher card → `public/brand/charlie-teacher.webp`.
 - Iain-teacher.jpg: Iain's teacher card → `public/brand/iain-teacher.webp`.
+- Shay-teacher.jpg: Shay's teacher card → `public/brand/shay-teacher.webp`.
 
 Owner DCH swaps applied from chat uploads (local Desktop archive is not mounted in cloud agents; optimized WebPs are in `public/brand/`):
 - `dch_2644`: home hero → `public/brand/students-talking.webp`.
@@ -50,4 +51,4 @@ Owner DCH swaps applied from chat uploads (local Desktop archive is not mounted 
 - `DCH_2602-Editar`: Approach learning-plan photo → `public/brand/approach-2602.webp`.
 - `DCH_7780`: reserved optimized WebP `public/brand/approach-7780.webp` (not required on the current Approach layout).
 
-Use a matching-size placeholder for Shay until a photo is supplied. Charlie and Iain portraits are live. Audrey remains one person with separate founder/teacher portraits, not two team profiles.
+All six teacher cards have portraits. Audrey remains one person with separate founder/teacher portraits, not two team profiles.

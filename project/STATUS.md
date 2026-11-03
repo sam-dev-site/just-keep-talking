@@ -1,5 +1,9 @@
 # Project status
 
+## Shay teacher portrait — 3 November 2026
+
+Owner supplied Shay’s headshot. Saved as `intake/owner-drop/photos/Shay-teacher.jpg`, optimized to `public/brand/shay-teacher.webp` (900×1350), wired on the team grid. All six teacher cards now have portraits. Merged to `main` for GitHub Pages publish at the owner’s request.
+
 ## Recentered Charlie and Iain portraits — 3 November 2026
 
 Re-cropped `charlie-teacher.webp` (removed letterbox bars; face centered) and `iain-teacher.webp` (tighter right-side crop to center face). Sources unchanged in `intake/owner-drop/photos/`.
@@ -9,7 +13,7 @@ Re-cropped `charlie-teacher.webp` (removed letterbox bars; face centered) and `i
 Applied owner paste from `intake/owner-voice/2026-11-03-copy-portraits-policies.md` and refined `project/VOICE.md`.
 
 - Audrey teacher bio (first person), How we teach lead + method bubbles (including Practical Grammar and Certified Native Teachers), closing CTA subheader, about heading “How it All Started,” removed classes selection subheaders, stripped policies page to PDF links, removed teach “Administrative tasks” bullet.
-- Charlie and Iain portraits: sources in `intake/owner-drop/photos/`, WebPs in `public/brand/`. Shay still placeholder.
+- Charlie, Iain, and Shay portraits: sources in `intake/owner-drop/photos/`, WebPs in `public/brand/`.
 - Policy PDFs archived under `intake/2027-program-update/policies/` and served from `public/policies/`.
 
 `pnpm check` passed: ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip). Chromium only. Merged to `main` and pushed for GitHub Pages publish on 3 November 2026 (America/Guatemala) at the owner’s request.

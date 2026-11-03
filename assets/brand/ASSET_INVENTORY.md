@@ -73,7 +73,8 @@ Originals are preserved in `../assets/brand/photos/` and `intake/owner-drop/phot
 - Monique-teacher.jpg → monique-teacher.webp (Monique team profile)
 - Charlie-teacher.jpg → charlie-teacher.webp (Charlie team profile)
 - Iain-teacher.jpg → iain-teacher.webp (Iain team profile; face-centered crop from landscape source)
+- Shay-teacher.jpg → shay-teacher.webp (Shay team profile; face-centered crop from landscape source)
 
-Equal-sized placeholder remains for Shay until a photo is supplied. Photo identities above are grounded in owner-labelled filenames, not inferred from appearance. No originals were modified.
+All six teachers have portraits. Photo identities above are grounded in owner-labelled filenames, not inferred from appearance. No originals were modified.
 
 - Homepage hero replacement: owner-selected ../assets/brand/photos/students-talking.jpg → public/brand/students-talking.webp (1600×1066, 119434 bytes). Original preserved; landscape frame keeps both subjects visible.
