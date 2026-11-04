@@ -9,6 +9,8 @@ Owner request on the about page:
 - Re-cropped `iain-teacher.webp` (face shifted left in the frame) and `shay-teacher.webp` (4:5 framing with more headroom). Sources in `intake/owner-drop/photos/` unchanged.
 - Refreshed the temporary root GitHub Pages publish files (`index.html`, hashed `assets/*`) so legacy branch hosting and local `vinext dev` match the app. Still waiting on the owner to switch Pages to GitHub Actions.
 
+Merged to `main` and pushed for GitHub Pages publish on 4 November 2026 (America/Guatemala) at the owner’s request.
+
 ## Pages serving README — 3 November 2026
 
 GitHub Pages was set to **Deploy from a branch** (`main` `/`), so the live domain showed the repo README (Jekyll) instead of the built site. The Quality Actions deploy was also getting cancelled by the built-in `pages-build-deployment` job (shared concurrency group).
