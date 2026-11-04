@@ -1,5 +1,9 @@
 # Project status
 
+## Shay portrait cream pad removed — 4 November 2026
+
+The earlier Shay re-crop added a flat cream pad above the source frame, which read as a cut through the hat. The owner source photo already clips the crown of the cap, so those pixels cannot be restored from the original. A small non-generative “puzzle piece” clone of the missing crown looked fake, so it was not used. Replaced the live WebP with a clean 4:5 crop from the source (no pad): hat meets the top of the frame naturally.
+
 ## Our story title, team order, Shay/Iain crops — 4 November 2026
 
 Owner request on the about page:
