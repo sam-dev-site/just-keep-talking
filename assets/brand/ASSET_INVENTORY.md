@@ -72,8 +72,8 @@ Originals are preserved in `../assets/brand/photos/` and `intake/owner-drop/phot
 - Cristian-teacher.jpg → cristian-teacher.webp (Cristian team profile)
 - Monique-teacher.jpg → monique-teacher.webp (Monique team profile)
 - Charlie-teacher.jpg → charlie-teacher.webp (Charlie team profile)
-- Iain-teacher.jpg → iain-teacher.webp (Iain team profile; face-centered crop from landscape source)
-- Shay-teacher.jpg → shay-teacher.webp (Shay team profile; face-centered crop from landscape source)
+- Iain-teacher.jpg → iain-teacher.webp (Iain team profile; 4:5 face-centered crop from the right side of the landscape source)
+- Shay-teacher.jpg → shay-teacher.webp (Shay team profile; 4:5 crop with a touch more headroom from the landscape source)
 
 All six teachers have portraits. Photo identities above are grounded in owner-labelled filenames, not inferred from appearance. No originals were modified.
 

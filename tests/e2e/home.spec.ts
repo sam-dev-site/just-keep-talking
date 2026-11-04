@@ -144,7 +144,9 @@ test("secondary pages, contacts, image loading and layout work in both languages
         await expect(page.locator(".team-card img")).toHaveCount(6);
         await expect(page.locator(".portrait-placeholder")).toHaveCount(0);
         await expect(page.locator(".team-card .role")).toHaveCount(6);
-        await expect(page.getByRole("heading", { level: 1 })).toContainText(lang === "en" ? "How it All Started" : "Cómo empezó todo");
+        await expect(page.getByRole("heading", { level: 1 })).toContainText(lang === "en" ? "Our story" : "Nuestra historia");
+        await expect(page.getByRole("heading", { level: 2 }).filter({ hasText: lang === "en" ? "How it all started" : "Cómo empezó todo" })).toBeVisible();
+        await expect(page.locator(".team-card h3")).toHaveText(["Audrey", "Monique", "Cristian", "Charlie", "Shay", "Iain"]);
       }
       if (destination === "policies") {
         await expect(page.getByRole("heading", { level: 1 })).toContainText(lang === "en" ? "Policies" : "Políticas");

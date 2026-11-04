@@ -55,7 +55,7 @@ The public site should be warm, clear, and professionally confident. Explain the
 Visitors should leave thinking: they understand what I need, they know what they are doing, and I would feel comfortable learning here.
 
 - Prefer “Just Keep Talking,” “we,” and “our.” Do not use the abbreviation “JKT” in visitor-facing copy.
-- Academy voice on service pages. The about-page founder block still uses the third-person owner paste in `intake/owner-voice/2026-10-23-audrey-our-story.md`; the page heading is “How it All Started.” Keep first-person bios where she (or teachers) supplied them that way, including Audrey’s teacher card from `intake/owner-voice/2026-11-03-copy-portraits-policies.md`.
+- Academy voice on service pages. The about-page founder block still uses the third-person owner paste in `intake/owner-voice/2026-10-23-audrey-our-story.md`; the page keeps the “Our story” / “Nuestra historia” label and a larger “How it all started” / “Cómo empezó todo” title above the body. Keep first-person bios where she (or teachers) supplied them that way, including Audrey’s teacher card from `intake/owner-voice/2026-11-03-copy-portraits-policies.md`.
 - Gentle, relevant invitations (WhatsApp). No aggressive sales language.
 
 Other channels (for when content is drafted outside the site): Instagram Reels personal and natural; carousels thoughtful and useful; Stories casual and human; WhatsApp short and friendly; formal email/announcements organized and reassuring. Personality stays the same; presentation changes.

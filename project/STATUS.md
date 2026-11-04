@@ -1,5 +1,14 @@
 # Project status
 
+## Our story title, team order, Shay/Iain crops — 4 November 2026
+
+Owner request on the about page:
+
+- Restored the “Our story” / “Nuestra historia” eyebrow as the page `h1`. Added the larger title “How it all started” / “Cómo empezó todo” above the founder body copy.
+- Reordered the full team grid to match the home preview: Audrey, Monique, Cristian, then Charlie, Shay, Iain.
+- Re-cropped `iain-teacher.webp` (face shifted left in the frame) and `shay-teacher.webp` (4:5 framing with more headroom). Sources in `intake/owner-drop/photos/` unchanged.
+- Refreshed the temporary root GitHub Pages publish files (`index.html`, hashed `assets/*`) so legacy branch hosting and local `vinext dev` match the app. Still waiting on the owner to switch Pages to GitHub Actions.
+
 ## Pages serving README — 3 November 2026
 
 GitHub Pages was set to **Deploy from a branch** (`main` `/`), so the live domain showed the repo README (Jekyll) instead of the built site. The Quality Actions deploy was also getting cancelled by the built-in `pages-build-deployment` job (shared concurrency group).
