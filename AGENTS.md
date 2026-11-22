@@ -2,9 +2,11 @@
 
 Just Keep Talking is a bilingual brochure site for a private online English academy. The project owner is nontechnical. Make sound defaults, explain consequential choices in plain language, and keep the workflow lightweight.
 
+**Claude suite:** start with root `CLAUDE.md` and `project/CLAUDE_HANDOFF.md`. Those are the primary agent contract after the Cursor → Claude move. This file stays aligned with them for humans and any tool that still loads `AGENTS.md`.
+
 ## Where things live
 
-This directory is the git repo and the Cursor project. The parent folder is a local archive of original client notes and brand files. Read it when a task needs source material. Do not publish, commit, or modify those originals unless the owner explicitly asks.
+This directory is the git repo. The parent folder may be a local archive of original client notes and brand files. Read it when a task needs source material. Do not publish, commit, or modify those originals unless the owner explicitly asks.
 
 - Accepted product facts: `project/BRIEF.md`
 - Voice and phrasing: `project/VOICE.md` (owner voice; do not LLM-polish owner text)
@@ -31,7 +33,11 @@ pnpm check
 
 The live host is GitHub Pages: https://www.justkeeptalkingcr.com
 
-Pushing `main` runs `.github/workflows/quality.yml` and deploys the static export. Do not push, deploy, or change the audience unless the owner explicitly asks. The Cloudflare worker and `.openai/hosting.json` are leftover starter files and are not the live host.
+Pushing `main` runs `.github/workflows/quality.yml` (check always; Pages artifact + deploy on push to `main`). Do not push, deploy, or change the audience unless the owner explicitly asks.
+
+If Pages is still “Deploy from a branch,” the root static export files are what visitors see. Do not delete them until Pages Source is **GitHub Actions** and deploy is confirmed. Details: `project/CLAUDE_HANDOFF.md` §5.
+
+The Cloudflare worker and `.openai/hosting.json` are leftover starter files and are not the live host.
 
 ## Facts you must not invent
 

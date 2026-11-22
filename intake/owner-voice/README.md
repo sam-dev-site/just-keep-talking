@@ -5,6 +5,8 @@ Drop or paste Audrey’s wording here when it arrives: emails, WhatsApp replies,
 ## Current authority
 
 - `2026-10-23-brand-voice-and-communication-guide.md` — Brand Voice & Communication Guide (personality, central message, writing do/don’t, platforms, Spanish usted, guiding checks). Distilled into `project/VOICE.md`.
+- `2026-10-23-audrey-our-story.md` — third-person Our Story paste for the about page.
+- `2026-11-03-copy-portraits-policies.md` — Audrey teacher bio, How we teach bubbles, closing CTA, policy PDF direction, portrait notes.
 
 Earlier related samples still useful: `../2027-program-update/website-information.txt`, `../CLIENT_NOTES.md`.
 
