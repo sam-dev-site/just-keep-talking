@@ -1,6 +1,6 @@
 # Implementation brief
 
-Current as of the published site at commit `0e99c96` (18 Sep 2026). Older layered notes are in `project/history/`.
+Current as of the published site at commit `f39cc23` (4 November 2026). Claude onboarding: `CLAUDE.md` and `project/CLAUDE_HANDOFF.md`. Older layered notes are in `project/history/`.
 
 ## Authority
 
@@ -36,10 +36,11 @@ Views are query parameters on `app/page.tsx` (`page`, `lang`, and on the classes
 
 ## Still open
 
-- Photo swaps applied: home hero `dch_2644`, Audrey teacher card `dch_7238` (not `dch_7245`), home founder band `DCH_2554-Editar` (Our story keeps current founder portrait), Monique teacher card `DCH_2425` (home and Meet Us).
+- **GitHub Pages:** still “Deploy from a branch” (`main` `/`). Owner should switch Source to **GitHub Actions**, confirm the live domain, then remove temporary root publish files. Until then, those root files are the live site.
+- Photo swaps applied and locked: home hero `dch_2644`, Audrey teacher card `dch_7238` (not `dch_7245`), home founder band `DCH_2554-Editar` (Our story keeps founder portrait), Monique `DCH_2425`, Charlie/Iain/Shay portraits on the grid. Shay has no cream pad above the hat.
 - Whether group prices are per student or for the whole group. Do not add a label until the owner says which.
 - Detailed policy reconciliation beyond linking the owner PDFs (if needed later).
 - Whether Cristian’s public bio should state that he teaches English here. The supplied bio describes teaching Spanish.
 - Testimonials and a kids age range are not in the confirmed notes. Do not publish testimonials until the owner supplies real quotes, with permission to use a first name and a role or city. When they arrive, place two or three short lines on the approach page after the learning plan.
-- Four plans are live again from the 2027 graphics and owner Kids Private screenshots. CRC Achiever “1. hours” is published as 1.5 hours.
+- Four plans are live from the 2027 graphics and owner Kids Private screenshots. CRC Achiever “1. hours” is published as 1.5 hours.
 - Placement quiz remains in `app/placement-quiz.tsx` but is unwired from the home page until the owner asks to restore it.

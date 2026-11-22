@@ -1,5 +1,28 @@
 # Project status
 
+## Claude suite handoff lock — 22 November 2026
+
+Moving day-to-day agent work from Cursor to a Claude suite. Priority: smooth continuity, not new features.
+
+### Locked snapshot
+
+- Live tip on `main`: `f39cc23` (4 November 2026) — Shay portrait crop fix; site published at owner request.
+- Product: bilingual static brochure; four adult + four kids plans; all six teacher portraits; policies as PDF links; curriculum inquiry page; placement quiz code present but **unwired** from home.
+- Agent contract for Claude: root `CLAUDE.md`. Full onboarding narrative: `project/CLAUDE_HANDOFF.md`.
+- `AGENTS.md`, `README.md`, and `.cursor/rules/project.mdc` now point at those files. Cursor rules kept for reference only.
+
+### Deploy lock (do not “tidy” without owner)
+
+GitHub Pages is still **Deploy from a branch** (`main` `/`). Root publish files (`index.html`, hashed `assets/*`, root `brand/`, root `policies/`, `.nojekyll`, `404.html`) are what https://www.justkeeptalkingcr.com serves. Do not remove them until Settings → Pages → Source → **GitHub Actions** and a green Actions deploy is confirmed.
+
+### Still open (owner)
+
+Same as `project/BRIEF.md` “Still open,” plus the Pages → Actions switch. Do not invent group billing labels, testimonials, Cristian English-teaching wording, or quiz restore.
+
+### Checks
+
+`pnpm check` passed on `cursor/claude-handoff-lock-23c6` (22 November 2026, America/Guatemala): ESLint, production build, two server-render tests, seven Playwright tests (one mobile accessibility skip as usual). Chromium only. Docs-only change; no site copy or asset edits. Not merged to `main` unless the owner asks to publish (docs do not require a live deploy).
+
 ## Shay portrait cream pad removed — 4 November 2026
 
 The earlier Shay re-crop added a flat cream pad above the source frame, which read as a cut through the hat. The owner source photo already clips the crown of the cap, so those pixels cannot be restored from the original. A small non-generative “puzzle piece” clone of the missing crown looked fake, so it was not used. Replaced the live WebP with a clean 4:5 crop from the source (no pad): hat meets the top of the frame naturally.

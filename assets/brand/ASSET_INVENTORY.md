@@ -59,9 +59,10 @@ These values were sampled from the raster logo. Confirm against an original vect
 
 ## Launch checks
 
-- Confirm which logo variant is preferred for the website header and social sharing image.
-- Confirm the kids plan names and weekly durations before publishing kids pricing.
-- Reconfirm date-sensitive program claims before publishing them prominently.
+- Header/footer use `mark.png` / `mark-white.png` (speech-bubble pair). Full wordmarks remain in `public/brand/` for other uses.
+- Kids plan names and weekly durations are live (Explorer–Fluent); see `intake/2027-program-update/owner-confirmed-pricing-and-portraits.md`.
+- Reconfirm date-sensitive program claims (for example student counts) before publishing them prominently.
+- Portrait WebPs for all six teachers are live under `public/brand/` (and mirrored at root `brand/` while legacy branch Pages is active).
 
 ## Identified portraits — September 17 owner update
 
